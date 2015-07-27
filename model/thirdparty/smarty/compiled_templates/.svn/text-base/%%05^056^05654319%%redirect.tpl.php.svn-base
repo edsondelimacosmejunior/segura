@@ -1,0 +1,11 @@
+<?php /* Smarty version 2.6.18, created on 2011-07-28 11:33:03
+         compiled from pages/interno/modulo/formularios/redirect.tpl */ ?>
+<script type="text/javascript">
+    function redirect(){
+        window.location = "interno/";
+    }
+</script>
+
+<body>
+ghvhg
+</body>

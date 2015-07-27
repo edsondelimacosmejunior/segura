@@ -1,0 +1,253 @@
+<?php /* Smarty version 2.6.18, created on 2011-08-21 22:09:04
+         compiled from pages/interno/modulo/formularios/motorista.tpl */ ?>
+<style>
+    body {
+        font-size: 62.5%;
+    }
+    label, input {
+        display:block;
+    }
+    input.text {
+        margin-bottom:12px;
+        width:95%;
+        padding: .4em;
+    }
+    fieldset {
+        padding:0;
+        border:0;
+        margin-top:25px;
+    }
+    h1 {
+        font-size: 1.2em;
+        margin: .6em 0;
+    }
+    div#users-contain {
+        width: 350px;
+        margin: 20px 0;
+    }
+    div#users-contain table {
+        margin: 1em 0;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    div#users-contain table td, div#users-contain table th {
+        border: 1px solid #eee;
+        padding: .6em 10px;
+        text-align: left;
+    }
+    .ui-dialog .ui-state-error {
+        padding: .3em;
+    }
+    .validateTips {
+        border: 1px solid transparent;
+        padding: 0.3em;
+    }
+</style>
+
+<script>
+    $(function() {
+        $( "input:submit, a, button", ".demo" ).button();
+        $( "a", ".demo" ).click(function() { return false; });
+    });
+
+</script>
+
+<div id="users-contain" class="ui-widget" style="margin:20px auto;">
+    <table id="users" class="ui-widget ui-widget-content">
+        <thead>
+            <tr class="ui-widget-header ">
+                <th>Cadastro de Motoristas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+
+                    <fieldset>
+                        <label for="nome">Nome</label>
+                        <input type="text" name="nome" id="nome" class="text ui-widget-content ui-corner-all" />
+                        <label for="dataNacimento">Data de Nascimento</label>
+                        <input type="text" name="dataNascimento" id="dataNascimento" value="" class="text ui-widget-content ui-corner-all" />
+                        <label for="endereco">Endereço</label>
+                        <input type="text" name="endereco" id="endereco" class="text ui-widget-content ui-corner-all" />
+                        <label for="bairro">Bairro</label>
+                        <input type="text" name="bairro" id="bairro" class="text ui-widget-content ui-corner-all" />
+                        <label for="cep">CEP</label>
+                        <input type="text" name="cep" id="cep" class="text ui-widget-content ui-corner-all" />
+                        <label for="cidade">Cidade</label>
+                        <input type="text" name="cidade" id="cidade" class="text ui-widget-content ui-corner-all" />
+                        <label for="uf">UF</label>
+                        <input type="text" name="uf" id="uf" class="text ui-widget-content ui-corner-all" />
+                        <label for="telefone">Telefone</label>
+                        <input type="text" name="telefone" id="telefone" class="text ui-widget-content ui-corner-all" />
+                        <label for="celular">Celular</label>
+                        <input type="text" name="celular" id="celular" class="text ui-widget-content ui-corner-all" />
+                        <label for="nomePai">Nome do Pai</label>
+                        <input type="text" name="nomePai" id="nomePai" class="text ui-widget-content ui-corner-all" />
+                        <label for="nomeMae">Nome da Mãe</label>
+                        <input type="text" name="nomeMae" id="nomeMae" class="text ui-widget-content ui-corner-all" />
+                        <label for="cpf">CPF</label>
+                        <input type="text" name="cpf" id="cpf" class="text ui-widget-content ui-corner-all" />
+                        <label for="rg">RG</label>
+                        <input type="text" name="rg" id="rg" class="text ui-widget-content ui-corner-all" />
+                        <label for="expedicaoRg">Data de Expedição do RG</label>
+                        <input type="text" name="expedicaoRg" id="expedicaoRg" class="text ui-widget-content ui-corner-all" />
+                        <label for="orgao">Órgão</label>
+                        <input type="text" name="orgao" id="orgao" class="text ui-widget-content ui-corner-all" />
+                        <label for="habilitacao">Carteira de Habilitação</label>
+                        <input type="text" name="habilitacao" id="habilitacao" class="text ui-widget-content ui-corner-all" />
+                        <label for="expedicaoHabilitacao">Data de Expedição da Carteira de Habilitação</label>
+                        <input type="text" name="expedicaoHabilitacao" id="expedicaoHabilitacao" class="text ui-widget-content ui-corner-all" />
+                        <label for="validadeHabilitacao">Validade da Carteira de Habilitação</label>
+                        <input type="text" name="validadeHabilitacao" id="validadeHabilitacao" class="text ui-widget-content ui-corner-all" />
+                        <label for="registroHabilitacao">Registro da Habilitacao</label>
+                        <input type="text" name="registroHabilitacao" id="registroHabilitacao" class="text ui-widget-content ui-corner-all" />
+                    </fieldset>
+
+                    <button id="cadastrar" onclick="cadastrar()" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="float:right; margin-right:10px;">
+                        <span class="ui-button-text">Cadastrar</span>
+                    </button>
+                    <button id="limpar" onclick="limpar()" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="float:right; margin-right:10px;">
+                        <span class="ui-button-text">Cancelar</span>
+                    </button>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+
+    function alertaVazio(campos,contador){
+        for(i=0;i<contador;i = i+1){
+            document.getElementById(campos[i]).style.borderColor = '#FF3300';
+            document.getElementById(campos[i]).style.backgroundColor = '#FFEDBF';
+        }
+
+    }
+
+    function limpar(){
+        $("#nome",selected_tab()).val("");
+        $("#dataNascimento",selected_tab()).val("");
+        $("#endereco",selected_tab()).val("");
+        $("#bairro",selected_tab()).val("");
+        $("#cep",selected_tab()).val("");
+        $("#cidade",selected_tab()).val("");
+        $("#uf",selected_tab()).val("");
+        $("#telefone",selected_tab()).val("");
+        $("#celular",selected_tab()).val("");
+        $("#nomePai",selected_tab()).val("");
+        $("#nomeMae",selected_tab()).val("");
+        $("#rg",selected_tab()).val("");
+        $("#cpf",selected_tab()).val("");
+        $("#expedicaoRg",selected_tab()).val("");
+        $("#orgao",selected_tab()).val("");
+        $("#habilitacao",selected_tab()).val("");
+        $("#expedicaoHabilitacao",selected_tab()).val("");
+        $("#validadeHabilitacao",selected_tab()).val("");
+        $("#registroHabilitacao",selected_tab()).val("");
+    }
+
+    function cadastrar(){
+        campos = new Array(9);
+        contador = 0;
+
+        if($("#nome").val()==""){
+            campos[contador]="nome";
+            contador=contador+1;
+        }
+
+        if($("#dataNascimento").val()==""){
+            campos[contador]="dataNascimento";
+            contador = contador+1;
+        }
+
+        if($("#cidade").val()==""){
+            campos[contador]="cidade";
+            contador=contador+1;
+        }
+
+        if($("#uf").val()==""){
+            campos[contador]="uf";
+            contador=contador+1;
+        }
+
+        if($("#nomeMae").val()==""){
+            campos[contador]="nomeMae";
+            contador=contador+1;
+        }
+
+        if($("#rg").val()==""){
+            campos[contador]="rg";
+            contador=contador+1;
+        }
+
+        if($("#cpf").val()==""){
+            campos[contador]="cpf";
+            contador=contador+1;
+        }
+
+        if($("#habilitacao").val()==""){
+            campos[contador]="habilitacao";
+            contador=contador+1;
+        }
+
+        if($("#validadeHabilitacao").val()==""){
+            campos[contador]="validadeHabilitacao";
+            contador=contador+1;
+        }
+
+        if(contador == 0){
+
+            //ESTA FUNÇÃO
+            $.ajax({
+                url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/motorista/cadastrar",
+                data: {
+                    "nome": $("#nome").val(),
+                    "dataNascimento": $("#dataNascimento").val(),
+                    "endereco": $("#endereco").val(),
+                    "bairro": $("#bairro").val(),
+                    "cep": $("#cep").val(),
+                    "cidade": $("#cidade").val(),
+                    "uf": $("#uf").val(),
+                    "telefone": $("#telefone").val(),
+                    "celular": $("#celular").val(),
+                    "nomePai": $("#nomePai").val(),
+                    "nomeMae": $("#nomeMae").val(),
+                    "rg": $("#rg").val(),
+                    "cpf": $("#cpf").val(),
+                    "expedicaoRg": $("#expedicaoRg").val(),
+                    "orgao": $("#orgao").val(),
+                    "habilitacao": $("#habilitacao").val(),
+                    "expedicaoHabilitacao": $("#expedicaoHabilitacao").val(),
+                    "validadeHabilitacao": $("#validadeHabilitacao").val(),
+                    "registroHabilitacao": $("#registroHabilitacao").val()
+                },
+                cache: false,
+                success: function(data){
+                    respostaDoControlador = eval(data);
+                    $().message(respostaDoControlador.message);
+                    openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/motorista/mostraMotoristas/");
+                },
+                error: function(data){
+                    respostaDoControlador = eval(data);
+                    $().message(respostaDoControlador.message);
+                    openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/motorista/mostraMotoristas/");
+                },
+                dataType: "json"
+
+            });
+
+
+        }else{
+            $().message("Os campos obrigatórios não foram preenchidos !");
+            alertaVazio(campos,contador);
+        }
+    }
+
+</script>

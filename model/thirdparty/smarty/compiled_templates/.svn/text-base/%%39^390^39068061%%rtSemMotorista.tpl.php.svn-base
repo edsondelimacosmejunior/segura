@@ -1,0 +1,367 @@
+<?php /* Smarty version 2.6.18, created on 2011-05-24 05:52:10
+         compiled from pages/interno/modulo/formularios/rtSemMotorista.tpl */ ?>
+<style type="text/css">
+    #corpo{
+        width: 100%;
+        padding: 5px 5px 5px 5px;
+        vertical-align: top;
+    }
+    #corpo td{
+        padding: 2px 10px 2px 10px;
+        vertical-align: top;
+    }
+    .branco{
+        padding: 0.2em;
+        -moz-border-radius: 4px 4px 4px 4px;
+        background: url("<?php echo $this->_tpl_vars['IMG']; ?>
+ui-bg_flat_75_ffffff_40x100.png") repeat-x scroll 50% 50% #FFFFFF;
+        border: 1px solid #AAAAAA;
+        color: #222222;
+        font-family: Verdana,Arial,sans-serif;
+        font-size: 1.1em;
+        border-style: solid;
+        display: none;
+    }
+    #data{
+        width: 530px;
+        border-right: solid 1px;
+    }
+    .linha{
+        padding: 0.2em;
+        display: block;
+        font-family: Verdana,Arial,sans-serif;
+        font-size: 1.1em;
+        border-style: none;
+        width 100%;
+    }
+    .celula{
+        background: url("<?php echo $this->_tpl_vars['IMG']; ?>
+ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x scroll 50% 50% #CCCCCC;
+        border: 1px solid #AAAAAA;
+        color: #222222;
+        font-weight: normal;
+        font-family: Verdana,Arial,sans-serif;
+        font-size: 0.9em;
+        border-style: none;
+        padding: 0px 5px 0px 5px;
+    }
+    .tituloCelula{
+        background: url("<?php echo $this->_tpl_vars['IMG']; ?>
+tab3.png") repeat-x scroll 50% 50% #CCCCCC;
+        font-size: 0.9em;
+        font-weight: bold;
+    }
+
+</style>
+
+<h3>RT sem Motorista</h3>
+<hr>
+<br>
+<table id="corpo">
+    <tr>
+        <td id="data">
+            <label for="user">Matrícula do Usário de Veículo: </label>
+            <input type="text" id="user" name="user"  style="width: 236px;" />
+            <a href="#" id="conf" name="conf" style="width: 40px; display: inline-block; text-align: left;" class="fg-button ui-state-default ui-corner-all">
+                <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+accept.png" />
+                <span style="display: inline-block; vertical-align: top;">Ok</span>
+            </a>
+            <div id="dataecarro" style="display: none;">
+                <br>
+                <label for="numeroRt">Número da RT: </label>
+                <input type="text" id="numeroRt" name="numeroRt" size="30"/>
+                <label for="tipoRt">Tipo da RT: </label>
+                <select name="tipoRt" id="tipoRt" style="width: 100px;">
+                    <option value="R2">R2</option>
+                    <option value="R3">R3</option>
+                </select>
+                <br><br>
+                <input type="checkbox" name="manutencao" id="manutencao" value="true"> RT com carro para manutenção
+                <br><br>
+                <label for="from">De: </label>
+                <input type="text" id="from" name="from" size="29"/>
+                <label for="to">Até: </label>
+                <input type="text" id="to" name="to" size="29"/>
+                <br><br>
+                <label for="car">Carros Disponíveis: </label>
+                <select name="car" id="car" style="width: 277px;" onchange="selectCar(this);">
+                    <option value="null">Selecione um Veículo</option>
+				<?php $_from = $this->_tpl_vars['Veiculos']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['v']):
+?>
+                    <option value="<?php echo $this->_tpl_vars['v']['idVeiculo']; ?>
+"><?php echo $this->_tpl_vars['v']['modelo']; ?>
+, <?php echo $this->_tpl_vars['v']['marca']; ?>
+, Placa: <?php echo $this->_tpl_vars['v']['placa']; ?>
+</option>
+                    <?php endforeach; endif; unset($_from); ?>
+                </select>
+                <a href="#" id="rtConf" name="rtConf" style="width: 85px; display: inline-block; text-align: left;" class="fg-button ui-state-default ui-corner-all">
+                    <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+database_save.png" />
+                    <span style="display: inline-block; vertical-align: top;">Salvar RT</span>
+                </a>
+            </div>
+        </td>
+        <td>
+            <div class="branco" id="tabelaUsuario">
+                <table class="linha">
+                    <tr>
+                        <td class="tituloCelula" style="width: 50%;">
+							Nome
+                        </td>
+                        <td class="tituloCelula" style="width: 50%;">
+							Matrícula
+                        </td>
+                        <td class="tituloCelula">
+							Chave
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="celula" id="nome">
+
+                        </td>
+                        <td class="celula" id="matricula">
+
+                        </td>
+                        <td class="celula" id="chave">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tituloCelula">
+							Empresa
+                        </td>
+                        <td class="tituloCelula">
+							Gerência
+                        </td>
+                        <td class="tituloCelula">
+							Ramal
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="celula" id="empresa">
+
+                        </td>
+                        <td class="celula" id="gerencia">
+
+                        </td>
+                        <td class="celula" id="ramal">
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div class="branco" id="tabelaCarro">
+                <table class="linha">
+                    <tr>
+                        <td class="tituloCelula" style="width: 50%;">
+								Modelo
+                        </td>
+                        <td class="tituloCelula" style="width: 50%;">
+								Marca
+                        </td>
+                        <td class="tituloCelula" >
+								Placa
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="celula" id="modelo">
+
+                        </td>
+                        <td class="celula" id="marca">
+
+                        </td>
+                        <td class="celula" id="placa">
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
+<input type="text" id="di" name="di" size="29" style="width:272px;"/>
+<input type="text" id="df" name="df" size="29" style="width:272px;"/>
+<br>
+<hr>
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+
+    $(function() {
+        var dates = $( "#from" ).datepicker({
+            altField: "#alternate",
+            altFormat: "DD, dd MM, yy",
+            changeYear: true,
+            dateFormat: 'DD, dd MM, yy',
+            formatdatetime: 'yyyy-mm-dd',
+            altField:'#di',
+            altFormat:'yy-mm-dd',
+            dayNames: ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
+            monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembr','Dezembro'],
+            dayNamesMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+            monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+            nextText: 'Próximo',
+            prevText: 'Anterior',
+            showAnim: 'show',
+            duration: 'fast',
+            onSelect: function( selectedDate ) {
+                var option = this.id == "from" ? "minDate" : "maxDate",
+                instance = $( this ).data( "datepicker" ),
+                date = $.datepicker.parseDate(
+                instance.settings.dateFormat ||
+                    $.datepicker._defaults.dateFormat,
+                selectedDate, instance.settings );
+                alert(date);
+                dates.not( this ).datepicker( "option", option, date );
+            }
+        });
+
+        var dates2 = $( "#to" ).datepicker({
+            altField: "#alternate",
+            altFormat: "DD, dd MM, yy",
+            changeYear: true,
+            dateFormat: 'DD, dd MM, yy',
+            formatdatetime: 'yyyy-mm-dd',
+            altField:'#df',
+            altFormat:'yy-mm-dd',
+            dayNames: ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
+            monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembr','Dezembro'],
+            dayNamesMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+            monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+            nextText: 'Próximo',
+            prevText: 'Anterior',
+            showAnim: 'show',
+            duration: 'fast',
+            onSelect: function( selectedDate ) {
+                var option = this.id == "from" ? "minDate" : "maxDate",
+                instance = $( this ).data( "datepicker" ),
+                date = $( "#from" , selected_tab()).datepicker("getDate");
+                dates.not( this ).datepicker( "option", option, date );
+            }
+        });
+    });
+
+
+    $("#conf").click(function(){
+        if(get_elemento(this, "#user").val() == ""){
+            $().message("Por favor informe a matrícula do Usuário do Veículo.");
+            $("#nome",selected_tab()).html("");
+            $("#matricula",selected_tab()).html("");
+            $("#chave",selected_tab()).html("");
+            $("#empresa",selected_tab()).html("");
+            $("#gerencia",selected_tab()).html("");
+            $("#ramal",selected_tab()).html("");
+            document.getElementById('tabelaUsuario').style.display = 'none';
+            document.getElementById('dataecarro').style.display = 'none';
+            document.getElementById('tabelaCarro').style.display = 'none';
+            document.getElementById('car').value = "null";
+        }else{
+
+            $.post("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/atendimento/dadosUsuario", {
+                "matricula" : get_elemento(this, "#user").val()
+            }, function(data){ /*Tratar os dados que vem do servidor*/
+
+                if(data.resposta == "erro"){
+                    $().message("Matrícula Inexistente. Por favor verifique a matrícula informada.");
+                    $("#nome",selected_tab()).html("");
+                    $("#matricula",selected_tab()).html("");
+                    $("#chave",selected_tab()).html("");
+                    $("#empresa",selected_tab()).html("");
+                    $("#gerencia",selected_tab()).html("");
+                    $("#ramal",selected_tab()).html("");
+                    document.getElementById('tabelaUsuario').style.display = 'none';
+                    document.getElementById('dataecarro').style.display = 'none';
+                    document.getElementById('tabelaCarro').style.display = 'none';
+                    document.getElementById('car').value = "null";
+                }else{
+                    $("#nome",selected_tab()).html("");
+                    $("#nome",selected_tab()).append(data.nome);
+                    $("#matricula",selected_tab()).html("");
+                    $("#matricula",selected_tab()).append(data.matricula);
+                    $("#chave",selected_tab()).html("");
+                    $("#chave",selected_tab()).append(data.chave);
+                    $("#empresa",selected_tab()).html("");
+                    $("#empresa",selected_tab()).append(data.empresa);
+                    $("#gerencia",selected_tab()).html("");
+                    $("#gerencia",selected_tab()).append(data.gerencia);
+                    $("#ramal",selected_tab()).html("");
+                    $("#ramal",selected_tab()).append(data.ramal);
+                    document.getElementById('tabelaUsuario').style.display = 'block';
+                    document.getElementById('dataecarro').style.display = 'block';
+                }
+
+            }, "json");
+
+        }
+
+    })
+
+    function selectCar(elemento){
+        if(elemento.value != "null"){
+            $.post("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/atendimento/dadosVeiculo", {
+                "idveiculo" : elemento.value
+            }, function(data){ /*Tratar os dados que vem do servidor*/
+
+                if(data.resposta == "erro"){
+                    $().message("Erro ao seleciona veículo. O veículo selecionado pode não estar indisponível, por favor selecione outro.");
+                    $("#modelo",selected_tab()).html("");
+                    $("#marca",selected_tab()).html("");
+                    $("#placa",selected_tab()).html("");
+                    document.getElementById('tabelaCarro').style.display = 'none';
+                }else{
+                    $("#modelo",selected_tab()).html("");
+                    $("#modelo",selected_tab()).append(data.modelo);
+                    $("#marca",selected_tab()).html("");
+                    $("#marca",selected_tab()).append(data.marca);
+                    $("#placa",selected_tab()).html("");
+                    $("#placa",selected_tab()).append(data.placa);
+                    document.getElementById('tabelaCarro').style.display = 'block';
+                }
+
+            }, "json");
+
+        }else{
+            $("#modelo",selected_tab()).html("");
+            $("#marca",selected_tab()).html("");
+            $("#placa",selected_tab()).html("");
+            document.getElementById('tabelaCarro').style.display = 'none';
+        }
+    }
+
+    $("#rtConf").click(function(){
+        matricula = get_elemento(this, "#matricula").val();
+        placa = get_elemento(this, "#placa").val();
+        datai = get_elemento(this, "#di").val();
+        dataf = get_elemento(this, "#df").val();
+
+        $().message(datafdatai);
+
+        $.post("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/atendimento/salvaRtSemMotorista", {
+            "datai" : datai,
+            "dataf" : dataf
+        }, function(data){ /*Tratar os dados que vem do servidor*/
+
+            if(data.resposta == "erro"){
+               
+            }else{
+                
+            }
+
+        }, "json");
+
+
+
+    })
+
+</script>

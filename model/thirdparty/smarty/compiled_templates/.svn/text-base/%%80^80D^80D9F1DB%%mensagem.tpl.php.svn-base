@@ -1,0 +1,504 @@
+<?php /* Smarty version 2.6.18, created on 2010-09-15 09:30:19
+         compiled from pages/interno/modulo/comunicacao/mensagem.tpl */ ?>
+<?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'pages/interno/modulo/comunicacao/mensagem.tpl', 371, false),)), $this); ?>
+<style type="text/css">
+	#mens_conteudo{
+		border: 1px;
+		border-style: solid;
+		border-color: #AAAAAA;
+		border-collapse: collapse;
+		border-width: thin;
+		width: 50%;
+		height: 85%;
+		float: right;
+		background-color: white;
+		background-image: url("<?php echo $this->_tpl_vars['IMG']; ?>
+stripe3.gif");
+		padding: 20px;
+	}
+	#progresso{
+		background: url("<?php echo $this->_tpl_vars['IMG']; ?>
+contador2.png") no-repeat;
+		background-position: -420px 0px;
+		width: 420px;
+		height: 14px;
+		text-align: center;
+		color: #000000;
+		font-size: 8pt;
+		font-family: Arial;
+		text-transform: uppercase;
+	}
+
+	#avt{
+		width: 128px;
+		height: 128px;
+		float: right;
+		margin-top: -8px;
+		margin-right: -8px;
+		background-color: white;
+		background-image: url("<?php echo $this->_tpl_vars['IMG']; ?>
+redx.png");
+		border: 1px;
+		border-color: #AAAAAA;
+		border-collapse: collapse;
+		border-style: ridge;
+	}
+	#filtro{
+		margin-top: 20px;
+	}
+	#tamanho{
+		height: 300px;
+		margin-top: 30px;
+	}
+	.recebidas{
+		width: 100%;
+		border-style: dotted;
+		border-collapse: collapse;
+		border-left: none;
+		border-right: none;
+		border-top: none;
+		border-width: 1px;
+	}
+	.recebidas tr:hover{
+		background-color: #9AC0CD;
+		cursor: pointer; 
+	}
+	.recebidas td{
+		height: 25px;
+	}
+	.acao{
+		width: 60px;
+		text-align: center;
+	}
+	.assunto{
+		width: 50%;
+		text-align: left;
+		font-size: 0.9em;
+		font-style: italic;
+	}
+	.quem{
+		width: 27%;
+		text-align: left;
+		font-size: 0.9em;
+		font-style: italic;
+	}
+	.data{
+		width: 160px;
+		text-align: center;
+		font-size: 0.9em;
+		font-style: italic;
+	}
+	#borda-entrada{
+		width: 100%;
+		height: 25px;
+		background-image: url("<?php echo $this->_tpl_vars['IMG']; ?>
+tab2.gif");
+		border: 1px;
+		border-color: #AAAAAA;
+		border-style: solid;
+	}
+	#borda-entrada td{
+		vertical-align: middle;
+		color: white;
+		font-size: 0.9em;
+		font-weight: bolder;
+		font-style: italic;
+	}
+	#borda-usuarios{
+		width: 40%;
+		height: 25px;
+		background-image: url("<?php echo $this->_tpl_vars['IMG']; ?>
+tab2.gif");
+		border: 1px;
+		border-color: #AAAAAA;
+		border-style: solid;
+	}
+	#borda-usuarios a{
+		vertical-align: middle;
+		margin-left: 10px;
+		color: white;
+		font-size: 0.9em;
+		font-weight: bolder;
+		font-style: italic;
+	}
+	#usuarios{
+		width: 40%;
+		display: block;
+		height: 240px;
+		overflow: scroll;
+	}
+	#qtd2{
+		font-weight: bolder;
+	}
+	.clic{
+		cursor: pointer; 
+	}
+	#botton_menu{
+		width: 100%;
+	}
+	
+	/* SELECTABLE */
+	#feedback { font-size: 0.9em; }
+	#selectable:hover{
+		cursor: pointer;
+	}
+	#selectable .ui-selecting { background: #FECA40; }
+	#selectable .ui-selected { background: #F39814; color: white; }
+	#selectable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+	#selectable li { margin: 3px; padding: 0.4em; font-size: 0.8em; height: 18px; }
+	/* END SELECTABLE */
+	
+	#mensagem_entrada {
+	
+		display: block;
+		border: 1px solid #ccc;
+		width: 708px;
+		background-color: white;	
+		font-size: 10pt;
+		color: #666;
+		padding: 10px;
+	}
+	
+</style>
+
+<div id="tabs">
+
+<ul>
+		<li><a href="#tabs-1">Caixa de Entrada</a></li>
+		<li><a href="#tabs-2">Caixa de Saída</a></li>
+		<li><a href="#tabs-3">Nova</a></li>
+</ul>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href="<?php echo $this->_tpl_vars['CSS']; ?>
+flexigrid/flexigrid.css" />
+<script src="<?php echo $this->_tpl_vars['JS']; ?>
+flexigrid.patched.js" type="text/javascript"></script>
+
+<!-- CAIXA DE ENTRADA -->
+
+<div id="tabs-1">
+
+	<br clear="all" />
+
+	<table id="caixa_entrada"></table>
+	
+	<div id="mensagem_entrada">
+		Selecione uma mensagem acima.
+	</div>
+
+	<br clear="all" />
+
+</div>
+
+<!-- FIM CAIXA DE ENTRADA -->
+
+
+<!-- CAIXA DE SAIDA -->
+
+<div id="tabs-2">
+<br>
+<p>Algum dia vc verá sua caixa de saída aqui. =/</p>
+<br>
+</div>
+<!-- FIM CAIXA DE SAIDA -->
+
+
+<!-- NOVA MENSAGEM -->
+
+<div id="tabs-3" style="height: 355px;">
+	
+	<div id="mens_conteudo">
+		
+		<div id="avt"></div>
+		
+		<span id="feedback" style="font-size: 0.9em; font-weight: bold;">Para: <span id="select-result" style="font-weight: normal; margin-left: 35px;"></span></span>
+		<br><br><br>
+		<br><br>
+		<span style="font-size: 0.9em; font-weight: bold;">Assunto: </span><input type="text" id="assunt" maxlength=45 style="margin-left: 10px; width: 50%;"></input>
+		<br><br>
+		
+		<form action="javascript:submeter();" method="post" name="corpo_mensagem">
+			<textarea name="comments" cols=56 rows=7 onkeyup="progresso_tecla(this)" value=""></textarea>
+			<br><br>
+			<div id="progresso">(0 / 1000)</div>
+			<input type="submit" value="Enviar" style="float: right; font-size: 0.75em; margin-top: -20px;">
+		</form>
+
+	</div>
+	
+	<div id="filtro">
+		<form name="filtro" method="post" action="javascript:filtrar();" id="filtrouser">
+			<p><b>Nome do jogador:</b></p>
+			<p><input name="nameuser" id="nameuser"><input type="submit" value="Pesquisar" style="margin-left: 25px;"></p>
+		</form>
+	</div>
+	
+	<div id="borda-usuarios" class="ui-corner-top"><a>Selecione o destinatário</a></div>
+	<div id="usuarios" class="ui-layout-content">
+		<ol id="selectable">
+			<?php $_from = $this->_tpl_vars['Usuarios']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['users']):
+?>
+				<li class="ui-widget-content" rel="<?php echo $this->_tpl_vars['users']['nome']; ?>
+" ><?php echo $this->_tpl_vars['users']['nome']; ?>
+</li>
+			<?php endforeach; endif; unset($_from); ?>
+		</ol>
+
+	</div>
+	
+</div>
+<!-- FIM NOVAS MENSAGENS -->
+
+
+<script type="text/javascript">
+
+	$("#caixa_entrada").flexigrid({
+		url: '<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/comunicacao/caixa_entrada',
+		dataType: 'json',
+		colModel : [
+			{display: 'Remetente', name : 'nome', width : 120, sortable : true, align: 'left'},
+			{display: 'Assunto', name : 'assunto', width : 410, sortable : true, align: 'left'},
+			{display: 'Data', name : 'data', width : 130, sortable : true, align: 'left'}
+			],
+		buttons : [
+			{separator: true},
+			{name: 'Ler', bclass: 'open', onpress: sortAlpha},
+			{name: 'Excluir', bclass: 'delete', onpress: sortAlpha}
+		],
+		searchitems : [
+			{display: 'Remetente', name : 'nome', isdefault: true},
+			{display: 'Assunto', name : 'assunto'},
+			{display: 'Data', name : 'data'}
+		],
+		sortname: "idMensagem",
+		sortorder: "desc",
+		usepager: true,
+		title: 'E-mails encontrados',
+		useRp: true,
+		rp: 10,
+		showTableToggleBtn: true,
+		width: 730,
+		height: 150,
+		singleSelect: true
+	});
+
+	function sortAlpha(com) { 
+		$('#list').flexOptions({newp:1, params:[{name:'letter_pressed', value: com},{name:'qtype',value:$('select[name=qtype]').val()}]});
+		$("#list").flexReload(); 
+	}
+
+	function progresso_tecla(obj) {
+		var max=1000;
+		var ancho=420;
+		var progresso = document.getElementById("progresso");
+		if (obj.value.length < max) {
+			progresso.style.backgroundColor = "#FFFFFF";
+			progresso.style.backgroundImage = "url(<?php echo $this->_tpl_vars['IMG']; ?>
+contador2.png)";
+			progresso.style.color = "#000000";
+			var pos = ancho-parseInt((ancho*parseInt(obj.value.length))/1000);
+			progresso.style.backgroundPosition = "-"+pos+"px 0px";
+		} else {
+			progresso.style.backgroundColor = "#CC0000";
+			progresso.style.backgroundImage = "url()";
+			progresso.style.color = "#FFFFFF";
+			obj.value = obj.value.substring(0,max);
+		}
+		progresso.innerHTML = "("+obj.value.length+" / "+max+")";
+	}
+
+	
+	$(function() {
+		$("#tabs").tabs();
+	});
+	
+	$(function() {
+		$("#selectable").selectable({
+			stop: function(){
+			var result = $("#select-result").empty();
+			$(".ui-selected", this).each(function(){
+				var index = $(this).attr("rel");
+				result.append("" + (index));
+				avatar(index);
+				//$("#selectable li").index(this)
+			});
+			}
+		});	
+	});
+	
+	function avatar(nome){
+		$.ajax({
+			url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/comunicacao/change_avt",
+			data: { 
+				"n": nome
+			},
+			cache: false,
+			success: function(data) {
+				
+				$("#avt").html("");
+				$("#avt").append('<img src="<?php echo $this->_tpl_vars['IMG']; ?>
+' + data + '"></img>');
+				
+			},
+			error: function(data) {
+				$("#avt").html("");
+				$().message("Erro ao buscar imagem!");
+			},
+			dataType: "json"
+		});
+	}
+	
+	function proxima_in(prox){
+		$.ajax({
+			url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/comunicacao/prox_in",
+			data: { 
+				"pag": prox
+			},
+			cache: false,
+			success: function(data) {
+				
+				$("#linhas").html("");
+				
+				if(data.legth == 0){
+					$("#linhas").append("<p>Você não possui mensagens.</p>");
+				}
+				
+				for(var i=0; i<data.length; i++){	
+					$("#linhas").append(
+							'<table class="recebidas" onclick="seleciona_mensagem(<?php echo '+ data[i] +'; ?>
+);"> '
+					+		'	<?php if ('+ data[i]["lida"] +' == 0): ?>'
+					+		'		<tr style="font-weight: bold;">'
+					+		'	<?php else: ?>'
+					+		'		<tr>'
+					+		'	<?php endif; ?>'
+					+		'	<td class="acao">'
+					+		'		<form>'
+					+		'			<input type="checkbox"></input>'
+					+		'		</form>'
+					+		'	</td>'
+					+		'	<td class="quem">'+ data[i]["nome"] +'</td>'
+					+		'	<?php if ('+ data[i]["lida"] +' == 0): ?>'
+					+		'		<td class="assunto"><img src="<?php echo $this->_tpl_vars['IMG']; ?>
+/menu/icons/email.png" style="position: absolute; margin-top: 1px; margin-left: -3%"></img>'+ data[i]["assunto"] +'</td>'
+					+		'	<?php else: ?>'
+					+		'		<td class="assunto"><img src="<?php echo $this->_tpl_vars['IMG']; ?>
+/menu/icons/email_open.png" style="position: absolute; margin-left: -3%"></img>'+ data[i]["assunto"] +'</td>'
+					+		'	<?php endif; ?>'
+					+		'	<td class="data"><?php echo ((is_array($_tmp='+data[i]["data"]+')) ? $this->_run_mod_handler('date_format', true, $_tmp, "%d/%m/%Y %H:%M:%S") : smarty_modifier_date_format($_tmp, "%d/%m/%Y %H:%M:%S")); ?>
+</td>'
+					+		'</tr></table>'
+				
+				);
+			}
+				
+			$("#pag_control").html("");
+			$("#pag_control").append(
+				'<table id="qtd2">'
+			+	'	<tr>'
+			+	'		<?php if ($this->_tpl_vars['Atual_in'] != 0): ?>'
+			+	'		<td class="clic" style="text-align: right;" onclick="anterior_in("<?php echo $this->_tpl_vars['Atual_in']-1; ?>
+");"><img src="<?php echo $this->_tpl_vars['IMG']; ?>
+menu/icons/001_27.png"></img> </td>'
+			+	'		<td class="clic" style="text-align: center;" onclick="anterior_in("<?php echo $this->_tpl_vars['Atual_in']-1; ?>
+");">Anterior</td>'
+			+	'		<?php endif; ?>'
+			+	'		<td style="width: 30px;"></td>'
+			+	'		<?php if ($this->_tpl_vars['Atual_in']+1 < $this->_tpl_vars['Num_in']): ?>'	
+			+	'		<td class="clic" style="text-align: center;" onclick="proxima_in("<?php echo $this->_tpl_vars['Atual_in']+1; ?>
+");">Próxima</td>'
+			+	'		<td class="clic" style="text-align: left;" onclick="proxima_in("<?php echo $this->_tpl_vars['Atual_in']+1; ?>
+");"> <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+menu/icons/001_25.png"></img></td>'
+			+	'		<?php endif; ?>'
+			+	'	</tr>'
+			+	'</table>'
+			);									
+				
+			},
+			error: function(data) {
+				$().message("Desculpe, não conseguimos concluir sua solicitação!");
+			},
+			dataType: "json"
+		});
+	}
+	
+	function anterior_in(ant){
+		alert(ant);
+	}
+
+	
+	function submeter(){
+		var n_user = document.getElementById("select-result");
+		var a = document.getElementById("assunt");
+		var m = document.corpo_mensagem;
+		var prog = document.getElementById("progresso");
+		
+		if(n_user.innerHTML == "" || n_user.innerHTML == "undefined"){
+			$().message("Você precisa selecionar um destinatário.");
+		}else{
+			
+			$.ajax({
+				url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/comunicacao/submeter",
+				data: { 
+					"destino": n_user.innerHTML,
+					"assunto": a.value,
+					"conteudo": m.comments.value
+				},
+				cache: false,
+				success: function(data) {
+					$().message("Mensagem enviada com sucesso.");
+					a.value = "";
+					m.comments.value = "";
+					prog.innerHTML = "(0 / 1000)";
+					prog.style.backgroundPosition = "-420px 0px";
+				},
+				error: function(data) {
+					$().message("Erro ao enviar mensagem.");
+				},
+				dataType: "json"
+			});
+			
+		}
+		
+	}
+	
+	function filtrar(){
+		d = document.filtro;
+		
+		$.ajax({
+			url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/comunicacao/filtro_users",
+			data: { 
+				"nameusers": d.nameuser.value
+			},
+			cache: false,
+			success: function(data) {
+				
+				$("#selectable").html("");
+				
+				if(data.length == 0){
+					$("#selectable").append('<br><span style="margin-left: 20px;">Nenhum usuário encontrado.</span>');
+				}
+				
+				for(var i=0; i < data.length; i++){
+					$("#selectable").append('<li class="ui-widget-content" rel="' + data[i]["nome"] + '">' + data[i]["nome"] + '</li>');					
+				}
+				
+				
+			},
+			error: function(data) {
+				$().message("Usuário inválido!");
+			},
+			dataType: "json"
+		});
+	}
+
+</script>

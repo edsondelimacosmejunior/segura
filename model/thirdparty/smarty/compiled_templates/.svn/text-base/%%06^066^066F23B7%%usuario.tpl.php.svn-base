@@ -1,0 +1,168 @@
+<?php /* Smarty version 2.6.18, created on 2011-08-21 22:12:38
+         compiled from pages/interno/modulo/formularios/usuario.tpl */ ?>
+<style>
+    body { 
+        font-size: 62.5%;
+    }
+    label, input { 
+        display:block;
+    }
+    input.text { 
+        margin-bottom:12px;
+        width:95%;
+        padding: .4em;
+    }
+    fieldset { 
+        padding:0;
+        border:0;
+        margin-top:25px;
+    }
+    h1 {
+        font-size: 1.2em;
+        margin: .6em 0;
+    }
+    div#users-contain {
+        width: 350px;
+        margin: 20px 0;
+    }
+    div#users-contain table { 
+        margin: 1em 0;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    div#users-contain table td, div#users-contain table th { 
+        border: 1px solid #eee;
+        padding: .6em 10px;
+        text-align: left;
+    }
+    .ui-dialog .ui-state-error { 
+        padding: .3em;
+    }
+    .validateTips {
+        border: 1px solid transparent;
+        padding: 0.3em;
+    }
+</style>
+
+<script>
+    $(function() {
+        $( "input:submit, a, button", ".demo" ).button();
+        $( "a", ".demo" ).click(function() { return false; });
+    });
+
+</script>
+
+<div id="users-contain" class="ui-widget" style="margin:20px auto;">
+    <table id="users" class="ui-widget ui-widget-content">
+        <thead>
+            <tr class="ui-widget-header ">
+                <th>Cadastro de Usuários</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+
+                    <fieldset>
+                        <label for="nome">Nome</label>
+                        <input type="text" name="nome" id="nome" class="text ui-widget-content ui-corner-all" />
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" class="text ui-widget-content ui-corner-all" />
+                        <label for="login">Login</label>
+                        <input type="text" name="login" id="login" class="text ui-widget-content ui-corner-all" />
+                        <label for="senha">Senha</label>
+                        <input type="password" name="password" id="senha" class="text ui-widget-content ui-corner-all" />
+                    </fieldset>
+
+                    <button id="cadastrar" onclick="cadastrar()" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="float:right; margin-right:10px;">
+                        <span class="ui-button-text">Cadastrar</span>
+                    </button>
+                    <button id="limpar" onclick="limpar()" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="float:right; margin-right:10px;">
+                        <span class="ui-button-text">Cancelar</span>
+                    </button>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+
+    function alertaVazio(campos,contador){
+        for(i=0;i<contador;i = i+1){
+            document.getElementById(campos[i]).style.borderColor = '#FF3300';
+            document.getElementById(campos[i]).style.backgroundColor = '#FFEDBF';
+        }
+
+    }
+
+    function limpar(){
+        $("#nome",selected_tab()).val("");
+        $("#email",selected_tab()).val("");
+        $("#login",selected_tab()).val("");
+        $("#senha",selected_tab()).val("");
+    }
+
+    function cadastrar(){
+        campos = new Array(4);
+        contador = 0;
+
+        if($("#nome").val()==""){
+            campos[contador]="nome";
+            contador=contador+1;
+        }
+
+        if($("#email").val()==""){
+            campos[contador]="email";
+            contador = contador+1;
+        }
+
+        if($("#login").val()==""){
+            campos[contador]="login";
+            contador=contador+1;
+        }
+
+        if($("#senha").val()==""){
+            campos[contador]="senha";
+            contador = contador+1;
+        }
+
+        if(contador == 0){
+
+            //ESTA FUNÇÃO
+            $.ajax({
+                url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuario/cadastrar",
+                data: {
+                    "nome": $("#nome").val(),
+                    "email": $("#email").val(),
+                    "login": $("#login").val(),
+                    "senha": $("#senha").val()
+                },
+                cache: false,
+                success: function(data){
+                    respostaDoControlador = eval(data);
+                    $().message(respostaDoControlador.message);
+                    openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuario/mostraUsuarios/");
+                },
+                error: function(data){
+                    respostaDoControlador = eval(data);
+                    $().message(respostaDoControlador.message);
+                    openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuario/mostraUsuarios/");
+                },
+                dataType: "json"
+
+            });
+
+
+        }else{
+            $().message("Os campos obrigatórios não foram preenchidos !");
+            alertaVazio(campos,contador);
+        }
+    }
+    
+</script>

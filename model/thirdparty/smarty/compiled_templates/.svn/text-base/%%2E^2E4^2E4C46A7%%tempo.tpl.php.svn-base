@@ -1,0 +1,127 @@
+<?php /* Smarty version 2.6.18, created on 2010-09-17 08:46:53
+         compiled from pages/interno/modulo/tempo/tempo.tpl */ ?>
+<script language="JavaScript" src="<?php echo $this->_tpl_vars['JS']; ?>
+FusionCharts.js"></script>
+<link rel="stylesheet" href="<?php echo $this->_tpl_vars['CSS']; ?>
+fusionchart/Style.css" type="text/css" />
+
+<style type="text/css">
+	#info_tempo{
+		background-color: #C9EEC9;
+		border-collapse: separate;
+		border-style: double;
+		border-color: gray;
+	}
+	#space{
+		height: 50px;
+	}
+	#control{
+		text-align: center;
+	}	
+</style>
+
+
+<h2>Controle do Tempo</h2>
+<div id = "info_tempo" style="margin: auto; text-align: center; padding: 10px;">
+
+	<div id="grafico_linhas" style="margin: auto;"></div>
+	<br />
+	<div id="grafico_artefatos" style="margin: auto;"></div>
+	
+	<script type="text/javascript">
+
+		var chart = new FusionCharts("<?php echo $this->_tpl_vars['IMG']; ?>
+flash/charts/FCF_MSArea2D.swf", "andamento", "980", "500");
+		chart.setDataURL("<?php echo $this->_tpl_vars['BASE_URL']; ?>
+interno/modulo/tempo/grafico_linhas");
+		chart.render("grafico_linhas");
+
+		var chart = new FusionCharts("<?php echo $this->_tpl_vars['IMG']; ?>
+flash/charts/FCF_MSArea2D.swf", "andamento", "980", "500");
+		chart.setDataURL("<?php echo $this->_tpl_vars['BASE_URL']; ?>
+interno/modulo/tempo/grafico_artefatos");
+		chart.render("grafico_artefatos");
+
+	</script>
+	
+</div>
+	<br /><br />
+<div id = "control">
+	<a href="javascript: dia();">Próximo dia <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+/menu/icons/date_next.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="javascript: semana();">Próxima semana <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+/menu/icons/date_go.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="javascript: restart();">Restart <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+/menu/icons/date_go.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+
+
+
+
+
+<script type="text/javascript">
+	
+	function dia(){
+		$.ajax({
+			url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/tempo/dia",
+			data: { },
+			cache: false,
+			success: function(data) {
+				openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/tempo/mostratempo");
+				$().message("Dia decorrido com sucesso.");
+			},
+			error: function(data) {
+				$().message("Desculpe. Não foi possível concluir sua solicitação.");
+			}
+		});
+	}
+	
+	function semana(){
+		$.ajax({
+			url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/tempo/semana",
+			data: { },
+			cache: false,
+			success: function(data) {
+				
+				$().message("Semana decorrida normalmente.");
+				openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/tempo/mostratempo");
+			},
+			error: function(data) {
+				$().message("Desculpe. Não foi possível concluir sua solicitação.");
+			}
+		});
+	}
+	
+	function restart(){
+		$.ajax({
+			url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/tempo/restart",
+			data: { },
+			cache: false,
+			success: function(data) {
+				$().message("Projeto reiniciado com sucesso.");
+				openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/tempo/mostratempo");
+			},
+			error: function(data) {
+				$().message("Desculpe. Não foi possível concluir sua solicitação.");
+			}
+		});
+	}
+	
+	function grafico(){
+		$.ajax({
+			url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/tempo/grafico",
+			data: {},
+			cache: false,
+			success: function(data) {},
+			error: function(data) {}
+		});
+	}
+
+</script>

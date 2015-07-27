@@ -1,0 +1,55 @@
+<?php /* Smarty version 2.6.18, created on 2010-09-17 10:49:29
+         compiled from pages/interno/modulo/usuarios/avatar.tpl */ ?>
+<style type="text/css">
+	#cx{
+		width: 100%;
+		display: block;
+	}
+	#titleavatar{
+		font-size: 1.1em;
+	}
+</style>
+
+
+<p id="titleavatar">Selecione o avatar que deseja para representá-lo no jogo.</p>
+<hr>
+<br />
+
+<div id="cx">
+	<div style="text-align: center;">
+		<?php $_from = $this->_tpl_vars['Avatar']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['av']):
+?>
+		<span style="text-align: center; display: inline-table; width: 130px;">
+			<a href="javascript:avatar_alter(<?php echo $this->_tpl_vars['av']['idAvatar']; ?>
+);" style=" width: 130px; display: inline-block; text-align: center;" class="fg-button ui-state-default ui-corner-all">
+				<img src="<?php echo $this->_tpl_vars['IMG']; ?>
+<?php echo $this->_tpl_vars['av']['imagem']; ?>
+" />
+			</a>
+		</span>
+		<?php endforeach; endif; unset($_from); ?>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+function avatar_alter(id){
+		$.ajax({
+			url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuarios/avatar_alter",
+			data: {
+				"idavatar" : id
+			},
+			cache: false,
+			success: function(data) {
+				$().message("Seu avatar foi alterado.");
+			},
+			error: function(data) {
+				$().message("Desculpe. Não foi possível concluir sua solicitação.");
+			},
+			dataType: "json"
+		});
+}
+
+</script>

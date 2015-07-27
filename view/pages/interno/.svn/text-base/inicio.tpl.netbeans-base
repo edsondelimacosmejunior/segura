@@ -1,0 +1,91 @@
+<style type="text/css">
+	#titleinicio{
+		padding: 5px;
+		margin-left: 120px;
+		display: block;
+		font-weight: bolder;
+		font-size: medium;
+	}
+	#contproj{
+		margin-top: 50px;
+		margin-left: 50px;
+		
+	}
+	#selecione{
+		margin-top: 180px;
+		margin-left: 150px;
+		vertical-align: middle;
+	}
+	#cxconteudo{
+		background-image: url("{{$IMG}}csc_center3.gif");
+		background-repeat: no-repeat;
+		background-position: center;
+		height: 400px;
+	}
+	#nproj{
+		margin-left: 20px;
+	}
+</style>
+
+
+<span id="titleinicio">Bem vindo ao eRiskGame</span>
+<div id="contproj">
+	{{if $smarty.session.idprojeto == -1}}
+		<form name="cadastro" method="post" action="{{$BASE_PATH}}interno/criarprojeto" id="nproj" onSubmit="return validaForm()">
+			<p>Informe o nome para o novo projeto:</p>
+			<p><input name="nomeproj"></p>
+			<input type="checkbox" name="apresentacao" value="true" checked> Visualizar Apresentação Inicial<br>
+			<p><input type="submit" value="Confirmar"></p>
+		</form>
+	{{elseif $smarty.session.idprojeto == -2}}
+		{{foreach from=$projs item=projs}}
+			<span style="text-align: center; display: block; width: 100%;">
+				<a href="#" rel="{{$projs.idProjeto}}" method="post" style="width: 90%; display: block; text-align: center;" class="fg-button ui-state-default ui-corner-all select_project">
+					<table style="line-height: 16px; padding: 5px; display: inline; text-align: center;">
+						<tr>
+							<td style=" width: 300px">{{$projs.nome}}</td>
+							<td style=" width: 300px">Linhas de Código: {{$projs.linhasDeCodigoGeradas}} de {{$projs.linhasDeCodigoPrevistas}}</td>
+							<td style=" width: 300px">Artefatos: {{$projs.artefatosGerados}} de {{$projs.artefatosPrevistos}}</td>
+						</tr>
+					</table>
+				</a>
+			</span>
+			<br />
+		{{foreachelse}}
+			<p>Você não possui nenhum projeto em andamento. Inicie um novo projeto.</p>
+		{{/foreach}}
+	{{else}}
+		<div id="selecione">
+			<img src="{{$IMG}}menu/icons/001_23.png" /> 
+			<span style="vertical-align: super;">Selecione se deseja criar um novo projeto ou carregar um em andamento!</span>
+		</div>
+	{{/if}}
+</div>
+
+<script type="text/javascript">
+	
+	$(".select_project").click(function(){
+		$.get(	"{{$BASE_PATH}}interno/open_proj",
+				{
+					"abrirprojeto" : $(this).attr("rel")
+				},
+				function(response) {
+					window.location = '{{$BASE_PATH}}interno/';
+				});
+	})			
+	
+	function validaForm(){
+    	d = document.cadastro;
+        //validar nome
+        if (d.nomeproj.value == ""){
+        	alert("Informe o nome do projeto!!");
+                d.nomeproj.focus();
+            return false;
+        }
+            return true;
+	}
+		
+</script>
+
+
+

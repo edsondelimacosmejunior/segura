@@ -1,0 +1,1 @@
+http://localhost/segura/model/thirdparty/doctrine/sandbox/generate.php

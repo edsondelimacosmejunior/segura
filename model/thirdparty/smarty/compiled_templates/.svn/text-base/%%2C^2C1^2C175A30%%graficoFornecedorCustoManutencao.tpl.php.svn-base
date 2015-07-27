@@ -1,0 +1,70 @@
+<?php /* Smarty version 2.6.18, created on 2011-03-13 20:48:24
+         compiled from pages/interno/modulo/relatorios/graficoFornecedorCustoManutencao.tpl */ ?>
+<script language="JavaScript" src="<?php echo $this->_tpl_vars['JS']; ?>
+FusionCharts.js"></script>
+<script language="JavaScript" src="<?php echo $this->_tpl_vars['JS']; ?>
+jquery/jquery.progressbar.js"></script>
+<link rel="stylesheet" href="<?php echo $this->_tpl_vars['CSS']; ?>
+fusionchart/Style.css" type="text/css" />
+
+<style type="text/css">
+	#titlerelatorio{
+		padding: 5px;
+		display: block;
+		font-weight: bolder;
+		font-size: medium;
+	}
+	#grafico_fornecedores{
+		background-color: #C9EEC9;
+		border-collapse: separate;
+		border-style: double;
+		border-color: gray;
+	}
+</style>
+
+<span id="titlerelatorio">Custo de Manutenções por Fornecedores</span>
+<hr>
+<br>
+
+<span style="text-align: center; display: block; width: 200px; position: absolute; top: 8px; right: 0px;">
+	<a href="#" id="voltar" style="width: 150px; display: block; text-align: center;" class="fg-button ui-state-default ui-corner-all">
+		<span style="line-height: 16px; margin: 0; padding: 5px;">Voltar para Opções</span>
+	</a>
+</span>
+
+<div id="grafico_fornecedores" style="position: absolute; padding: 10px; margin: auto;">
+
+</div>
+
+<div>
+	<?php $_from = $this->_tpl_vars['Idfornecedores']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['ids']):
+?>
+		<span type="hidden" class="fornecedor_id" rel="<?php echo $this->_tpl_vars['ids']; ?>
+"></span>
+	<?php endforeach; endif; unset($_from); ?>
+</div>
+
+<script language="javascript" type="text/javascript">
+	
+	$("#voltar").click(function(){
+		openlink('<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/fornecedor/graficoCustoManutencao/');			
+	});
+	
+	var i = 0;
+	var ger = new Array();
+	$(".fornecedor_id").each(function(){
+		ger[i] = $(this).attr("rel");
+		i = i +1;
+	});
+			
+	var chart = new FusionCharts("<?php echo $this->_tpl_vars['IMG']; ?>
+flash/charts/FCF_Column3D.swf", "grafico", "<?php echo $this->_tpl_vars['Tamanho']['x']; ?>
+", "<?php echo $this->_tpl_vars['Tamanho']['y']; ?>
+");
+	chart.setDataURL("<?php echo $this->_tpl_vars['BASE_URL']; ?>
+interno/modulo/fornecedor/gfcm/" + ger);
+	chart.render("grafico_fornecedores");
+		
+</script>

@@ -1,0 +1,428 @@
+/* 
+    Document   : oxigas
+    Created on : 04/01/2012, 20:16:39
+    Author     : Edson Junior
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+*{
+    padding:0;
+    margin:0;
+}
+
+body{
+    background: url(../imgs/index/bg.png);
+    text-align: center;
+}
+
+#bg {
+    display:block;
+    min-height: 900px;
+    width:100%;
+}
+
+
+#bgBottom {
+    background: url(../imgs/layout/rodape.png) repeat-x scroll bottom transparent;
+    display:block;
+    min-height: 900px;
+    width:100%;
+}
+
+#estrutura {
+    background: url(../imgs/index/fundoLogo.png) no-repeat top left transparent;
+    display: block;
+    min-height: 1096px;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#topo {
+    background: url(../imgs/index/divider.png) no-repeat bottom transparent;
+    display: block;
+    height: 144px;
+    width: 100%;
+}
+
+#logoOxigas {
+    background: url(../imgs/index/logo.png) no-repeat transparent;
+    display:inline-block;
+    float: left;
+    margin-top: 30px;
+    height: 55px;
+    width: 267px;
+    cursor: pointer;
+}
+
+#logoIso {
+    background: url(../imgs/index/iso2.png) no-repeat transparent;
+    display:inline-block;
+    float: left;
+    margin-top: 22px;
+    margin-left: 10px;
+    height: 73px;
+    width: 73px;
+}
+
+#menuExterno {
+    display: inline-block;
+    height: 40px;
+    width:500px;
+    margin-top: 32px;
+    float: right;
+}
+
+#copyright { 
+    display: none; 
+}
+
+#banner {
+    display: block;
+    margin-top: 35px;
+    height: 442px;
+    width: 100%;
+    background: url(../imgs/index/barra.png) no-repeat bottom transparent;
+}
+
+#areaTrabalho {
+    display: inline-block;
+    min-height: 500px;
+    width: 100%;
+    background: url(../imgs/index/divider2.png) no-repeat bottom transparent;
+}
+
+.destaque{
+    display: inline-block;
+    float: left;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 25px;
+    height: 420px;
+    width: 300px;
+}
+
+.destaqueCabecalhoEmpresa{
+    background: url(../imgs/index/empresa.png) no-repeat top left transparent;
+    display: block;
+    height: 38px;
+    width: 300px;
+}
+
+.destaqueCabecalhoProdutos{
+    background: url(../imgs/index/produtos.png) no-repeat top left transparent;
+    display: block;
+    height: 38px;
+    width: 300px;
+}
+
+.destaqueCabecalhoMercado{
+    background: url(../imgs/index/mercado.png) no-repeat top left transparent;
+    display: block;
+    height: 38px;
+    width: 300px;
+}
+
+.destaqueCentro{
+    background: url(../imgs/index/quadroDestaque.png) no-repeat top transparent;
+    display: block;
+    margin-top: 10px;
+    margin-left: 6px;
+    height: 294px;
+    width: 288px;
+}
+
+.destaqueFotoEmpresa{
+    background: url(../imgs/index/fotoEmpresa.jpg) no-repeat top transparent;
+    display: inline-block;
+    margin-top: 10px;
+    height: 174px;
+    width: 264px;
+}
+
+.destaqueFotoProdutos{
+    background: url(../imgs/index/fotoProdutos.jpg) no-repeat top transparent;
+    display: inline-block;
+    margin-top: 10px;
+    height: 174px;
+    width: 264px;
+}
+
+.destaqueFotoMercado{
+    background: url(../imgs/index/fotoMercado.png) no-repeat top transparent;
+    display: inline-block;
+    margin-top: 10px;
+    height: 174px;
+    width: 264px;
+}
+
+.destaqueDescricao{
+    display: inline-block;
+    margin-top: 5px;
+    height: 90px;
+    width: 264px;
+    font: 12px sans-serif;
+    text-align: justify;
+    color: #3c6a2c;
+    font-weight: bold;
+}
+
+.destaqueMais{
+    background: url(../imgs/index/mais.png) no-repeat top transparent;
+    display: block;
+    margin-left: 108px;
+    height: 69px;
+    width: 84px;
+    cursor: pointer;
+}
+
+#rodape {
+    display: block;
+    height: 110px;
+    width: 100%;
+}
+
+#redesSociais{
+    display: block;
+    text-align: left;
+    float: left;
+    margin-top: 17px;
+    height: 27px;
+    width: 170px;
+}
+
+#facebook{
+    background: url(../imgs/index/facebook.png) no-repeat top transparent;
+    display: block;
+    text-align: left;
+    float: left;
+    height: 27px;
+    width: 26px;
+}
+
+#twitter{
+    background: url(../imgs/index/twitter.png) no-repeat top transparent;
+    display: block;
+    text-align: left;
+    float: left;
+    margin-left: 10px;
+    height: 27px;
+    width: 37px;
+}
+
+#email{
+    background: url(../imgs/index/mail.png) no-repeat top transparent;
+    display: block;
+    text-align: left;
+    float: left;
+    margin-left: 10px;
+    height: 27px;
+    width: 37px;
+}
+
+#admin{
+    background: url(../imgs/index/admin.png) no-repeat top transparent;
+    display: block;
+    text-align: left;
+    float: left;
+    margin-left: 10px;
+    height: 27px;
+    width: 23px;
+}
+
+
+#direitosReservados{
+    display: block;
+    text-align: left;
+    float: left;
+    margin-top: 20px;
+    margin-left: 220px;
+    height: 20px;
+    width: 300px;
+    font: 12px sans-serif;
+    color: #3c6a2c;
+    font-weight: bold;
+}
+
+#assinatura{
+    background: url(../imgs/layout/assinatura.png) no-repeat transparent;
+    display: block;
+    text-align: right;
+    float: right;
+    margin-top: 22px;
+    height: 12px;
+    width: 70px;
+}
+
+#areaTrabalhoInterna {
+    display: inline-block;
+    min-height: 992px;
+    width: 100%;
+    background: url(../imgs/index/divider2.png) no-repeat bottom transparent;
+}
+
+#areaTrabalhoInterna h3{
+    text-align: left;
+    font: 18px arial;
+    margin-left: 20px;
+    margin-top: 20px;
+    color: #3c6a2c;
+    font-weight: bold;
+}
+
+#tituloEmpresa {
+    background: url(../imgs/empresa/empresa.png) no-repeat left transparent;
+    display: block;
+    height: 38px;
+    width: 1000px;
+}
+
+#conteudoEmpresa {
+    display: inline-block;
+    margin-top: 10px;
+    height: 450px;
+    width: 1000px;
+    font: 12px Arial;
+    color: #3c6a2c;
+    font-weight: bold;
+    text-align: justify;
+}
+
+#tituloContato {
+    background: url(../imgs/faleconosco/contato.png) no-repeat left transparent;
+    display: block;
+    height: 38px;
+    width: 1000px;
+}
+
+#subTituloContato {
+    background: url(../imgs/faleconosco/subTituloContato.png) no-repeat left transparent;
+    display: block;
+    height: 29px;
+    width: 650px;
+}
+
+#conteudoContato {
+    display: inline-block;
+    margin-top: 10px;
+    height: 450px;
+    width: 620px;
+    font: 12px Arial;
+    color: #3c6a2c;
+    font-weight: bold;
+    text-align: justify;
+}
+
+#conteudoContato input{
+    background-color: #A8A8A8;
+    font: 13px Trebuchet MS;
+    font-weight: bold;
+    color: white; 
+}
+
+#conteudoContato textarea{
+    background-color: #A8A8A8;
+    font: 13px Trebuchet MS;
+    font-weight: bold;
+    color: white; 
+}
+
+#conteudoMapa {
+    display: inline-block;
+    margin-top: 10px;
+    height: 350px;
+    width: 620px;
+}
+
+.enviar {
+    background: url(../imgs/faleconosco/enviar.png) no-repeat top transparent;
+    display: inline-block;
+    float:left;
+    height: 32px;
+    width: 73px;
+    margin-left: 5px;
+}
+
+#tituloProdutos {
+    background: url(../imgs/produtos/produtos.png) no-repeat left transparent;
+    display: block;
+    height: 38px;
+    margin-top: 20px;
+    width: 1000px;
+}
+
+#conteudoProdutos {
+    display: inline-block;
+    margin-top: 10px;
+    min-height: 450px;
+    width: 620px;
+}
+
+#segmentosTituloMedicinal {
+    background: url(../imgs/produtos/medicinal.png) no-repeat left transparent;
+    display: block;
+    margin-top: 20px;
+    margin-left: 10px;
+    height: 28px;
+    width: 990px;
+}
+
+#segmentosTituloIndustrial {
+    background: url(../imgs/produtos/industrial.png) no-repeat left transparent;
+    display: block;
+    margin-left: 10px;
+    margin-top: 20px;
+    height: 28px;
+    width: 990px;
+}
+
+.produto {
+    display: inline-block;
+    margin-top: 10px;
+    height: 300px;
+    width: 1000px;
+}
+
+.caixaProduto {
+    background: url(../imgs/produtos/quadroProduto.png) no-repeat transparent;
+    display: inline-block;
+    float: left;
+    height: 295px;
+    width: 286px;
+}
+
+.fotoProduto {
+    display: inline-block;
+    margin-top: 8px;
+    margin-left: 3px; 
+    height: 279px;
+    width: 266px;
+}
+
+.descricaoProduto {
+    display: inline-block;
+    float: right;
+    margin-top: 5px;
+    height: 295px;
+    width: 700px;
+    font: 12px Trebuchet MS;
+    font-weight: bold;
+    color: #3c6a2c;
+    text-align: justify;
+}
+
+.descricaoProduto h1{
+    font: 16px Trebuchet MS;
+    font-weight: bold;
+    color: #3c6a2c;
+    text-align: justify;
+}
+

@@ -1,0 +1,145 @@
+<?php /* Smarty version 2.6.18, created on 2010-11-10 10:38:28
+         compiled from pages/interno/modulo/projeto/acoes_usuarios.tpl */ ?>
+<?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'number_format', 'pages/interno/modulo/projeto/acoes_usuarios.tpl', 78, false),)), $this); ?>
+<style type="text/css">
+	.titulo{
+		margin-left: 20px;
+		font-weight: bolder;
+		font-size: 1.1em;
+		vertical-align: middle;
+		display: inline-block;
+	}
+	.conteudo{
+		margin-left: 30px;
+		vertical-align: middle;
+	}
+	#cont{
+		vertical-align: middle;
+		float: inherit;
+	}
+	#user_proj{
+		width: 100%;
+		height: 30px;
+		background-color: #BCDEA5;
+		vertical-align: middle;
+	}
+	.dia{
+		height: 155px;
+		overflow: scroll;
+	}
+	.intervencao{
+		vertical-align: middle;
+		height: 30px;
+		font-size: 0.8em;
+		width: 100%;
+		border-color: black;
+		background-color: #E6F9BC;
+	}
+	.tabela_intervencao{
+		width: 100%;
+		margin-top: 3px;
+		margin-left: 10px;
+	}
+	.celula1{
+		width: 30%;
+		text-align: center;
+	}
+	.celulas{
+		width: 23%;
+		text-align: center;
+	}
+</style>
+
+<?php $_from = ($this->_tpl_vars['Titulo']); if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['u_p']):
+?>
+<div class="ui-corner-all" id="user_proj">
+	<table style="vertical-align: middle;">
+		<tr>
+			<td class="titulo">Usuário: </td>
+			<td class="conteudo"> <?php echo $this->_tpl_vars['u_p']['n_user']; ?>
+</td>
+			<td class="titulo">Projeto: </td>
+			<td class="conteudo"> <?php echo $this->_tpl_vars['u_p']['n_proj']; ?>
+</td>
+		</tr>
+	</table>
+</div>
+<?php endforeach; endif; unset($_from); ?>
+
+<br clear="all">
+<br clear="all">
+
+<!-- DIAS-->
+<div id="accordion">
+<?php $_from = $this->_tpl_vars['Acoes']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['dias'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['dias']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['acao']):
+        $this->_foreach['dias']['iteration']++;
+?>
+	<h3><a href="#">Dia <?php echo ($this->_foreach['dias']['iteration']-1)+1; ?>
+</a></h3>
+	<div class="dia">
+		<?php $_from = $this->_tpl_vars['acao']['Intervencao']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['i']):
+?>
+			
+			<?php if ($this->_tpl_vars['i']['tipoIntervencao'] == 'C'): ?>
+				<div class="intervencao ui-corner-all">
+					<table class="tabela_intervencao">
+						<tr>
+							<td class="celula1">Profissional Contratado: <?php echo $this->_tpl_vars['i']['descricao']; ?>
+</td>
+							<td class="celulas">Custo Hora: R$ <?php echo ((is_array($_tmp=$this->_tpl_vars['i']['valor'])) ? $this->_run_mod_handler('number_format', true, $_tmp, 2, ",", ".") : number_format($_tmp, 2, ",", ".")); ?>
+</td>
+							<td class="celulas">Visão Técnica: <?php echo $this->_tpl_vars['i']['vt']; ?>
+</td>
+							<td class="celulas">Visão Abstrata: <?php echo $this->_tpl_vars['i']['va']; ?>
+</td>
+						</tr>
+					</table>
+				</div><br>
+			<?php elseif ($this->_tpl_vars['i']['tipoIntervencao'] == 'D'): ?>
+				<div class="intervencao ui-corner-all">
+					<table class="tabela_intervencao">
+						<tr>
+							<td class="celula1">Profissional Descontratado: <?php echo $this->_tpl_vars['i']['descricao']; ?>
+</td>
+							<td class="celulas">Custo Hora: R$ <?php echo ((is_array($_tmp=$this->_tpl_vars['i']['valor'])) ? $this->_run_mod_handler('number_format', true, $_tmp, 2, ",", ".") : number_format($_tmp, 2, ",", ".")); ?>
+</td>
+							<td class="celulas">Visão Técnica: <?php echo $this->_tpl_vars['i']['vt']; ?>
+</td>
+							<td class="celulas">Visão Abstrata: <?php echo $this->_tpl_vars['i']['va']; ?>
+</td>
+						</tr>
+					</table>
+				</div><br>
+			<?php elseif ($this->_tpl_vars['i']['tipoIntervencao'] == 'A'): ?>
+				<div class="intervencao ui-corner-all">
+					<table class="tabela_intervencao">
+						<tr>
+							<td style="width: 50%; text-align: center;">Aquisição: <?php echo $this->_tpl_vars['i']['descricao']; ?>
+</td>
+							<td style="width: 50%; text-align: center;">Custo: R$ <?php echo ((is_array($_tmp=$this->_tpl_vars['i']['valor'])) ? $this->_run_mod_handler('number_format', true, $_tmp, 2, ",", ".") : number_format($_tmp, 2, ",", ".")); ?>
+</td>
+						</tr>
+					</table>
+				</div><br>
+			<?php endif; ?>
+			
+		<?php endforeach; else: ?>
+			<p>Dia decorrido sem intervenção do usuário.</p>
+		<?php endif; unset($_from); ?>
+	
+	</div>
+<?php endforeach; endif; unset($_from); ?>
+</div>
+
+
+
+<script type="text/javascript">
+	$(function() {
+		$("#accordion").accordion();
+	});
+</script>

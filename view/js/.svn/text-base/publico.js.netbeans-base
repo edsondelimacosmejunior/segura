@@ -1,0 +1,83 @@
+
+$(document).ready( function() {
+
+	$("#user").focus();
+
+	// PAGE LAYOUT
+	$('body').layout({
+		
+		closable: false	
+		,resizable:	false
+		,slidable: true
+		
+		,north__size: 100
+
+		,west__size: 200
+		,west__spacing_open: 8
+		,west__spacing_closed: 8
+		,west__showOverflowOnHover: true
+		,west__closable: true
+		,west__togglerLength_closed: '100%'
+		,west__togglerLength_open: '100%'
+
+		,west__togglerTip_open:		"Fechar o Menu"
+		,west__togglerTip_closed:	"Abrir o Menu"
+
+	});
+
+	$(".ui-layout-center").removeClass("ui-corner-all");
+
+	//all hover and click logic for buttons
+	$(".fg-button:not(.ui-state-disabled)")
+	.hover(
+		function(){ 
+			$(this).addClass("ui-state-hover"); 
+		},
+		function(){ 
+			$(this).removeClass("ui-state-hover"); 
+		}
+	)
+	.mousedown(function(){
+			$(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
+			if( $(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ $(this).removeClass("ui-state-active"); }
+			else { $(this).addClass("ui-state-active"); }	
+	})
+	.mouseup(function(){
+		if(! $(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
+			$(this).removeClass("ui-state-active");
+		}
+	});
+
+});
+
+function entrar() {
+	$.ajax({
+		url: "login?user=" + $("#user").val() + "&pass=" + $("#pass").val(),
+		cache: false,
+		dataType: "json",
+		success: function(data) {
+			if (data.success) {
+				$().message(data.message);
+				
+				setTimeout(function(){
+					window.location = "interno/";
+				},1500);
+				
+			} else {
+				$().message(data.message);
+			}
+		},
+		error: function() {
+			$().message("Houve uma falha ao lhe autenticar. Contacte o administrador do sistema.");
+		}
+	});			
+}
+
+$("#entrar").click(entrar);
+$('#user, #pass').keydown(function(event) {
+	if (event.keyCode == '13') {
+		event.preventDefault();
+		entrar();
+	}
+});
+

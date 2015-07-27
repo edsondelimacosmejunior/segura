@@ -1,0 +1,109 @@
+<?php /* Smarty version 2.6.18, created on 2010-09-17 10:48:10
+         compiled from pages/interno/modulo/usuarios/pontuacao.tpl */ ?>
+<style type="text/css">
+	#title_pontuacao{
+		padding: 5px;
+		display: block;
+		font-weight: bolder;
+		font-size: medium;
+	}
+	#cabecalho_pontuacao{
+		width: 100%;
+		background-color: #AABFAA;
+		border-collapse: collapse;
+		border-left: none;
+		border-right: none;
+	}
+	#cabecalho_pontuacao td{
+		width: 33%;
+		font-weight: bolder;
+		font-size: 1.05em;
+		text-align: center;
+		border-right: none;
+		border-left: none;
+		height: 24px;
+	}
+	#tabela_pontuacao{
+		width: 100%;
+		border: none;
+		border-collapse: collapse;
+	}
+	#tabela_pontuacao td{
+		width: 33%;
+		height: 24px;
+		text-align: center;
+		vertical-align: middle;
+	}
+	.um{
+		background-color: #D3EBC7;
+	}
+	.dois{
+		background-color: #F4FCE2;
+	}
+	#qtd{
+		width: 100%;
+		font-weight: bolder;
+	}
+</style>
+
+
+<span id="title_pontuacao"> Ranking Geral </span>
+<hr>
+<br>
+<table id="cabecalho_pontuacao">
+	<tr>
+		<td>Posição</td><td>Nome do jogador</td><td>Pontuação</td>
+	</tr>
+</table>
+
+<br><br>
+
+<table id="tabela_pontuacao">
+	<tr class="um" style="font-weight: bold;">
+		<td><img src="<?php echo $this->_tpl_vars['IMG']; ?>
+gold_medal.png" alt="Primeiro Lugar"></img></td><td><font><i>tgalvao</i></font></td><td><font><i>25.760</i></font></td>
+	</tr>
+	<tr class="dois">
+		<td><img src="<?php echo $this->_tpl_vars['IMG']; ?>
+silver_medal.png" alt="Segundo Lugar"></img></td><td>mtullyoc</td><td>23.980</td>
+	</tr>
+	<tr class="um">
+		<td><img src="<?php echo $this->_tpl_vars['IMG']; ?>
+bronze_medal.png" alt="Terceiro Lugar"></img></td><td>ferdinand</td><td>23.150</td>
+	</tr>
+	<tr class="dois">
+		<td>4</td><td>sunnie</td><td>22.540</td>
+	</tr>
+	<tr class="um">
+		<td>5</td><td>fabiana</td><td>21.230</td>
+	</tr>
+	<tr class="dois">
+		<td>6</td><td>luizjunior</td><td>21.090</td>
+	</tr>
+	<tr class="um">
+		<td>7</td><td>laysa</td><td>19.340</td>
+	</tr>
+	<tr class="dois">
+		<td>8</td><td>samuellemos</td><td>18.660</td>
+	</tr>
+	<tr class="um">
+		<td>9</td><td>rosangelalima</td><td>18.510</td>
+	</tr>
+	<tr class="dois">
+		<td>10</td><td>rony</td><td>17.290</td>
+	</tr>
+</table>
+
+<br>
+
+<span>
+	<table id="qtd">
+		<tr>
+			<td style="text-align: right;"><img src="<?php echo $this->_tpl_vars['IMG']; ?>
+menu/icons/001_27.png"></img></td>
+			<td style="width: 50px; text-align: center;"> 1 - 10 </td>
+			<td style="text-align: left;"><img src="<?php echo $this->_tpl_vars['IMG']; ?>
+menu/icons/001_25.png"></img></td>
+		</tr>
+	</table>
+</span>

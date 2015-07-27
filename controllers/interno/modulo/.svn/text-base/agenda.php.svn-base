@@ -1,0 +1,207 @@
+<?php
+
+Class Controller_Veiculo extends Proto_Controller {
+
+    function index() {
+
+        $this->init_session();
+        $this->show("pages/interno/index.tpl");
+
+    }
+
+    function mostraCadastro() {
+
+        $this->init_session();
+        $this->show("pages/interno/modulo/formularios/veiculo.tpl");
+
+    }
+
+    function mostraVeiculos() {
+        $this->init_session();
+
+        $this->show("pages/interno/modulo/listas/veiculo.tpl");
+    }
+
+    function flexGrid() {
+        header("Cache-Control: no-cache, must-revalidate" );
+        header("Pragma: no-cache" );
+        header("Content-type: text/x-json");
+
+        $this->valida_sessao();
+
+        $saida;
+
+        $saida["page"] 		= $this->escape("page");
+        $saida["records"] 	= $this->escape("rp");
+
+        $orderBy = $this->escape("sortname");
+        $sord = $this->escape("sortorder");
+
+        $i = 1;
+
+        $limit 	= $saida["records"];
+        $offset = ($saida["page"]-$i) * $saida["records"];
+
+
+        $g = Doctrine_Query::create()
+            ->select("v.*")	// Seleciona os campos
+            ->from("Veiculo v");
+
+        $qtype 	= $this->escape("qtype");
+        $query 	= $this->escape("query");
+        $letter	= $this->escape("letter_pressed");
+
+        if ($qtype)
+
+            if ($query)
+                if (is_numeric($query))
+                    $g->where("$qtype = $query");
+                else
+                    $g->where("$qtype like '%$query%'");
+            elseif ($letter && $letter != "TODOS")
+                $g->where("$qtype like '$letter%'");
+
+        $g->limit($limit)									// Limita o resultado
+            ->offset($offset)								// Desloca o início do resultado
+            ->orderBy($orderBy." ".$sord);					// Ordena o resultado por um campo específico.
+
+        $veiculos = $g->execute();
+        $numero_veiculos = $g->count();
+
+        $saida["total"] = $numero_veiculos;
+
+        $saida["page"] = $saida["page"] - $i+1;
+
+
+        $json 	= "";
+        $json 	.= "{\n";
+        $json 	.= "page:";
+
+
+        $rows = array();
+
+        if ($veiculos) {
+
+            foreach ($veiculos as $veiculo) {
+
+                $rows[] = array("idVeiculo" => $veiculo["idVeiculo"],"cell" => array(
+                    $veiculo->idVeiculo,
+                    $veiculo->placa,
+                    $veiculo->marca,
+                    $veiculo->renavam,
+                    $veiculo->capacidade,
+                    $veiculo->cor,
+                    $veiculo->ano
+                ));
+            }
+
+
+        }
+
+        $saida["rows"] = $rows;
+
+        echo json_encode($saida); // Preparando para o jqGrid.
+
+    }
+
+    function enviarAlterar() {
+        $this->init_session();
+        $idVeiculo = $this->getArg(0);
+
+        $veiculo = Doctrine_Query::create()
+            ->select("v.*")
+            ->from("Veiculo m")
+            ->where("idVeiculo = $idVeiculo")
+            ->execute()
+            ->toArray();
+
+        $this->set("veiculo",$veiculo);
+
+        $this->show("pages/interno/modulo/atualizacoes/veiculo.tpl");
+    }
+
+    function alterar() {
+        $this->valida_sessao();
+
+        $idVeiculo 	 = $this->escape("idVeiculo");
+        $placa 		 = $this->escape("placa");
+        $marca           = $this->escape("marca");
+        $cidade          = $this->escape("cidade");
+        $uf 		 = $this->escape("uf");
+        $chassi 	 = $this->escape("chassi");
+        $renavam 	 = $this->escape("renavam");
+        $registroVeiculo = $this->escape("registroVeiculo");
+        $capacidade      = $this->escape("capacidade");
+        $cor 		 = $this->escape("cor");
+        $ano 		 = $this->escape("ano");
+
+        $v = Doctrine::getTable("Veiculo")->find($idVeiculo);
+
+
+
+        $v->placa           = $placa;
+        $v->marca           = $marca;
+        $v->cidade          = $cidade;
+        $v->uf              = $uf;
+        $v->chassi          = $chassi;
+        $v->renavam         = $renavam;
+        $v->registroVeiculo = $registroVeiculo;
+        $v->capacidade      = $capacidade;
+        $v->cor             = $cor;
+        $v->ano             = $ano;
+
+        if ($v->trySave())
+            $this->success('Dados atualizados com sucesso!!');
+        else
+            $this->error('Não foi possível atualizar os dados do veículo!!');
+
+    }
+
+    function excluir() {
+        $this->valida_sessao();
+
+        $idVeiculo = $this->escape("idVeiculo");
+
+        $v = Doctrine::getTable("Veiculo")->find($idVeiculo);
+
+        if ( $v->delete() )
+            $this->success('Veículo excluído com sucesso!');
+        else
+            $this->error('Erro ao excluir o Veículo. Contate o administrador do sistema.');
+    }
+
+    function cadastrar(){
+        $this->valida_sessao();
+
+        $placa 		 = $this->escape("placa");
+        $marca           = $this->escape("marca");
+        $cidade          = $this->escape("cidade");
+        $uf 		 = $this->escape("uf");
+        $chassi 	 = $this->escape("chassi");
+        $renavam 	 = $this->escape("renavam");
+        $registroVeiculo = $this->escape("registroVeiculo");
+        $capacidade      = $this->escape("capacidade");
+        $cor 		 = $this->escape("cor");
+        $ano 		 = $this->escape("ano");
+
+        $veiculo = new Veiculo();
+
+        $veiculo->placa           = $placa;
+        $veiculo->marca           = $marca;
+        $veiculo->cidade          = $cidade;
+        $veiculo->uf              = $uf;
+        $veiculo->chassi          = $chassi;
+        $veiculo->renavam         = $renavam;
+        $veiculo->registroVeiculo = $registroVeiculo;
+        $veiculo->capacidade      = $capacidade;
+        $veiculo->cor             = $cor;
+        $veiculo->ano             = $ano;
+
+        if($veiculo->trySave()){
+            $this->success('Veículo cadastrado com sucesso!!');
+        }else{
+            $this->error('Erro ao Cadastrar. Contate o administrador!!');
+        }
+    }
+}
+?>

@@ -1,0 +1,21 @@
+<?php /* Smarty version 2.6.18, created on 2011-03-14 23:38:40
+         compiled from pages/interno/modulo/exemplos/area2D.tpl */ ?>
+<script language="JavaScript" src="<?php echo $this->_tpl_vars['JS']; ?>
+FusionCharts.js"></script>
+<script language="JavaScript" src="<?php echo $this->_tpl_vars['JS']; ?>
+jquery/jquery.progressbar.js"></script>
+<link rel="stylesheet" href="<?php echo $this->_tpl_vars['CSS']; ?>
+fusionchart/Style.css" type="text/css" />
+
+<div id="exemplo-area2D">
+</div>
+
+<script language="javascript" type="text/javascript">
+		
+	var chart = new FusionCharts("<?php echo $this->_tpl_vars['IMG']; ?>
+flash/charts/FCF_MSArea2D.swf", "grafico", "1050", "300");
+	chart.setDataURL("<?php echo $this->_tpl_vars['BASE_URL']; ?>
+interno/modulo/exemplos/area2D/");
+	chart.render("exemplo-area2D");
+		
+</script>

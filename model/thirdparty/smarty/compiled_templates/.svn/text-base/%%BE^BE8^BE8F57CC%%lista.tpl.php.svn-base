@@ -1,0 +1,381 @@
+<?php /* Smarty version 2.6.18, created on 2010-12-09 10:45:28
+         compiled from pages/interno/modulo/profissionais/lista.tpl */ ?>
+<style type="text/css">
+	#profissionais_mercado, #profissionais_projeto{
+		border: none;
+	}
+	.titleprof{
+		padding: 5px;
+		display: block;
+		font-weight: bolder; 
+	}
+	.prof{
+		background-image: url(<?php echo $this->_tpl_vars['IMG']; ?>
+tab3.png);
+	}
+	.prof2{
+		background-image: url(<?php echo $this->_tpl_vars['IMG']; ?>
+tab7.png);
+	}
+	#caixa-interna{
+		display:block;
+		position: relative;
+		background-image: url(<?php echo $this->_tpl_vars['IMG']; ?>
+fundocaixa.png);
+	}
+	#elementos{
+		display: inline-table;
+		width:100%;
+		height: 80px;
+		text-align:center;
+		vertical-align:top;
+		font-size: x-small;
+		border-collapse: collapse;
+		table-layout: fixed;
+	}
+	#linha-1{
+		vertical-align: middle;
+	}
+	.blue{
+		color: #585858;
+		
+	}
+	.orange{
+		color: navy;
+	}
+</style>
+
+
+<div id="tabs">
+
+<ul>
+		<li><a href="#tabs-1">Mercado</a></li>
+		<li><a href="#tabs-2">Minha Equipe</a></li>
+</ul>
+
+
+
+<!-- LISTA OS PROFISSIONAIS DISPONÍVEIS NO MERCADO -->
+
+<div id="tabs-1">
+	<br>
+	<p>Você poderá contratar quaisquer profissionais desta lista.</p>
+	<br>
+	<div id="profissionais_mercado"></div>
+</div>
+
+<!-- FIM MERCADO -->
+
+
+<!-- MINHA EQUIPE -->
+
+<div id="tabs-2">
+<br>
+<p>Você poderá despedir qualquer membro da sua equipe a qualquer momento.</p>
+<br>
+	<div id="profissionais_projeto">
+		
+		<p>Nenhum profissional contratado.</p>
+		
+	</div>
+	
+</div>
+
+<!-- FIM MINHA EQUIPE -->
+
+</div>
+
+
+
+<script type="text/javascript">
+	
+	$(function() {
+
+		$("#tabs").tabs();
+
+		$("#caixa").html("");
+
+		atualizar_mercado();
+		atualizar_equipe();
+		
+	});
+	 
+	
+	function contratar(id) {
+		
+		$.ajax({
+			url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/profissionais/sel_prof",
+			data: {
+				"idprof" : id
+			},
+			cache: false,
+			success: function(data) {
+			
+				d = eval(data);
+			
+				$().message(d.message);
+				
+				atualizar_equipe();
+				
+				atualizar_mercado();
+				
+			},
+			error: function(data) {
+				$().message("Desculpe. Não foi possível concluir sua solicitação.");
+			},
+			dataType: "json"
+		});
+
+		
+	}
+	
+	function despedir(id) {
+		
+		$.ajax({
+			url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/profissionais/despedir_prof",
+			data: {
+				"idprof" : id
+			},
+			cache: false,
+			success: function(data) {
+			
+				d = eval(data);
+			
+				$().message(d.message);
+				
+				atualizar_equipe();
+				
+				atualizar_mercado();
+				
+			},
+			error: function(data) {
+				$().message("Desculpe. Não foi possível concluir sua solicitação.");
+			},
+			dataType: "json"
+		});
+
+		
+	}
+	
+	function atualizar_equipe() {
+
+		$("#profissionais_projeto").html("");
+		
+		$.ajax({
+			url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/profissionais/atualiza_equipe",
+			data: {},
+			cache: false,
+			success: function(data){
+
+				if (data.length == 0)
+					$("#profissionais_projeto").html("<p>Nenhum profissional contratado.</p>");
+					
+				for (var i=0; i<data.length; i++ ){
+
+					var htmlprof =	'<div class="prof2">';
+					
+					if (data[i]["licenca"] > 0)
+						htmlprof +=	'<span class="titleprof" style="background-color: #CD5C5C; backgroung-image: none;">&nbsp;&nbsp;'+ data[i]["nome"] +'  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Licença Médica || '+ data[i]["licenca"] +' dia(s) restante(s) </span>';
+					else
+						htmlprof +=	'<span class="titleprof">&nbsp;&nbsp;'+ data[i]["nome"]+'</span>';
+						
+						htmlprof +=	'<div id="caixa-interna" style="height: 100px; ">' +
+									'	<table id="elementos">' +
+									'		<tr id="linha-1">' +
+									'			<td style="width: 95px;">' +
+									'				<img src="<?php echo $this->_tpl_vars['IMG']; ?>
+avatar3.png">' +
+									'			</td>' +
+									'			<td class="orange" style="width: 70px;">' +
+									'				Trabalho em Equipe' +
+									'			</td>' +
+									'			<td class="blue" style="width: 45px;">' +
+									'           '+data[i]["trabalhoEmEquipe"] +
+									'			</td>' +
+									'			<td class="orange" style="width: 55px;">' +
+									'				Visão Abstrata' +
+									'			</td>' +
+									'			<td class="blue" style="width: 45px;">' +
+									'			'+data[i]["visaoAbstrata"] +
+									'			</td>' +
+									'			<td class="orange" style="width: 65px;">' +
+									'				Liderança' +
+									'			</td>' +
+									'			<td class="blue" style="width: 45px;">' +
+									'			'+data[i]["lideranca"]+
+									'			</td>' +
+									'			<td class="orange" style="width: 85px;">' +
+									'				Concentração' +
+									'			</td>' +
+									'			<td class="blue" style="width: 45px;">' +
+									'			'+data[i]["concentracao"]+
+									'			</td>' +
+									'			<td class="orange" style="width: 90px;">' +
+									'				Produtividade em Código' +
+									'			</td>' +
+									'			<td class="blue" style="width: 50px;">' +
+									'			'+data[i]["produtividadeCodigo"]+
+									'			</td>' +
+									'			<td class="orange" style="width: 70px;">' +
+									'				Fator Erro em Código' +
+									'			</td>' +
+									'			<td class="blue" style="width: 50px;">' +
+									'			'+data[i]["fatorErroCodigo"]+
+									'			</td>' +
+									'			<td class="orange" style="width: 70px;">' +
+									'				Fator Erro em Artefato' +	
+									'			</td>' +
+									'			<td class="blue style="width: 45px;">' +
+									'			'+data[i]["fatorErroArtefato"]+
+									'			</td>' +
+									'		</tr>' +
+									'		<tr>' +
+									'			<td>';
+					if (data[i]["licenca"] == 0)
+						htmlprof +=	'				<span style="text-align: center; display: block; float: none;">' +
+									'					<a href="javascript:despedir('+data[i]["idProfissional"]+');" class="fg-button ui-state-default ui-corner-all">' +
+									'						<span style="line-height: 10px; margin: 0; padding: 5px;">Despedir</span>' +
+									'					</a>' +
+									'				</span>';
+									
+						htmlprof +=	'			</td>' +
+									'			<td class="orange">Visão Técnica</td>' +
+									'			<td class="blue">'+data[i]["visaoTecnica"]+'</td>' +
+									'			<td class="orange">Vigor</td>' +
+									'			<td class="blue">'+data[i]["vigor"]+'</td>' +
+									'			<td class="orange">Motivação</td>' +
+									'			<td class="blue">'+data[i]["motivacao"]+'</td>' +
+									'			<td class="orange">Custo Hora</td>' +
+									'			<td class="blue">'+data[i]["custoHora"]+'</td>' +
+									'			<td class="orange">Produtividade em Artefatos</td>' +
+									'			<td class="blue">'+data[i]["produtividadeArtefato"]+'</td>' +
+									'			<td class="orange">Fator Correção em Código</td>' +
+									'			<td class="blue">'+data[i]["fatorCorrecaoCodigo"]+'</td>' +
+									'			<td class="orange">Fator Correção em Artefato</td>'+
+									'			<td class="blue">'+data[i]["fatorCorrecaoArtefato"]+'</td>'+
+									'		</tr>' +
+									'	</table>' +
+									'</div>' +
+									'</div>'
+						
+
+					$("#profissionais_projeto").append(htmlprof);
+
+					
+				}
+				
+			},
+			error: function(data) { },
+			dataType: "json"
+		});
+	}
+	
+	function atualizar_mercado() {
+
+		$("#profissionais_mercado").html("");
+		
+		$.ajax({
+			url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/profissionais/atualiza_mercado",
+			data: {},
+			cache: false,
+			success: function(data){
+
+				for (var i=0; i<data.length; i++ ){
+
+					$("#profissionais_mercado").append(
+							'<div class="prof">' +
+							'<span class="titleprof">&nbsp;&nbsp;'+ data[i]["nome"] +'</span>' +
+							'<div id="caixa-interna" style="height: 100px; ">' +
+							'	<table id="elementos">' +
+							'		<tr id="linha-1">' +
+							'			<td style="width: 95px;">' +
+							'				<img src="<?php echo $this->_tpl_vars['IMG']; ?>
+avatar3.png">' +
+							'			</td>' +
+							'			<td class="orange" style="width: 70px;">' +
+							'				Trabalho em Equipe' +
+							'			</td>' +
+							'			<td class="blue" style="width: 45px;">' +
+							'           '+data[i]["trabalhoEmEquipe"] +
+							'			</td>' +
+							'			<td class="orange" style="width: 55px;">' +
+							'				Visão Abstrata' +
+							'			</td>' +
+							'			<td class="blue" style="width: 45px;">' +
+							'			'+data[i]["visaoAbstrata"] +
+							'			</td>' +
+							'			<td class="orange" style="width: 65px;">' +
+							'				Liderança' +
+							'			</td>' +
+							'			<td class="blue" style="width: 45px;">' +
+							'			'+data[i]["lideranca"]+
+							'			</td>' +
+							'			<td class="orange" style="width: 85px;">' +
+							'				Concentração' +
+							'			</td>' +
+							'			<td class="blue" style="width: 45px;">' +
+							'			'+data[i]["concentracao"]+
+							'			</td>' +
+							'			<td class="orange" style="width: 90px;">' +
+							'				Produtividade em Código' +
+							'			</td>' +
+							'			<td class="blue" style="width: 50px;">' +
+							'			'+data[i]["produtividadeCodigo"]+
+							'			</td>' +
+							'			<td class="orange" style="width: 70px;">' +
+							'				Fator Erro em Código' +
+							'			</td>' +
+							'			<td class="blue" style="width: 50px;">' +
+							'			'+data[i]["fatorErroCodigo"]+
+							'			</td>' +
+							'			<td class="orange" style="width: 70px;">' +
+							'				Fator Erro em Artefato' +	
+							'			</td>' +
+							'			<td class="blue style="width: 45px;">' +
+							'			'+data[i]["fatorErroArtefato"]+
+							'			</td>' +	
+							'		</tr>' +
+							'		<tr>' +
+							'			<td>' +
+							'				<span style="text-align: center; display: block; float: none;">' +
+							'					<a href="javascript:contratar('+data[i]["idProfissional"]+');" class="fg-button ui-state-default ui-corner-all">' +
+							'						<span style="line-height: 10px; margin: 0; padding: 5px;">Contratar</span>' +
+							'					</a>' +
+							'				</span>' +
+							'			</td>' +
+							'			<td class="orange">Visão Técnica</td>' +
+							'			<td class="blue">'+data[i]["visaoTecnica"]+'</td>' +
+							'			<td class="orange">Vigor</td>' +
+							'			<td class="blue">'+data[i]["vigor"]+'</td>' +
+							'			<td class="orange">Motivação</td>' +
+							'			<td class="blue">'+data[i]["motivacao"]+'</td>' +
+							'			<td class="orange">Custo Hora</td>' +
+							'			<td class="blue">'+data[i]["custoHora"]+'</td>' +
+							'			<td class="orange">Produtividade em Artefatos</td>' +
+							'			<td class="blue">'+data[i]["produtividadeArtefato"]+'</td>' +
+							'			<td class="orange">Fator Correção em Código</td>' +
+							'			<td class="blue">'+data[i]["fatorCorrecaoCodigo"]+'</td>' +
+							'			<td class="orange">Fator Correção em Artefato</td>'+
+							'			<td class="blue">'+data[i]["fatorCorrecaoArtefato"]+'</td>'+
+							'		</tr>' +
+							'	</table>' +
+							'</div>' +
+							'</div>'
+						
+					);
+
+					
+				}
+				
+			},
+			error: function(data) { },
+			dataType: "json"
+		});
+	}
+
+</script>
+

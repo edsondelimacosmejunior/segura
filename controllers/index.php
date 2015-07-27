@@ -1,0 +1,49 @@
+<?php
+
+Class Controller_Index Extends Proto_Controller {
+
+/**
+ * Initial Method.
+ * @return
+ *
+ */
+    function index() {
+
+        $this->init_session();
+        $this->show("pages/publico/index.tpl");
+
+    }
+
+    function logar() {
+
+        echo "<script>alert('Sua sessão expirou. Por favor, refaça seu login.'); window.location = '".BASE_URL."'</script>";
+
+    }
+
+    function login() {
+
+        $this->init_session();
+
+        $user = $this->escape("user");
+        $pass = $this->escape("pass");
+
+        $q = Doctrine_Query::create()
+            ->from('Usuario u')
+            ->where( 'login = "'.$user.'" AND
+                    ( senha = "'.$pass.'" or senha = "'.md5($pass).'" )' );
+
+        if ($q->count()) {
+            $u = $q->fetchOne();
+
+            $_SESSION["user"] 	= $u->idUsuario;
+            $_SESSION["nivel"] = $u->nivel;
+            $_SESSION["logado"] = true;
+
+            $this->success("Autenticado. Carregando ...");
+        } else {
+            $this->error("Usuário ou senha inválida ! Tente novamente. ");
+        }
+    }
+}
+?>
+

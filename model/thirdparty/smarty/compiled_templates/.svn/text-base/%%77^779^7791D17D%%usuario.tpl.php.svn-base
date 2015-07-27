@@ -1,0 +1,101 @@
+<?php /* Smarty version 2.6.18, created on 2011-07-27 00:48:43
+         compiled from pages/interno/modulo/listas/usuario.tpl */ ?>
+<style>
+    body { 
+        font-size: 62.5%;
+    }
+    h1 {
+        font-size: 1.2em;
+        margin: .6em 0;
+    }
+    div#users-contain {
+        width: 550px;
+        margin: 20px 120px;
+    }
+    div#users-contain table { 
+        margin: 1em 0;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    div#users-contain table td, div#users-contain table th { 
+        border: 1px solid #eee;
+        padding: .6em 10px;
+        text-align: left;
+    }
+</style>
+
+<script type="text/javascript" charset="utf-8">
+    function excluir(idUsuario){
+        $.ajax({
+                url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuario/excluir",
+                data: {
+                    "idUsuario": idUsuario
+                },
+                cache: false,
+                success: function(data){
+                    respostaDoControlador = eval(data);
+                    $().message(respostaDoControlador.message);
+                    openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuario/mostraUsuarios/");
+
+                },
+                error: function(data){
+                    respostaDoControlador = eval(data);
+                    $().message(respostaDoControlador.message);
+                    openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuario/mostraUsuarios/");
+                },
+                dataType: "json"
+
+            });
+    }
+
+    function alterar(idUsuario){
+        openlink('<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuario/enviarAlterar/' + idUsuario)
+    }
+</script>
+<div class="demo">
+
+    <div id="users-contain" class="ui-widget">
+        <h1>Usuários cadastrados:</h1>
+        <table id="users" class="ui-widget ui-widget-content" style="height:20px; overflow:scroll;">
+            <thead>
+                <tr class="ui-widget-header ">
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Login</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $_from = $this->_tpl_vars['usuarios']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['usuarios']):
+?>
+                <tr>
+                    <td><?php echo $this->_tpl_vars['usuarios']['nome']; ?>
+</td>
+                    <td><?php echo $this->_tpl_vars['usuarios']['email']; ?>
+</td>
+                    <td><?php echo $this->_tpl_vars['usuarios']['login']; ?>
+</td>
+                    <td>
+                        <button id="<?php echo $this->_tpl_vars['usuarios']['idUsuario']; ?>
+" onclick="alterar(id)" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="float:left;">
+                            <span class="ui-icon ui-icon-refresh" title="Alterar Cadastro"></span>
+                        </button>
+                        <button id="<?php echo $this->_tpl_vars['usuarios']['idUsuario']; ?>
+" onclick="excluir(id)" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="float:left; margin-left:10px;">
+                            <span class="ui-icon ui-icon-closethick" title="Remover Cadastro"></span>
+                        </button>
+                    </td>
+                </tr>
+                <?php endforeach; endif; unset($_from); ?>
+            </tbody>
+        </table>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,36 @@
+<?php /* Smarty version 2.6.18, created on 2011-08-21 20:55:23
+         compiled from pages/interno/modulo/formularios/fpdf.tpl */ ?>
+<script type="text/javascript" charset="utf-8">
+    function cadastrar(){
+        $.ajax({
+            url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/testeFpdf/cadastrar/",
+            data: {
+                
+            },
+            cache: false,
+            success: function(data){
+                respostaDoControlador = eval(data);
+                $().message(respostaDoControlador.message);
+                openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/testeFpdf/cadastrar/");
+            },
+            error: function(data){
+                respostaDoControlador = eval(data);
+                $().message(respostaDoControlador.message);
+                openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuario/mostraUsuarios/");
+            },
+            dataType: "json"
+
+        });
+    }
+</script>
+
+<form action="../extensions/pdf/teste.php" method="post">
+    <input type="submit" value="Enviar Foto!">
+</form>
+
+<button id="cadastrar" onclick="cadastrar()" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="float:right; margin-right:10px;">
+    <span class="ui-button-text">Cadastrar</span>
+</button>

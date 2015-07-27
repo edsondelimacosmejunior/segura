@@ -1,0 +1,7 @@
+<?php
+/**
+ */
+class PortfolioTable extends Doctrine_Table
+{
+
+}

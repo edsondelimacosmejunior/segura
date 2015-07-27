@@ -1,0 +1,84 @@
+<?php /* Smarty version 2.6.18, created on 2011-07-29 21:14:17
+         compiled from pages/interno/modulo/listas/parceiro.tpl */ ?>
+<style>
+    body {
+        font-size: 62.5%;
+    }
+    h1 {
+        font-size: 1.2em;
+        margin: .6em 0;
+    }
+    #corpo{
+        margin:20px auto;
+    }
+    .foto{
+        display:block;
+        height:100%;
+        width:100px;
+        float:left;
+        text-align:center;
+    }
+    .texto{
+        display:block;
+        margin-left:20px;
+        height:100%;
+        width:630px;
+        float:left;
+    }
+</style>
+
+<script type="text/javascript" charset="utf-8">
+    function excluir(idUsuario){
+        $.ajax({
+            url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuario/excluir",
+            data: {
+                "idUsuario": idUsuario
+            },
+            cache: false,
+            success: function(data){
+                respostaDoControlador = eval(data);
+                $().message(respostaDoControlador.message);
+                openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuario/mostraUsuarios/");
+
+            },
+            error: function(data){
+                respostaDoControlador = eval(data);
+                $().message(respostaDoControlador.message);
+                openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuario/mostraUsuarios/");
+            },
+            dataType: "json"
+
+        });
+    }
+
+    function alterar(idUsuario){
+        openlink('<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuario/enviarAlterar/' + idUsuario)
+    }
+
+    $(function() {
+        $( "#accordion" ).accordion();
+    });
+
+</script>
+<div id="corpo">
+    <h1>Parceiros:</h1>
+    <div id="accordion" style="width:800px;">
+        <?php $_from = $this->_tpl_vars['parceiros']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['parceiros']):
+?>
+        <h3><a href="#">Parceiro: <?php echo $this->_tpl_vars['parceiros']['nome']; ?>
+</a></h3>
+        <div>
+            <div class="foto"><img src="<?php echo $this->_tpl_vars['IMG']; ?>
+uploads/<?php echo $this->_tpl_vars['parceiros']['logo']; ?>
+" style="height:40px; width:80px; border:2px white solid;"></div>
+            <div class="texto">Descrição: <br> <?php echo $this->_tpl_vars['parceiros']['descricao']; ?>
+</div>
+        </div>
+        <?php endforeach; endif; unset($_from); ?>
+    </div>
+</div>

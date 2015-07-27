@@ -1,0 +1,7 @@
+<?php
+/**
+ */
+class CargaTable extends Doctrine_Table
+{
+
+}

@@ -1,0 +1,225 @@
+<?php
+
+Class Controller_Proprietario extends Proto_Controller {
+
+    function index() {
+
+        $this->init_session();
+        $this->show("pages/interno/index.tpl");
+
+    }
+
+    function mostraCadastro() {
+
+        $this->init_session();
+        $this->show("pages/interno/modulo/formularios/proprietario.tpl");
+
+    }
+
+    function mostraPropietarios() {
+        $this->init_session();
+
+        $this->show("pages/interno/modulo/listas/proprietario.tpl");
+    }
+
+    function flexGrid() {
+        header("Cache-Control: no-cache, must-revalidate" );
+        header("Pragma: no-cache" );
+        header("Content-type: text/x-json");
+
+        $this->valida_sessao();
+
+        $saida;
+
+        $saida["page"] 		= $this->escape("page");
+        $saida["records"] 	= $this->escape("rp");
+
+        $orderBy = $this->escape("sortname");
+        $sord = $this->escape("sortorder");
+
+        $i = 1;
+
+        $limit 	= $saida["records"];
+        $offset = ($saida["page"]-$i) * $saida["records"];
+
+
+        $g = Doctrine_Query::create()
+        ->select("p.*")	// Seleciona os campos
+        ->from("Proprietario p");
+
+        $qtype 	= $this->escape("qtype");
+        $query 	= $this->escape("query");
+        $letter	= $this->escape("letter_pressed");
+
+        if ($qtype)
+
+        if ($query)
+        if (is_numeric($query))
+        $g->where("$qtype = $query");
+        else
+        $g->where("$qtype like '%$query%'");
+        elseif ($letter && $letter != "TODOS")
+        $g->where("$qtype like '$letter%'");
+
+        $g->limit($limit)									// Limita o resultado
+        ->offset($offset)								// Desloca o início do resultado
+        ->orderBy($orderBy." ".$sord);					// Ordena o resultado por um campo específico.
+
+        $proprietarios = $g->execute();
+        $numero_proprietarios = $g->count();
+
+        $saida["total"] = $numero_proprietarios;
+
+        $saida["page"] = $saida["page"] - $i+1;
+
+
+        $json 	= "";
+        $json 	.= "{\n";
+        $json 	.= "page:";
+
+
+        $rows = array();
+
+        if ($proprietarios) {
+
+            foreach ($proprietarios as $proprietario) {
+
+                $rows[] = array("idProprietario" => $proprietario["idProprietario"],"cell" => array(
+                        $proprietario->idProprietario,
+                        $proprietario->nome,
+                        $proprietario->telefone,
+                        $proprietario->celular,
+                        $proprietario->conta,
+                        $proprietario->agencia,
+                        $proprietario->banco
+                    ));
+            }
+
+
+        }
+
+        $saida["rows"] = $rows;
+
+        echo json_encode($saida); // Preparando para o jqGrid.
+
+    }
+
+    function enviarAlterar() {
+        $this->init_session();
+        $idProprietario = $this->getArg(0);
+
+        $proprietario = Doctrine_Query::create()
+        ->select("p.*")
+        ->from("Proprietario p")
+        ->where("idProprietario = $idProprietario")
+        ->execute()
+        ->toArray();
+
+        $this->set("proprietario",$proprietario);
+
+        $this->show("pages/interno/modulo/atualizacoes/proprietario.tpl");
+    }
+
+    function alterar() {
+        $this->valida_sessao();
+
+        $idProprietario 	 = $this->escape("idVeiculo");
+        $nome 		 = $this->escape("placa");
+        $telefone           = $this->escape("marca");
+        $celular          = $this->escape("cidade");
+        $cnpjcpf 		 = $this->escape("uf");
+        $chassi 	 = $this->escape("chassi");
+        $renavam 	 = $this->escape("renavam");
+        $registroVeiculo = $this->escape("registroVeiculo");
+        $capacidade      = $this->escape("capacidade");
+        $cor 		 = $this->escape("cor");
+        $ano 		 = $this->escape("ano");
+
+        $v = Doctrine::getTable("Veiculo")->find($idVeiculo);
+
+
+
+        $v->placa           = $placa;
+        $v->marca           = $marca;
+        $v->cidade          = $cidade;
+        $v->uf              = $uf;
+        $v->chassi          = $chassi;
+        $v->renavam         = $renavam;
+        $v->registroVeiculo = $registroVeiculo;
+        $v->capacidade      = $capacidade;
+        $v->cor             = $cor;
+        $v->ano             = $ano;
+
+        if ($v->trySave())
+        $this->success('Dados atualizados com sucesso!!');
+        else
+        $this->error('Não foi possível atualizar os dados do veículo!!');
+
+    }
+
+    function excluir() {
+        $this->valida_sessao();
+
+        $idVeiculo = $this->escape("idVeiculo");
+
+        $v = Doctrine::getTable("Veiculo")->find($idVeiculo);
+
+        if ( $v->delete() )
+        $this->success('Veículo excluído com sucesso!');
+        else
+        $this->error('Erro ao excluir o Veículo. Contate o administrador do sistema.');
+    }
+
+    function cadastrar(){
+        $this->valida_sessao();
+
+        $nome = $this->escape("nome");
+        $telefone = $this->escape("telefone");
+        $celular = $this->escape("celular");
+        $cnpj = $this->escape("cnpj");
+        $endereco = $this->escape("endereco");
+        $bairro = $this->escape("bairro");
+        $cep = $this->escape("cep");
+        $cidade = $this->escape("cidade");
+        $uf = $this->escape("uf");
+        $rg = $this->escape("rg");
+        $expedicaoRg = $this->escape("expedicaoRg");
+        $orgaoRg = $this->escape("orgaoRg");
+        $dataNascimento = $this->escape("dataNascimento");
+        $nomePai = $this->escape("nomePai");
+        $nomeMae = $this->escape("nomeMae");
+        $nit = $this->escape("nit");
+        $conta = $this->escape("conta");
+        $agencia = $this->escape("agencia");
+        $banco = $this->escape("banco");
+
+        $proprietario = new Proprietario();
+
+        $proprietario->nome = $nome;
+        $proprietario->telefone = $telefone;
+        $proprietario->celular = $celular;
+        $proprietario->cnpj = $cnpj;
+        $proprietario->endereco = $endereco;
+        $proprietario->bairro = $bairro;
+        $proprietario->cep = $cep;
+        $proprietario->cidade = $cidade;
+        $proprietario->uf = $uf;
+        $proprietario->rg = $rg;
+        $proprietario->expedicaoRg = $expedicaoRg;
+        $proprietario->orgaoRg = $orgaoRg;
+        $proprietario->dataNascimento = $dataNascimento;
+        $proprietario->nomePai = $nomePai;
+        $proprietario->nomeMae = $nomeMae;
+        $proprietario->nit = $nit;
+        $proprietario->conta = $conta;
+        $proprietario->agencia = $agencia;
+        $proprietario->banco = $banco;
+
+        if($proprietario->trySave()){
+            $this->success('Proprietário cadastrado com sucesso.');
+        }else{
+            $this->error("Erro ao cadastrar o proprietário. Tente novamente ou contate o administrador.");
+        }
+    }
+}
+?>

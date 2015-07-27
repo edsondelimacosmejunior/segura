@@ -1,0 +1,137 @@
+<?php /* Smarty version 2.6.18, created on 2011-08-21 01:43:39
+         compiled from pages/interno/menu.tpl */ ?>
+
+<?php if ($_SESSION['nivel'] == 'U'): ?>
+
+<div class="myMenu ui-corner-all">
+    <table class="rootVoices vertical ui-corner-all" cellspacing='0' cellpadding='0' border='0'>
+        <tr><td class="titulo_menu ui-widget-header" >ADMINISTRATIVO</td></tr>
+        <tr><td class="rootVoice {menu: 'agenda'}" >Agenda</td></tr>
+        <tr><td class="rootVoice {menu: 'corretores'}" >Corretores</td></tr>
+        <tr><td class="rootVoice {menu: 'despesas'}" >Despesas</td></tr>
+        <tr><td class="rootVoice {menu: 'embarque'}" >Embarque</td></tr>
+        <tr><td class="rootVoice {menu: 'frete'}" >Frete</td></tr>
+        <tr><td class="rootVoice {menu: 'motoristas'}" >Motoristas</td></tr>
+        <tr><td class="rootVoice {menu: 'proprietarios'}" >Proprietarios</td></tr>
+        <tr><td class="rootVoice {menu: 'veiculos'}" >Veículos</td></tr>
+        <tr><td class="rootVoice {menu: 'usuarios'}" >Usuarios</td></tr>
+        <tr><td class="titulo_menu ui-widget-header" >PESSOAL</td></tr>
+        <tr><td class="rootVoice {menu: 'dadosPessoais'}" >Dados Pessoais</td></tr>
+
+    </table>
+</div>
+
+<!-- menus -->
+
+<!-- Agenda -->
+<div id="agenda" class="menu">
+    <a onmouseover="status('Cadastrar um novo destaque.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/destaque/mostraCadastro\')',img:'New document.png'}">Cadastrar</a>
+    <a onmouseover="status('Listar todos os destaques cadastrados.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/destaque/mostraDestaques\')',img:'View.png'}">Listar</a>
+</div>
+<!-- end menus -->
+
+<!-- Corretores -->
+<div id="corretores" class="menu">
+    <a onmouseover="status('Cadastrar uma nova newsletter.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/newsletter/mostraCadastro\')',img:'New document.png'}">Cadastrar</a>
+    <a onmouseover="status('Listar todos as newsletters cadastradas.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/newsletter/mostraNewsletters\')',img:'View.png'}">Listar</a>
+    <a onmouseover="status('Cadastrar um cliente para recebimento de newsletters.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/newsletter/mostraCadastroCliente\')',img:'New document.png'}">Cadastrar Cliente</a>
+    <a onmouseover="status('Cadastrar um cliente para recebimento de newsletters.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/newsletter/mostraClientes\')',img:'New document.png'}">Enviar Newsletter</a>
+</div>
+<!-- end menus -->
+
+<!-- Despesas -->
+<div id="despesas" class="menu">
+    <a onmouseover="status('Cadastrar uma nova despesa.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/despesa/mostraCadastro\')',img:'New document.png'}">Cadastrar</a>
+    <a onmouseover="status('Listar todos as despesas cadastradas.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/despesa/mostraDespesas\')',img:'View.png'}">Listar</a>
+</div>
+<!-- end menus -->
+
+<!-- Embarque -->
+<div id="embarque" class="menu">
+    <a onmouseover="status('Cadastrar um novo cliente ao portfólio.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/testeFpdf/mostraCadastro\')',img:'New document.png'}">Cadastrar</a>
+    <a onmouseover="status('Listar todos os clientes do portfólio.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/portfolio/mostraPortfolio\')',img:'View.png'}">Listar</a>
+</div>
+<!-- end menus -->
+
+<!-- Frete -->
+<div id="frete" class="menu">
+    <a onmouseover="status('Cadastrar uma nova noticia.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/noticia/mostraCadastro\')',img:'New document.png'}">Cadastrar</a>
+    <a onmouseover="status('Listar todos as noticias cadastradas.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/noticia/mostraNoticias\')',img:'View.png'}">Listar</a>
+</div>
+<!-- end menus -->
+
+<!-- Motoristas -->
+<div id="motoristas" class="menu">
+    <a onmouseover="status('Cadastrar um novo motorista.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/motorista/mostraCadastro\')',img:'New document.png'}">Cadastrar</a>
+    <a onmouseover="status('Listar todos os motoristas cadastrados.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/motorista/mostraMotoristas\')',img:'View.png'}">Listar</a>
+</div>
+<!-- end menus -->
+
+<!-- Proprietarios -->
+<div id="proprietarios" class="menu">
+    <a onmouseover="status('Cadastrar um novo proprietário de veículos.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/proprietario/mostraCadastro\')',img:'New document.png'}">Cadastrar</a>
+    <a onmouseover="status('Listar todos os proprietarios cadastrados.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/proprietario/mostraProprietarios\')',img:'View.png'}">Listar</a>
+</div>
+<!-- end menus -->
+
+<!-- Veiculos -->
+<div id="veiculos" class="menu">
+    <a onmouseover="status('Cadastrar um novo veículo.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/veiculo/mostraCadastro\')',img:'New document.png'}">Cadastrar</a>
+    <a onmouseover="status('Listar todos os veículos cadastrados.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/veiculo/mostraVeiculos\')',img:'View.png'}">Listar</a>
+</div>
+<!-- end menus -->
+
+<!-- Usuarios -->
+<div id="usuarios" class="menu">
+    <a onmouseover="status('Cadastrar um novo usuário.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuario/mostraCadastro\')',img:'New document.png'}">Cadastrar</a>
+    <a onmouseover="status('Listar todos os usuários cadastrados.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuario/mostraUsuarios\')',img:'View.png'}">Listar</a>
+</div>
+<!-- end menus -->
+
+<!-- Dados Pessoais -->
+<div id="dadosPessoais" class="menu">
+    <a onmouseover="status('Exibir seus dados pessoais.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuario/mostraCadastro\')',img:'New document.png'}">Exibir Dados</a>
+    <a onmouseover="status('Alterar seus dados pessoais.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuario/mostraUsuarios\')',img:'View.png'}">Alterar Dados</a>
+</div>
+<!-- end menus -->
+
+<?php endif; ?>
+
+<br clear="all"/>
+<br clear="all"/>
+<br clear="all"/>
+<br clear="all"/>
+
+<span style="text-align: center; display: block; float: left; width: 175px;">
+    <a href="logout" style="margin-left: 50px; width: 55px; display: block; text-align: center;" class="fg-button ui-state-default ui-corner-all">
+        <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+menu/icons/Exit.png" />
+        <span style="line-height: 16px; margin: 0; padding: 5px;">SAIR</span>
+    </a>
+</span>
+
+<script type="text/javascript">
+
+</script>

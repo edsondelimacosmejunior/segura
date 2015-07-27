@@ -1,0 +1,191 @@
+<?php /* Smarty version 2.6.18, created on 2010-09-21 10:03:20
+         compiled from pages/interno/modulo/projeto/seleciona_projeto.tpl */ ?>
+<style type="text/css">
+	#projetos{
+		float: right;
+		text-align: center;
+		width: 57%;
+		height: 383px;
+		border: solid;
+		border-width: 1px;
+		border-color: #AAAAAA;
+		overflow: scroll;
+	}
+	#titulo_projs{
+		width: 57%;
+		float: right;
+		height: 25px;
+		vertical-align: middle;
+		background-color: #AAAAAA;
+		text-align: center;
+		color: white;
+		border: solid;
+		border-width: 1px;
+		border-color: #AAAAAA;
+	}
+	#borda-usuarios{
+		width: 40%;
+		height: 25px;
+		background-image: url("<?php echo $this->_tpl_vars['IMG']; ?>
+tab2.gif");
+		border: 1px;
+		border-color: #AAAAAA;
+		border-style: solid;
+	}
+	#borda-usuarios a{
+		vertical-align: middle;
+		margin-left: 10px;
+		color: white;
+		font-size: 1.1em;
+		font-weight: bolder;
+		font-style: italic;
+	}
+	#usuarios{
+		width: 40%;
+		display: block;
+		height: 317px;
+		overflow: scroll;
+	}
+	
+	/* SELECTABLE */
+	#feedback { font-size: 0.9em; }
+	#selectable:hover{
+		cursor: pointer;
+	}
+	#selectable .ui-selecting { background: #FECA40; }
+	#selectable .ui-selected { background: #F39814; color: white; }
+	#selectable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+	#selectable li { margin: 3px; padding: 0.4em; font-size: 1em; height: 18px; }
+	/* END SELECTABLE */
+	
+</style>
+
+<div id="titulo_projs" class="ui-corner-top"><span>Selecione o projeto</span></div>
+<div id="projetos">
+	<p>Você deve selecionar um jogador.</p>
+</div>
+
+<div id="filtro">
+	<form name="filtro" method="post" action="javascript:filtrar();" id="filtrouser">
+		<p><b>Nome do jogador:</b></p>
+		<p><input name="nameuser" id="nameuser"><input type="submit" value="Pesquisar" style="margin-left: 25px;"></p>
+	</form>
+</div>
+
+<div id="borda-usuarios" class="ui-corner-top"><a>Selecione o Jogador</a></div>
+
+<div id="usuarios" class="ui-layout-content">
+	<ol id="selectable">
+		<?php $_from = $this->_tpl_vars['Usuarios']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['users']):
+?>
+			<li class="ui-widget-content" rel="<?php echo $this->_tpl_vars['users']['idUsuario']; ?>
+"><?php echo $this->_tpl_vars['users']['nome']; ?>
+</li>
+		<?php endforeach; endif; unset($_from); ?>
+	</ol>
+</div>
+
+
+<script type="text/javascript">
+	
+	$(".project_select").live("click",function(){
+		
+		openlink('<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/projeto/mostra_acoes/'+$(this).attr("rel"));
+		
+	})
+
+	$(function() {
+		$("#selectable").selectable({
+			stop: function(){
+			var result = $("#select-result").empty();
+			$(".ui-selected", this).each(function(){
+				var index = $(this).attr("rel");
+				lista_proj(index);
+			});
+			}
+		});	
+	});
+	
+	function lista_proj(id){
+		
+		$.ajax({
+			url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/projeto/list_proj",
+			data: { 
+				"id": id
+			},
+			cache: false,
+			success: function(data) {
+				
+				$("#projetos").html("");
+				
+				if(data == null){
+					$("#projetos").append(
+						'<p>O jogador selecionado não possui nenhum projeto iniciado.</p>'
+					);
+				}else{
+					for(var i=0; i<data.length; i++){
+						$("#projetos").append(
+							'<br>'
+						+	'<span style="text-align: center; display: block; width: 95%; margin-left: 2.5%">'
+						+	'	<a href="#" rel="'+ data[i]["id"] +'" method="post" style="width: 95%; display: block; text-align: center;" class="fg-button ui-state-default ui-corner-all project_select">'
+						+	'		<table style="line-height: 16px; padding: 0px; display: inline; text-align: center;">'
+						+	'			<tr>'
+						+	'				<td style=" width: 145px">'+ data[i]["nome"] +'</td>'
+						+	'				<td style=" width: 145px">Código: '+ data[i]["codigo"] +'%</td>'
+						+	'				<td style=" width: 145px">Artefatos: '+ data[i]["artefato"] +'%</td>'
+						+	'				<td style=" width: 145px">Tempo: '+ data[i]["tempo"] +'%</td>'
+						+	'			</tr>'
+						+	'		</table>'
+						+	'	</a>'
+						+	'</span>'
+						);
+					}
+				}
+				
+				
+				
+			},
+			error: function(data) {
+				$().message("Problema na identificação do usuário.");
+			},
+			dataType: "json"
+		});
+		
+	}
+
+	
+	function filtrar(){
+		d = document.filtro;
+		
+		$.ajax({
+			url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/comunicacao/filtro_users",
+			data: { 
+				"nameusers": d.nameuser.value
+			},
+			cache: false,
+			success: function(data) {
+				
+				$("#selectable").html("");
+				
+				if(data.length == 0){
+					$("#selectable").append('<br><span style="margin-left: 20px;">Nenhum usuário encontrado.</span>');
+				}
+				
+				for(var i=0; i < data.length; i++){
+					$("#selectable").append('<li class="ui-widget-content" rel="' + data[i]["nome"] + '">' + data[i]["nome"] + '</li>');					
+				}
+				
+				
+			},
+			error: function(data) {
+				$().message("Usuário inválido!");
+			},
+			dataType: "json"
+		});
+	}
+
+</script>

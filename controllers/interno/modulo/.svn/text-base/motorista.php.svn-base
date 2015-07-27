@@ -1,0 +1,221 @@
+<?php
+
+Class Controller_Motorista extends Proto_Controller {
+
+    function index() {
+
+        $this->init_session();
+        $this->show("pages/interno/index.tpl");
+
+    }
+
+    function mostraCadastro() {
+
+        $this->init_session();
+        $this->show("pages/interno/modulo/formularios/motorista.tpl");
+
+    }
+
+    function mostraMotoristas() {
+        $this->init_session();
+
+        $this->show("pages/interno/modulo/listas/motorista.tpl");
+    }
+
+    function flexGrid(){
+        header("Cache-Control: no-cache, must-revalidate" );
+        header("Pragma: no-cache" );
+        header("Content-type: text/x-json");
+
+        $this->valida_sessao();
+
+        $saida;
+
+        $saida["page"] 		= $this->escape("page");
+        $saida["records"] 	= $this->escape("rp");
+
+        $orderBy = $this->escape("sortname");
+        $sord = $this->escape("sortorder");
+
+        $i = 1;
+
+        $limit 	= $saida["records"];
+        $offset = ($saida["page"]-$i) * $saida["records"];
+
+
+        $g = Doctrine_Query::create()
+        ->select("m.*")	// Seleciona os campos
+        ->from("Motorista m");
+
+        $qtype 	= $this->escape("qtype");
+        $query 	= $this->escape("query");
+        $letter	= $this->escape("letter_pressed");
+
+        if ($qtype)
+
+        if ($query)
+        if (is_numeric($query))
+        $g->where("$qtype = $query");
+        else
+        $g->where("$qtype like '%$query%'");
+        elseif ($letter && $letter != "TODOS")
+        $g->where("$qtype like '$letter%'");
+
+        $g->limit($limit)									// Limita o resultado
+        ->offset($offset)								// Desloca o início do resultado
+        ->orderBy($orderBy." ".$sord);					// Ordena o resultado por um campo específico.
+
+        $motoristas = $g->execute();
+        $numero_motoristas = $g->count();
+
+        $saida["total"] = $numero_motoristas;
+
+        $saida["page"] = $saida["page"] - $i+1;
+
+
+        $json 	= "";
+        $json 	.= "{\n";
+        $json 	.= "page:";
+
+
+        $rows = array();
+
+        if ($motoristas) {
+
+            foreach ($motoristas as $motorista) {
+
+                $rows[] = array("idMotorista" => $motorista["idMotorista"],"cell" => array(
+                        $motorista->idMotorista,
+                        $motorista->nome,
+                        $motorista->rg,
+                        $motorista->cpf,
+                        $motorista->telefone,
+                        $motorista->celular,
+                        $motorista->habilitacao,
+                        $motorista->validadeHabilitacao,
+                        $motorista->registroHabilitacao
+                    ));
+            }
+
+
+        }
+
+        $saida["rows"] = $rows;
+
+        echo json_encode($saida); // Preparando para o jqGrid.
+
+    }
+
+    function enviarAlterar() {
+        $this->init_session();
+        $idMotorista = $this->getArg(0);
+
+        $motoristas = Doctrine_Query::create()
+        ->select("m.*")
+        ->from("Motorista m")
+        ->where("idMotorista = $idMotorista")
+        ->execute()
+        ->toArray();
+
+        $this->set("motoristas",$motoristas);
+
+        $this->show("pages/interno/modulo/atualizacoes/motorista.tpl");
+    }
+
+    function alterar() {
+        $this->valida_sessao();
+
+        $idUsuario 	 = $this->escape("idUsuario");
+        $nome 		 = $this->escape("nome");
+        $email           = $this->escape("email");
+        $login           = $this->escape("login");
+        $senha 		 = $this->escape("senha");
+
+        $u = Doctrine::getTable("usuario")->find($idUsuario);
+
+
+
+        $u->nome	= $nome;
+        $u->email	= $email;
+        $u->login 	= $login;
+        $u->senha 	= $senha;
+
+        if ($u->trySave())
+        $this->success('Dados atualizados com sucesso!!');
+        else
+        $this->error('Não foi possível atualizar os dados do usuário!!');
+
+    }
+
+    function excluir() {
+        $this->valida_sessao();
+
+        $id = $this->escape("idMotorista");
+
+        $m = Doctrine::getTable("Motorista")->find($id);
+
+        if ( $m->delete() )
+        $this->success('Motorista excluído com sucesso!');
+        else
+        $this->error('Erro ao excluir o Motorista. Contate o administrador do sistema.');
+    }
+
+    function cadastrar() {
+        $this->init_session();
+
+        $nome = $this->escape("nome");
+        $dataNascimento = $this->escape("dataNascimento");
+        $endereco = $this->escape("endereco");
+        $bairro = $this->escape("bairro");
+        $cep = $this->escape("cep");
+        $cidade = $this->escape("cidade");
+        $uf = $this->escape("uf");
+        $telefone = $this->escape("telefone");
+        $celular = $this->escape("celular");
+        $nomePai = $this->escape("nomePai");
+        $nomeMae = $this->escape("nomeMae");
+        $rg = $this->escape("rg");
+        $cpf = $this->escape("cpf");
+        $expedicaoRg = $this->escape("expedicaoRg");
+        $orgao = $this->escape("orgao");
+        $habilitacao = $this->escape("habilitacao");
+        $expedicaoHabilitacao = $this->escape("expedicaoHabilitacao");
+        $validadeHabilitacao = $this->escape("validadeHabilitacao");
+        $registroHabilitacao = $this->escape("registroHabilitacao");
+
+
+        $motorista = new Motorista();
+
+        $motorista->nome = $nome;
+        $motorista->dataNascimento = $dataNascimento;
+        $motorista->endereco = $endereco;
+        $motorista->bairro = $bairro;
+        $motorista->cep = $cep;
+        $motorista->cidade = $cidade;
+        $motorista->uf = $uf;
+        $motorista->telefone = $telefone;
+        $motorista->celular = $celular;
+        $motorista->nomePai = $nomePai;
+        $motorista->nomeMae = $nomeMae;
+        $motorista->rg = $rg;
+        $motorista->cpf = $cpf;
+        $motorista->expedicaoRg = $expedicaoRg;
+        $motorista->orgao = $orgao;
+        $motorista->habilitacao = $habilitacao;
+        $motorista->expedicaoHabilitacao = $expedicaoHabilitacao;
+        $motorista->validadeHabilitacao = $validadeHabilitacao;
+        $motorista->registroHabilitacao = $registroHabilitacao;
+        
+
+
+        if($motorista->trySave()) {
+
+            $this->success("Motorista cadastrado com sucesso.");
+
+        }else {
+            $this->error("Erro ao cadastrar o motorista. Tente novamente ou contate o administrador.");
+        }
+    }
+
+}
+?>

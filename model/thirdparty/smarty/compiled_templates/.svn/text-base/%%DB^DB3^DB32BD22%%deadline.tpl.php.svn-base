@@ -1,0 +1,98 @@
+<?php /* Smarty version 2.6.18, created on 2010-09-17 10:48:12
+         compiled from pages/interno/modulo/projeto/deadline.tpl */ ?>
+<script language="JavaScript" src="<?php echo $this->_tpl_vars['JS']; ?>
+FusionCharts.js"></script>
+<script language="JavaScript" src="<?php echo $this->_tpl_vars['JS']; ?>
+jquery/jquery.progressbar.js"></script>
+<link rel="stylesheet" href="<?php echo $this->_tpl_vars['CSS']; ?>
+fusionchart/Style.css" type="text/css" />
+
+<style type="text/css">
+	#titledeadline{
+		padding: 5px;
+		display: block;
+		font-weight: bolder;
+		font-size: medium;
+	}
+	#titlemetas{
+		display: block;
+		font-weight: normal;
+		font-size: medium;
+	}
+	#titleetapas{
+		display: block;
+		font-weight: normal;
+		font-size: medium;
+	}
+	.etp{
+		padding: 5px;
+		display: block;
+		font-weight: bold;
+		font-size: small;
+	}
+</style>
+
+<span id="titledeadline">Deadlines</span>
+<hr>
+<br>
+
+<div id="dlc" style="padding: 10px; margin: auto; text-align: center; float: right; border-style: double; background-color: #CDAA7D; border-bottom: none;"></div>
+<div id="dla" style="padding: 10px; margin: auto; text-align: center; float: right; border-style: double; background-color: #CDAA7D; border-top: none; border-bottom: none;"></div>
+<div id="tempo" style="padding: 10px; margin: auto; text-align: center; float: right; border-style: double; background-color: #CDAA7D; border-top: none;"></div>
+
+<span id="titlemetas">Metas e Prazos</span>
+<?php $_from = $this->_tpl_vars['Projeto']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['proj']):
+?>
+<ul>
+	<li>Prazo para Término: <?php echo $this->_tpl_vars['proj']['tempo']; ?>
+ semanas</li>
+	<li>Linhas de Código a serem produzidas: <?php echo $this->_tpl_vars['proj']['linhasDeCodigoPrevistas']; ?>
+ linhas</li>
+	<li>Artefatos a serem produzidos: <?php echo $this->_tpl_vars['proj']['artefatosPrevistos']; ?>
+</li>
+	<li>Percentual máximo de erros aceitável: <?php echo $this->_tpl_vars['proj']['percentualErros']; ?>
+%</li>
+</ul>
+<?php endforeach; endif; unset($_from); ?>
+<br />
+<span id="titleetapas">Etapas a serem cumpridas</span>
+<?php $_from = $this->_tpl_vars['Etapa']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['foo'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['foo']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['etp']):
+        $this->_foreach['foo']['iteration']++;
+?>
+<br />
+<span class="etp"><?php echo $this->_tpl_vars['etp']['nome']; ?>
+</span>
+<ul>
+	<li>Prazo: <?php echo $this->_tpl_vars['etp']['tempo']; ?>
+ semanas</li>
+	<li>Linhas de Código: <?php echo $this->_tpl_vars['etp']['linhasDeCodigo']; ?>
+ linhas</li>
+	<li>Artefatos: <?php echo $this->_tpl_vars['etp']['artefatos']; ?>
+ artefatos</li>
+</ul>
+<?php endforeach; endif; unset($_from); ?>
+
+
+
+<script type="text/javascript">
+	var chart = new FusionCharts("<?php echo $this->_tpl_vars['IMG']; ?>
+flash/charts/FCF_StackedBar2D.swf", "dlc", "580", "330");
+	chart.setDataURL("<?php echo $this->_tpl_vars['BASE_URL']; ?>
+interno/modulo/projeto/grafico_dlc");
+	chart.render("dlc");
+	
+	var chart = new FusionCharts("<?php echo $this->_tpl_vars['IMG']; ?>
+flash/charts/FCF_StackedBar2D.swf", "dla", "580", "330");
+	chart.setDataURL("<?php echo $this->_tpl_vars['BASE_URL']; ?>
+interno/modulo/projeto/grafico_dla");
+	chart.render("dla");
+
+	var chart = new FusionCharts("<?php echo $this->_tpl_vars['IMG']; ?>
+flash/charts/FCF_StackedBar2D.swf", "tempo", "580", "330");
+	chart.setDataURL("<?php echo $this->_tpl_vars['BASE_URL']; ?>
+interno/modulo/projeto/grafico_tempo_deadline");
+	chart.render("tempo");
+</script>

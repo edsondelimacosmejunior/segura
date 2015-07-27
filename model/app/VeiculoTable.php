@@ -1,0 +1,7 @@
+<?php
+/**
+ */
+class VeiculoTable extends Doctrine_Table
+{
+
+}

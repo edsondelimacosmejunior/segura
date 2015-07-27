@@ -1,0 +1,7 @@
+<?php
+/**
+ */
+class MotoristaTable extends Doctrine_Table
+{
+
+}

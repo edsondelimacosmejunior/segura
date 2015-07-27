@@ -1,0 +1,23 @@
+<style type="text/css">
+	#cxconteudo{
+		background-image: url("{{$IMG}}eRiskGame_fundobranco.png");
+		background-repeat: no-repeat;
+		background-position: center;
+		height: 400px;
+	}
+</style>
+
+<div id="cxconteudo"></div>
+
+
+<script type="text/javascript">
+	
+	window.onload = function(){
+		mensagem();
+	}
+	
+	function mensagem(){
+		$().message("Selecione uma opção no menu lateral.");
+	}
+		
+</script>

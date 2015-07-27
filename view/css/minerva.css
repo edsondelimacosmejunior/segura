@@ -1,0 +1,699 @@
+/* 
+    Document   : minerva
+    Created on : 03/11/2011, 09:50:26
+    Author     : Edson Junior
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+*{
+    padding:0;
+    margin:0;
+}
+
+body{
+    background: url(../imgs/index/bg.png);
+    text-align: center;
+}
+
+#bg {
+    background: url(../imgs/index/topo.jpg) no-repeat top transparent;
+    display:block;
+    min-height: 900px;
+    width:100%;
+}
+
+
+#bgBottom {
+    background: url(../imgs/index/rodape.png) repeat-x scroll bottom transparent;
+    display:block;
+    min-height: 900px;
+    width:100%;
+}
+
+#estrutura {
+    display: block;
+    height: 1081px;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#topo {
+    display: block;
+    height: 124px;
+    width: 100%
+}
+
+#caixaMenu {
+    display: inline-block;
+    margin: 10px auto;
+    height: 104px;
+    width: 980px;
+}
+
+#logoMinerva {
+    background: url(../imgs/index/logoMinerva.png) no-repeat transparent;
+    display:inline-block;
+    float: left;
+    margin-left: 10px;
+    height: 104px;
+    width: 163px;
+}
+
+#menuExterno {
+    display: inline-block;
+    height: 42px;
+    width:550px;
+    margin-top: 35px;
+    float: right;
+}
+
+#copyright { 
+    display: none; 
+}
+
+#banner {
+    display: block;
+    height: 432px;
+    width: 100%
+}
+
+.theme-default #slider {
+    display: inline-block;
+    margin: 46px auto;
+    width: 1000px; /* Make sure your images are the same size */
+    height:300px; /* Make sure your images are the same size */
+}
+.theme-pascal.slider-wrapper,
+.theme-orman.slider-wrapper {
+    margin-top:150px;
+}
+
+#areaTrabalho{
+    display: block;
+    height: 457px;
+    width: 100%
+}
+
+#grupoPrincipal {
+    display: inline-block;
+    margin-top: 3px;
+    height: 204px;
+    width: 100%;
+    text-align: left;
+}
+
+#destaque {
+    display: inline-block;
+    margin-top: 0px;
+    height: 207px;
+    width: 486px;
+    margin-left: 7px;
+}
+
+#destaqueTitulo {
+    background: url(../imgs/index/destaque.png) no-repeat transparent;
+    display: block;
+    margin-top: 0px;
+    height: 34px;
+    width: 486px;
+}
+
+#fotoDestaque {
+    background: url(../imgs/index/caixaFoto.png) no-repeat transparent;
+    display: block;
+    float: left;
+    margin-top: 0px;
+    height: 157px;
+    width: 224px;
+}
+
+.caixaFoto {
+    display: block;
+    margin: 5px auto;
+    height: 147px;
+    width: 214px;
+}
+
+.saibaMais{
+    display: block;
+    float: right;
+    margin-top: 0px;
+    margin-right: 10px;
+    height: 16px;
+    width: 79px;
+    text-align: right;
+    font: 12px sans-serif;
+    color: #00557c;
+    cursor: pointer;
+}
+
+#textoDestaque {
+    display: block;
+    float: left;
+    margin-top: 0px;
+    margin-left: 10px;
+    text-align: justify;
+    height: 140px;
+    width: 239px;
+    font: 11px sans-serif;
+    color: #6f98a6;
+}
+
+#textoDestaque b{
+    font: 12px sans-serif;
+    font-weight: bold;
+    color: #00557c;
+}
+
+#representacao {
+    display: inline-block;
+    height: 207px;
+    width: 486px;
+    margin-left: 7px;
+}
+
+#representacaoTitulo {
+    background: url(../imgs/index/representacao.png) no-repeat transparent;
+    display: block;
+    margin-top: 0px;
+    height: 34px;
+    width: 486px;
+}
+
+#fotoRepresentacao {
+    background: url(../imgs/index/caixaFoto.png) no-repeat transparent;
+    display: block;
+    float: left;
+    margin-top: 0px;
+    height: 156px;
+    width: 224px;
+}
+
+#textoRepresentacao {
+    display: block;
+    float: left;
+    margin-top: 0px;
+    margin-left: 10px;
+    text-align: justify;
+    height: 140px;
+    width: 239px;
+    font: 11px sans-serif;
+    color: #6f98a6;
+}
+
+textoRepresentacao b{
+    font: 12px sans-serif;
+    color: #00557c;
+}
+
+#twitter {
+    display: block;
+    height: 250px;
+    width: 100%;
+}
+
+#twitterTitulo {
+    background: url(../imgs/index/tituloTwitter.png) no-repeat transparent;
+    display: block;
+    float: left;
+    margin-top: 0px;
+    height: 33px;
+    width: 1000px;
+}
+
+#twitterConteudo {
+    display: block;
+    float: left;
+    margin-top: 0px;
+    height: 200px;
+    width: 1000px;
+}
+
+#rodape{
+    display: block;
+    height: 68px;
+    width: 100%
+}
+
+#direitosReservados{
+    display: block;
+    text-align: left;
+    float: left;
+    margin-top: 13px;
+    height: 20px;
+    width: 355px;
+    font: 9px sans-serif;
+    color: white;
+}
+
+#assinatura{
+    background: url(../imgs/index/assinatura.png) no-repeat transparent;
+    display: block;
+    text-align: right;
+    float: right;
+    margin-top: 47px;
+    height: 12px;
+    width: 70px;
+    font: 9px sans-serif;
+    color: white;
+}
+
+
+#bgInterno {
+    background: url(../imgs/empresa/topoInterno.png) repeat-x top transparent;
+    display:block;
+    min-height: 900px;
+    width:100%;
+}
+
+#estruturaInterna {
+    display: block;
+    min-height: 1081px;
+    width: 1100px;
+    margin: 0 auto;
+}
+
+#topoInterno {
+    display: block;
+    height: 132px;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#bgBanner {
+    display: block;
+    background: url(../imgs/empresa/bgBarra.png) no-repeat top transparent;
+    height: 159px;
+    width: 1100px;
+    margin: 0 auto;
+}
+
+#imgs_banner{
+    background: url(../imgs/empresa/imgs_barra.png) no-repeat transparent;
+    display: block;
+    float: right;
+    height: 159px;
+    width: 360px;
+}
+
+#estruturaEfeito {
+    display: block;
+    background: url(../imgs/empresa/efeito.png) no-repeat top transparent;
+    height: 13px;
+    width: 1100px;
+    margin: 0 auto;
+}
+
+#areaTrabalhoInterna{
+    display: inline-block;
+    min-height: 708px;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#empresaTitulo{
+    background: url(../imgs/empresa/titulo.png) no-repeat top transparent;
+    display: block;
+    height: 35px;
+    width: 1000px;
+}
+
+#empresaPrincipal {
+    display: block;
+    height: 422px;
+    width: 780px;
+    float: left;
+    text-align: justify;
+    font: 12px sans-serif;
+    color: #00557c;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+
+#empresaSecundario {
+    display: block;
+    height: 422px;
+    width: 200px;
+    float: left;
+    padding-top: 20px;
+}
+
+.empresaImagens {
+    display: block;
+    height: 140px;
+    width: 200px;
+}
+
+.fotoEmpresa {
+    background: url(../imgs/empresa/caixaFoto.png) no-repeat transparent;
+    display: block;
+    margin: 0 auto;
+    height: 112px;
+    width: 160px;
+}
+
+.caixaFotoEmpresa {
+    display: inline-block;
+    margin: 5px auto;
+    height: 102px;
+    width: 150px;
+    background-color: white;
+}
+
+#pedidosTitulo {
+    background: url(../imgs/pedidos/titulo.png) no-repeat top transparent;
+    display: block;
+    height: 40px;
+    width: 647px;
+}
+
+#pedidosPrincipal {
+    display: block;
+    height: 600px;
+    width: 647px;
+    float: left;
+    text-align: left;
+    font: 12px sans-serif;
+    font-weight: bold;
+    color: #00557C;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+
+#pedidosPrincipal input{
+    background-color: #3488ad;
+    font: 15px sans-serif;
+    font-weight: bold;
+    color: white; 
+}
+
+#pedidosPrincipal textarea{
+    background-color: #3488ad;
+    font: 15px sans-serif;
+    font-weight: bold;
+    color: white; 
+}
+
+#pedidoEnviar{
+    background: url(../imgs/pedidos/enviar.png) no-repeat top transparent;
+    display: block;
+    height: 26px;
+    width: 133px;
+    float: right;
+    cursor: pointer;
+}
+
+#pedidoLimpar{
+    background: url(../imgs/pedidos/limpar.png) no-repeat top transparent;
+    display: block;
+    height: 26px;
+    width: 89px;
+    float: right;
+    cursor: pointer;
+}
+
+#faleConoscoTitulo {
+    background: url(../imgs/faleconosco/contatoTitulo.png) no-repeat top transparent;
+    display: block;
+    height: 40px;
+    width: 647px;
+}
+
+#faleConoscoPrincipal {
+    display: inline-block;
+    height: 600px;
+    width: 647px;
+    float: left;
+    text-align: left;
+    font: 12px sans-serif;
+    font-weight: bold;
+    color: #00557C;
+    padding-right: 20px;
+}
+
+#faleConoscoPrincipal input{
+    background-color: #3488ad;
+    font: 15px sans-serif;
+    font-weight: bold;
+    color: white; 
+}
+
+#faleConoscoPrincipal textarea{
+    background-color: #3488ad;
+    font: 15px sans-serif;
+    font-weight: bold;
+    color: white; 
+}
+
+#faleConoscoSecundario {
+    display: block;
+    height: 700px;
+    width: 322px;
+    float: left;
+    text-align: left;
+    font: 12px sans-serif;
+    font-weight: bold;
+    color: #00557C;
+    margin-left: 10px;
+}
+
+#emails{
+    display: block;
+    height: 170px;
+    width: 322px;
+    float: left;
+    text-align: left;
+    font: 12px sans-serif;
+    font-weight: bold;
+    color: #00557C;
+}
+
+#emailsTitulo {
+    background: url(../imgs/faleconosco/emails.png) no-repeat top transparent;
+    display: block;
+    height: 40px;
+    width: 322px;
+}
+
+#telefones{
+    display: block;
+    height: 120px;
+    width: 322px;
+    float: left;
+    text-align: left;
+    font: 15px sans-serif;
+    font-weight: bold;
+    color: #00557C;
+}
+
+#telefonesTitulo {
+    background: url(../imgs/faleconosco/telefones.png) no-repeat top transparent;
+    display: block;
+    height: 40px;
+    width: 322px;
+}
+
+#localizacao{
+    display: block;
+    height: 380px;
+    width: 322px;
+    float: left;
+    text-align: left;
+    font: 12px sans-serif;
+    font-weight: bold;
+    color: #00557C;
+}
+
+#localizacaoTitulo {
+    background: url(../imgs/faleconosco/localizacao.png) no-repeat top transparent;
+    display: block;
+    height: 40px;
+    width: 322px;
+}
+
+#parceirosTitulo {
+    background: url(../imgs/parceiros/parceirosTitulo.png) no-repeat top transparent;
+    display: block;
+    height: 40px;
+    width: 1000px;
+}
+
+#parceirosPrincipal {
+    display: inline-block;
+    height: 600px;
+    width: 1000px;
+    float: left;
+    text-align: left;
+    font: 12px sans-serif;
+    font-weight: bold;
+    color: #00557C;
+    padding-right: 20px;
+}
+
+.caixaParceiro {
+    background: url(../imgs/parceiros/parceiros2.png) no-repeat transparent;
+    display: block;
+    margin: 0 auto;
+    height: 168px;
+    width: 237px;
+}
+
+.fotoParceiro {
+    display: inline-block;
+    margin-top: 19px;
+    margin-left: 20px; 
+    height: 134px;
+    width: 203px;
+}
+
+#produtos1Titulo {
+    background: url(../imgs/produtos/tipo1.png) no-repeat top transparent;
+    display: block;
+    height: 40px;
+    width: 1000px;
+}
+
+#produtos2Titulo {
+    background: url(../imgs/produtos/tipo2.png) no-repeat top transparent;
+    display: block;
+    height: 40px;
+    width: 1000px;
+}
+
+#produtos3Titulo {
+    background: url(../imgs/produtos/tipo3.png) no-repeat top transparent;
+    display: block;
+    height: 40px;
+    width: 1000px;
+}
+
+.produtosPrincipal {
+    display: inline-block;
+    min-height: 10px;
+    width: 1000px;
+    float: left;
+    text-align: left;
+    font: 12px sans-serif;
+    font-weight: bold;
+    color: #00557C;
+    padding-right: 20px;
+}
+
+.caixaProduto {
+    background: url(../imgs/parceiros/parceiros2.png) no-repeat transparent;
+    display: block;
+    margin: 0 auto;
+    height: 168px;
+    width: 237px;
+}
+
+.fotoProduto {
+    display: inline-block;
+    margin-top: 19px;
+    margin-left: 20px; 
+    height: 124px;
+    width: 190px;
+}
+
+.ampliarFoto{
+    background: url(../imgs/produtos/ampliar.png) no-repeat top transparent;
+    display: block;
+    margin: 10px auto;
+    height: 26px;
+    width: 133px;
+    cursor: pointer;
+}
+
+.descricaoProduto{
+    display: block;
+    margin-left: 10px;
+    height: 134px;
+    width: 300px;
+    text-align: justify;
+    font: 12px sans-serif;
+    color: #00557c;
+    font-weight: bold;
+}
+
+#representacaoTituloPagina{
+    background: url(../imgs/representacao/tituloRepresentacao.png) no-repeat top transparent;
+    display: block;
+    height: 40px;
+    width: 1000px;
+}
+
+#representacaoPrincipal {
+    display: block;
+    height: 382px;
+    width: 780px;
+    float: left;
+    text-align: justify;
+    font: 12px sans-serif;
+    color: #00557c;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+
+#destaqueTituloPagina{
+    background: url(../imgs/destaque/tituloDestaque.png) no-repeat top transparent;
+    display: inline-block;
+    height: 40px;
+    width: 1000px;
+}
+
+#destaquePrincipal {
+    display: inline-block;
+    min-height: 82px;
+    width: 1000px;
+    float: left;
+    text-align: justify;
+    font: 12px sans-serif;
+    color: #00557c;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+
+#outrosDestaquesTitulo{
+    margin-top: 20px;
+    background: url(../imgs/destaque/tituloOutrosDestaques.png) no-repeat top transparent;
+    display: inline-block;
+    height: 40px;
+    width: 1000px;
+}
+
+#outrosDestaquesPrincipal {
+    display: inline-block;
+    min-height: 82px;
+    width: 1000px;
+    float: left;
+    text-align: justify;
+    font: 12px sans-serif;
+    color: #00557c;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+
+#noticiasTituloPagina{
+    background: url(../imgs/noticias/noticias.png) no-repeat top transparent;
+    display: inline-block;
+    height: 40px;
+    width: 1000px;
+}
+
+#outrasNoticiasTitulo{
+    margin-top: 20px;
+    background: url(../imgs/noticias/subtituloNoticias.png) no-repeat top transparent;
+    display: inline-block;
+    height: 40px;
+    width: 1000px;
+}

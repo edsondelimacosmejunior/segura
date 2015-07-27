@@ -1,0 +1,71 @@
+<?php /* Smarty version 2.6.18, created on 2010-09-21 08:54:07
+         compiled from pages/interno/menuprofessor.tpl */ ?>
+<br clear="all">
+<br clear="all">
+
+<div class="myMenu">
+	<table class="rootVoices vertical" cellspacing='0' cellpadding='0' border='0'>
+		<tr><td class="titulo_menu ui-widget-header" >MENU</td></tr>
+		<tr><td class="rootVoice {menu: 'acompanhamento'}" >Acompanhamento</td></tr>
+		<tr><td class="rootVoice {menu: 'ranking'}" >Ranking</td></tr>
+		<tr><td class="rootVoice {menu: 'comunicacao'}" >Comunicação</td></tr>
+		<tr><td class="titulo_menu ui-widget-header" >ADMINISTRATIVO</td></tr>
+		<tr><td class="rootVoice {menu: 'minha_conta'}" >Minha Conta</td></tr>
+	</table>
+</div>
+
+	<!-- menus -->
+
+	<!-- ACOMPANHAMENTO -->
+	<div id="acompanhamento" class="menu">
+		<a onmouseover="status('Ver Ações dos Jogadores.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/projeto/selecionar_projeto\')',img:'List.png'}">Ações dos Jogadores</a>
+		<a onmouseover="status('Ver Andamento dos Projetos.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/projeto/selecionar_projeto\')',img:'rel5.png'}">Andamento dos Projetos</a>
+	</div>
+
+	<!-- RANKING -->
+	<div id="ranking" class="menu">
+		<a onmouseover="status('Ver Ranking Geral.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuarios/mostra_ranking\')',img:'estatisticas.png'}">Geral</a>
+		<a class="{action: '$().message(\'Funcionalidade indisponível.\');',img:'36_24x24.png'}">Qualificação da Equipe</a>
+	</div>
+		
+	<!-- COMUNICAÇÃO -->
+	<div id="comunicacao" class="menu">
+		<a onmouseover="status('Ver Mensagens.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/comunicacao/mensagem\')',img:'Mail.png'}">Mensagens</a>
+		<a class="{action: '$().message(\'Funcionalidade indisponível.\');',img:'001_50.png'}">Chat</a>
+		<a class="{action: '$().message(\'Funcionalidade indisponível.\');',img:'Notes.png'}">Fórum</a>
+	</div>
+
+
+	<!-- end menus -->
+
+
+	<!-- menus -->
+
+	<!-- MINHA CONTA -->
+	<div id="minha_conta" class="menu">
+		<a onmouseover="status('Alterar minha conta.');" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/configuracoes/alterar\')',img:'key_small.png'}">Alterar Senha</a>
+		<a onmouseover="status('Alterar meus dados.');" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/configuracoes/alterar\')',img:'date_edit.png'}">Dados</a>
+		<a onmouseover="status('Alterar meu avatar.');" onmouseout="status('')" class="{action: 'openlink(\'<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/usuarios/avatar\')',img:'Person.png'}">Avatar</a>
+	</div>
+	
+	<!-- end menus -->
+
+
+<br clear="all"/>
+<br clear="all"/>
+<br clear="all"/>
+
+<span style="text-align: center; display: block; float: left; width: 175px;">
+	<a href="logout" style="margin-left: 50px; width: 55px; display: block; text-align: center;" class="fg-button ui-state-default ui-corner-all">
+		<img src="<?php echo $this->_tpl_vars['IMG']; ?>
+menu/icons/Exit.png" />
+		<span style="line-height: 16px; margin: 0; padding: 5px;">SAIR</span>
+	</a>
+</span>

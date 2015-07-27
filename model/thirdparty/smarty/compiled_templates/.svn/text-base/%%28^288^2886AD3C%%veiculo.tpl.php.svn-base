@@ -1,0 +1,223 @@
+<?php /* Smarty version 2.6.18, created on 2011-08-21 22:12:28
+         compiled from pages/interno/modulo/formularios/veiculo.tpl */ ?>
+<style>
+    body {
+        font-size: 62.5%;
+    }
+    label, input {
+        display:block;
+    }
+    input.text {
+        margin-bottom:12px;
+        width:95%;
+        padding: .4em;
+    }
+    fieldset {
+        padding:0;
+        border:0;
+        margin-top:25px;
+    }
+    h1 {
+        font-size: 1.2em;
+        margin: .6em 0;
+    }
+    div#users-contain {
+        width: 350px;
+        margin: 20px 0;
+    }
+    div#users-contain table {
+        margin: 1em 0;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    div#users-contain table td, div#users-contain table th {
+        border: 1px solid #eee;
+        padding: .6em 10px;
+        text-align: left;
+    }
+    .ui-dialog .ui-state-error {
+        padding: .3em;
+    }
+    .validateTips {
+        border: 1px solid transparent;
+        padding: 0.3em;
+    }
+</style>
+
+<script>
+    $(function() {
+        $( "input:submit, a, button", ".demo" ).button();
+        $( "a", ".demo" ).click(function() { return false; });
+    });
+
+</script>
+
+<div id="users-contain" class="ui-widget" style="margin:20px auto;">
+    <table id="users" class="ui-widget ui-widget-content">
+        <thead>
+            <tr class="ui-widget-header ">
+                <th>Cadastro de Veículos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+
+                    <fieldset>
+                        <label for="placa">Placa</label>
+                        <input type="text" name="placa" id="placa" class="text ui-widget-content ui-corner-all" />
+                        <label for="marca">Marca</label>
+                        <input type="text" name="marca" id="marca"  class="text ui-widget-content ui-corner-all" />
+                        <label for="cidade">Cidade</label>
+                        <input type="text" name="cidade" id="cidade"  class="text ui-widget-content ui-corner-all" />
+                        <label for="uf">UF</label>
+                        <input type="text" name="uf" id="uf" class="text ui-widget-content ui-corner-all" />
+                        <label for="chassi">Chassi</label>
+                        <input type="text" name="chassi" id="chassi" class="text ui-widget-content ui-corner-all" />
+                        <label for="renavam">Renavam</label>
+                        <input type="text" name="renavam" id="renavam" class="text ui-widget-content ui-corner-all" />
+                        <label for="registroVeiculo">Registro do Veículo</label>
+                        <input type="text" name="registroVeiculo" id="registroVeiculo" class="text ui-widget-content ui-corner-all" />
+                        <label for="capacidade">Capacidade</label>
+                        <input type="text" name="capacidade" id="capacidade" class="text ui-widget-content ui-corner-all" />
+                        <label for="cor">Cor</label>
+                        <input type="text" name="cor" id="cor" class="text ui-widget-content ui-corner-all" />
+                        <label for="ano">Ano</label>
+                        <input type="text" name="ano" id="ano" class="text ui-widget-content ui-corner-all" />
+                    </fieldset>
+
+                    <button id="cadastrar" onclick="cadastrar()" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="float:right; margin-right:10px;">
+                        <span class="ui-button-text">Cadastrar</span>
+                    </button>
+                    <button id="limpar" onclick="limpar()" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="float:right; margin-right:10px;">
+                        <span class="ui-button-text">Cancelar</span>
+                    </button>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+
+    function alertaVazio(campos,contador){
+        for(i=0;i<contador;i = i+1){
+            document.getElementById(campos[i]).style.borderColor = '#FF3300';
+            document.getElementById(campos[i]).style.backgroundColor = '#FFEDBF';
+        }
+
+    }
+
+    function limpar(){
+        $("#placa",selected_tab()).val("");
+        $("#marca",selected_tab()).val("");
+        $("#cidade",selected_tab()).val("");
+        $("#uf",selected_tab()).val("");
+        $("#chassi",selected_tab()).val("");
+        $("#renavam",selected_tab()).val("");
+        $("#registroVeiculo",selected_tab()).val("");
+        $("#capacidade",selected_tab()).val("");
+        $("#cor",selected_tab()).val("");
+        $("#ano",selected_tab()).val("");
+
+    }
+
+    function cadastrar(){
+        campos = new Array(10);
+        contador = 0;
+
+        if($("#placa").val()==""){
+            campos[contador]="placa";
+            contador=contador+1;
+        }
+
+        if($("#marca").val()==""){
+            campos[contador]="marca";
+            contador = contador+1;
+        }
+
+        if($("#cidade").val()==""){
+            campos[contador]="cidade";
+            contador=contador+1;
+        }
+
+        if($("#uf").val()==""){
+            campos[contador]="uf";
+            contador = contador+1;
+        }
+
+        if($("#chassi").val()==""){
+            campos[contador]="chassi";
+            contador = contador+1;
+        }
+/*
+        if($("#renavam").val()==""){
+            campos[contador]="renavam";
+            contador = contador+1;
+        }
+
+        if($("#registroVeiculo").val()==""){
+            campos[contador]="registroVeiculo";
+            contador = contador+1;
+        }
+*/
+        if($("#capacidade").val()==""){
+            campos[contador]="capacidade";
+            contador = contador+1;
+        }
+/*
+        if($("#cor").val()==""){
+            campos[contador]="cor";
+            contador = contador+1;
+        }
+*/
+        if($("#ano").val()==""){
+            campos[contador]="ano";
+            contador = contador+1;
+        }
+
+        if(contador == 0){
+
+            //ESTA FUNÇÃO
+            $.ajax({
+                url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/veiculo/cadastrar",
+                data: {
+                    "placa": $("#placa").val(),
+                    "marca": $("#marca").val(),
+                    "cidade": $("#cidade").val(),
+                    "uf": $("#uf").val(),
+                    "chassi": $("#chassi").val(),
+                    "renavam": $("#renavam").val(),
+                    "registroVeiculo": $("#registroVeiculo").val(),
+                    "capacidade": $("#capacidade").val(),
+                    "cor": $("#cor").val(),
+                    "ano": $("#ano").val()
+                },
+                cache: false,
+                success: function(data){
+                    respostaDoControlador = eval(data);
+                    $().message(respostaDoControlador.message);
+                    openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/veiculo/mostraVeiculos/");
+                },
+                error: function(data){
+                    respostaDoControlador = eval(data);
+                    $().message(respostaDoControlador.message);
+                    openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/veiculo/mostraVeiculos/");
+                },
+                dataType: "json"
+
+            });
+
+
+        }else{
+            $().message("Os campos obrigatórios não foram preenchidos !");
+            alertaVazio(campos,contador);
+        }
+    }
+
+</script>

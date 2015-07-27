@@ -1,0 +1,218 @@
+<?php /* Smarty version 2.6.18, created on 2010-09-17 10:49:20
+         compiled from pages/interno/modulo/ajuda/galeria.tpl */ ?>
+<style type="text/css">
+
+	#slideshow #slidesContainer .slide {
+  		margin:0 auto;
+		text-align: center;
+  		width:1010px;
+  		height:425px;
+	}
+	.control {
+  		display:block;
+  		width:65px;
+  		height:65px;
+  		text-indent:-10000px;
+  		position:absolute;
+		margin-top: 18%;
+  		cursor: pointer;
+	}
+	.slide{
+		background: url("<?php echo $this->_tpl_vars['IMG']; ?>
+white_frame.jpg");
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#leftControl:hover{
+		background:transparent url("<?php echo $this->_tpl_vars['IMG']; ?>
+pagination1L.png") no-repeat 0 0;
+	}
+	#rightControl:hover{
+		background:transparent url("<?php echo $this->_tpl_vars['IMG']; ?>
+pagination1R.png") no-repeat 0 0;
+	}
+	#leftControl:active{
+		background:transparent url("<?php echo $this->_tpl_vars['IMG']; ?>
+pagination2LL.png") no-repeat 0 0;
+	}
+	#rightControl:active{
+		background:transparent url("<?php echo $this->_tpl_vars['IMG']; ?>
+pagination2RR.png") no-repeat 0 0;
+	}
+	#leftControl {
+  		top:0;
+  		left:0;
+  		background:transparent url("<?php echo $this->_tpl_vars['IMG']; ?>
+paginationLL.png") no-repeat 0 0;
+	}
+	#rightControl {
+  		top:0;
+  		right:0;
+  		background:transparent url("<?php echo $this->_tpl_vars['IMG']; ?>
+paginationRR.png") no-repeat 0 0;
+	}
+	.text{
+		margin-top: 60px;
+		margin-right: 200px;
+		float: right;
+		width: 300px;
+		text-align: justify;
+		text-indent: 25px;
+	}
+	#titulo{
+		font-weight: bolder;
+		text-align: center;
+		text-indent: 0px;
+	}
+
+</style>
+
+<div id="slideshow">
+  <div id="slidesContainer">
+    <div class="slide">
+    <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+executive.jpg"  style=" margin-left: 116px; margin-top: 10px;"></img>
+	  <div class="text">
+	  	<p id="titulo">Bem Vindo</p>
+		<p>Você foi selecionado para ser o novo Gerente de Projeto da Catalytic Software Corporation. Nossa empresa está passando por mudanças e é de crucial importância o sucesso dos projetos recém contratados.</p>
+	  </div>
+    </div>
+    <div class="slide">
+    <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+corporate_networking.jpg"  style=" margin-left: 116px; margin-top: 40px;"></img>
+	  <div class="text">
+	  	<p>Fica a seu cargo controlar todos os gastos do projeto, incluindo possíveis aquisições, treinamentos ou outros artefatos que pretenda utilizar para aperfeiçoar sua equipe ou melhorar o andamento do projeto. Você também é responsável pela produtividade da equipe e o cumprimento das metas e prazos estabelecidos.</p>
+		<p>Para tal, você deverá montar sua equipe de trabalho escolhendo os membros dentre os profissionais disponíveis no mercado de trabalho local.</p>
+	  </div>
+    </div>
+    <div class="slide">
+    <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+report.jpg"  style=" margin-left: 120px; margin-top: 50px;"></img>
+	  <div class="text">
+	  	<p>No seu escritório você encontrará as informações relacionadas a orçamento, deadlines e restrições. Diariamente você receberá um relatório de andamento geral, abordando gastos, prazos, código e artefatos produzidos, erros encontrados e erros produzidos.</p>
+	  </div>
+    </div>
+	<div class="slide">
+	<img src="<?php echo $this->_tpl_vars['IMG']; ?>
+budget.jpg"  style=" margin-left: 120px; margin-top: 150px;"></img>
+	  <div class="text">
+	  	<p>Acessando o menu <b><i>Orçamento</i></b> do seu projeto você encontrará os dados orçamentais do seu projeto, tais como: orçamento inicial, custo diário com profissionais e aquisições, capital disponível e capital gasto.</p>
+	  </div>
+    </div>
+	<div class="slide">
+	<img src="<?php echo $this->_tpl_vars['IMG']; ?>
+deadline.jpg"  style=" margin-left: 120px; margin-top: 100px;"></img>
+	  <div class="text">
+	  	<p>Ao acessar o menu <b><i>Deadline</i></b> você poderá verificar as metas e os prazos a serem cumpridos.</p>
+		<p>Todas as etapas do projeto já estão definidas. Você deverá atentar-se quanto ao tempo disponível para a produção das linhas de código e artefatos necessários ao cumprimento das etapas.</p>
+	  </div>
+    </div>
+	<div class="slide">
+	<img src="<?php echo $this->_tpl_vars['IMG']; ?>
+equipe.jpg"  style=" margin-left: 130px; margin-top: 180px;"></img>
+	  <div class="text">
+	  	<p>No menu <b><i>Equipe</i></b> você terá listados os profissionais disponíveis no mercado de trabalho. Analise bem o perfil de cada profissional antes de contratá-lo pois suas características mostram o quanto ele poderá produzir, seu custo e sua influência dentro da equipe.</p>
+	  </div>
+    </div>
+    <div class="slide">    	
+	 <div style="width: 300px; text-align: justify;	text-indent: 25px; margin-top: 60px; margin-left: 230px;">
+		<p>Você poderá despedir e contratar profissionais a qualquer momento, porém tome bastante cuidade com isso, pois os profissionais recém contratados têm uma curva de produtividade menor, já que não estão afeiçoados ao novo ambiente de trabalho.</p>	
+	  	<p>Fatores como <i>Vigor</i>, <i>Concentração</i> e <i>Motivação</i> também poderão influenciar na produtividade dos seus profissionais, portanto, fique atento a eles.</p>
+	  </div>
+	  <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+corporate_bgrd.jpg" style=" margin-left: 539px; margin-top: -230px;"></img>
+    </div>
+	<div class="slide">
+	<img src="<?php echo $this->_tpl_vars['IMG']; ?>
+spend_money.jpg"  style=" margin-left: 122px; margin-top: 150px;"></img>
+	 <div class="text">
+	  	<p>Em <b><i>Aquisições e Restrições</i></b> você poderá adquirir bens ou outros benefícios para melhorar o desempenho dos seus profissionais. Assim como determinar restrições que possam reduzir os gastos do projeto.</p>
+	  </div>
+    </div>
+	<div class="slide">
+	<img src="<?php echo $this->_tpl_vars['IMG']; ?>
+stress.gif"  style=" margin-left: 50px; margin-top: 22px;"></img>
+	 <div class="text">
+	  	<p>O menu <b><i>Andamento</i></b> traz os dados detalhados da produtividade de sua equipe nas semanas já decorridas e dia-a-dia da semana atual. </p>
+	  </div>
+    </div>
+	<div class="slide">
+	<img src="<?php echo $this->_tpl_vars['IMG']; ?>
+graphs_charts.jpg"  style=" margin-left: 110px; margin-top: 70px;"></img>
+	 <div class="text">
+	  	<p>Por fim, o menu <b><i>Dias e Semanas</i></b> dá uma comparação gráfica da produção e erros para os últimos 100 dias decorridos. Além de ser a ferramenta que traz o controle de tempo do seu projeto, ou seja, é nele que você comandará o passar dos dias e semanas.</p>
+	  </div>
+    </div>
+	<div class="slide">
+	<img src="<?php echo $this->_tpl_vars['IMG']; ?>
+business-success.jpg"  style=" margin-left: 120px; margin-top: 22px;"></img>
+	 <div class="text">
+	 	<p>Estas informações poderão ser acessadas sempre que você achar necessário em <b><i>Tutorial</i></b>.</p>
+	  	<br>
+		<p>O sucesso dos projetos depende de você.</p>
+		<br>
+		<p>Bom trabalho.</p>
+	  </div>
+    </div>
+  </div>
+</div>
+
+<script>
+	
+	$(document).ready(function(){
+  		var currentPosition = 0;
+  		var slideWidth = 1030;
+  		var slides = $('.slide');
+  		var numberOfSlides = slides.length;
+
+  		// Remove scrollbar in JS
+  		$('#slidesContainer').css('overflow', 'hidden');
+
+  		// Wrap all .slides with #slideInner div
+  		slides
+  		.wrapAll('<div id="slideInner"></div>')
+  		// Float left to display horizontally, readjust .slides width
+  		.css({
+    	'float' : 'left',
+    	'width' : slideWidth
+  	});
+
+  	// Set #slideInner width equal to total width of all slides
+  	$('#slideInner').css('width', slideWidth * numberOfSlides);
+
+  	// Insert left and right arrow controls in the DOM
+  	$('#slideshow')
+    	.prepend('<span class="control" id="leftControl">Move left</span>')
+    	.append('<span class="control" id="rightControl">Move right</span>');
+
+  		// Hide left arrow control on first load
+  		manageControls(currentPosition);
+
+  		// Create event listeners for .controls clicks
+  		$('.control')
+    	.bind('click', function(){
+    	// Determine new position
+      	currentPosition = ($(this).attr('id')=='rightControl')
+    	? currentPosition+1 : currentPosition-1;
+
+      	// Hide / show controls
+      	manageControls(currentPosition);
+      	// Move slideInner using margin-left
+      	$('#slideInner').animate({
+        	'marginLeft' : slideWidth*(-currentPosition)
+      	});
+    });
+
+  	// manageControls: Hides and shows controls depending on currentPosition
+  	function manageControls(position){
+    	// Hide left arrow if position is first slide
+    	if(position==0){ $('#leftControl').hide() }
+    	else{ $('#leftControl').show() }
+    	// Hide right arrow if position is last slide
+    	if(position==numberOfSlides-1){ $('#rightControl').hide() }
+    	else{ $('#rightControl').show() }
+    	}
+  	});
+
+
+</script>

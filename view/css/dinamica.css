@@ -1,0 +1,827 @@
+/* 
+    Document   : dinamica
+    Created on : 04/01/2012, 20:16:39
+    Author     : Edson Junior
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+*{
+    padding:0;
+    margin:0;
+}
+
+body{
+    background: url(../imgs/layout/bg.png);
+    text-align: center;
+}
+
+#bg {
+    background: url(../imgs/layout/bgtopo.png) no-repeat top transparent;
+    display:block;
+    min-height: 900px;
+    width:100%;
+}
+
+
+#bgBottom {
+    background: url(../imgs/layout/rodape.png) repeat-x scroll bottom transparent;
+    display:block;
+    min-height: 900px;
+    width:100%;
+}
+
+#estrutura {
+    display: block;
+    min-height: 1096px;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#topo {
+    display: block;
+    height: 144px;
+    width: 100%;
+}
+
+#logoDinamica {
+    background: url(../imgs/layout/logo.png) no-repeat transparent;
+    display:inline-block;
+    float: left;
+    margin-top: 30px;
+    height: 77px;
+    width: 159px;
+}
+
+#menuExterno {
+    display: inline-block;
+    height: 40px;
+    width:740px;
+    margin-top: 52px;
+    float: right;
+}
+
+#copyright { 
+    display: none; 
+}
+
+#banner {
+    display: block;
+    height: 442px;
+    width: 100%;
+}
+
+#areaTrabalho {
+    display: inline-block;
+    min-height: 456px;
+    width: 100%;
+}
+
+#areaTrabalhoEsquerda{
+    display: inline-block;
+    float: left;
+    margin-top: 10px;
+    min-height: 436px;
+    width: 650px;
+}
+
+#area1Esquerda {
+    display: inline-block;
+    float: left;
+    min-height: 136px;
+    width: 650px;
+}
+
+#tituloSecao1Esquerda {
+    background: url(../imgs/layout/secoes1.png) no-repeat top transparent;
+    display: block;
+    height: 36px;
+    width: 525px;
+}
+
+#conteudoSecao1Esquerda {
+    display:  block;
+    min-height: 70px;
+    width: 630px;
+    margin-top: 15px;
+    font: 14px Trebuchet MS;
+    font-weight: bold;
+    color: #3A383A;
+    text-align: justify;
+}
+
+#area2Esquerda {
+    display: inline-block;
+    float: left;
+    height: 300px;
+    width: 650px;
+}
+
+#tituloSecao2Esquerda {
+    background: url(../imgs/layout/secoes2.png) no-repeat top transparent;
+    display: block;
+    height: 36px;
+    width: 222px;
+}
+
+#conteudoSecao2Esquerda{
+    display: block;
+    height: 250px;
+    width: 630px;
+}
+
+#demo-frame > div.demo { 
+    padding: 10px !important; 
+}
+
+.scroll-pane { 
+    overflow: auto; 
+    width: 99%; 
+    float:left; 
+}
+
+.scroll-content { 
+    width: 1730px;
+    height: 250px;
+    float: left; 
+}
+
+.scroll-content-item { 
+    width: 219px; 
+    height: 195px; 
+    float: left; 
+    margin: 10px; 
+    font-size: 3em; 
+    line-height: 96px; 
+    text-align: center; 
+}
+
+* html .scroll-content-item { 
+    display: inline; 
+} /* IE6 float double margin bug */
+
+.scroll-bar-wrap { 
+    clear: left; 
+    padding: 0 4px 0 2px; 
+    margin: 0 -1px -1px -1px; 
+}
+
+.scroll-bar-wrap .ui-slider { 
+    background: none; 
+    border:0; 
+    height: 2em; 
+    margin: 0 auto;  
+}
+
+.scroll-bar-wrap .ui-handle-helper-parent { 
+    position: relative; 
+    width: 100%; 
+    height: 100%; 
+    margin: 0 auto; 
+}
+
+.scroll-bar-wrap .ui-slider-handle { 
+    top:.2em; 
+    height: 1.5em; 
+}
+
+.scroll-bar-wrap .ui-slider-handle .ui-icon { 
+    margin: -8px auto 0; 
+    position: relative; 
+    top: 50%; 
+}
+
+.caixaItemProduto{
+    display: block;
+    height: 210px;
+    width: 200px;
+}
+
+.caixaItemDescricaoProduto{
+    display: inline-block;
+    float: left;
+    height: 65px;
+    width: 195px;
+    font: 10px Trebuchet MS;
+    font-weight: bold;
+    color: #3A383A;
+    text-align: justify;
+}
+
+.caixaItemDescricaoProduto h1{
+    font: 11px Trebuchet MS;
+    font-weight: bold;
+    color: red;
+    text-align: justify;
+}
+
+#areaTrabalhoDireita{
+    display: inline-block;
+    float: left;
+    margin-top: 10px;
+    min-height: 436px;
+    width: 350px;
+}
+
+#caixaBusca {
+    display: inline-block;
+    float: left;
+    height: 100px;
+    width: 350px;
+}
+
+#tituloBusca {
+    background: url(../imgs/layout/busca.png) no-repeat top transparent;
+    display: block;
+    height: 36px;
+    width: 155px;
+}
+
+#campoBusca {
+    display: inline-block;
+    float:left;
+    height: 35px;
+    margin-top: 2px;
+    width: 270px;
+}
+
+#caixaBusca input{
+    background-color: white;
+    font: 12px sans-serif;
+    font-weight: bold;
+    color: gray;
+    padding-left: 5px;
+}
+
+#area1Direita {
+    display: inline-block;
+    float: left;
+    height: 186px;
+    width: 350px;
+}
+
+#tituloSecao1Direita {
+    background: url(../imgs/layout/secoes3.png) no-repeat top transparent;
+    display: block;
+    height: 36px;
+    width: 155px;
+}
+
+#conteudoSecao1Direita {
+    display: block;
+    height: 135px;
+    width: 350px;
+    margin-top: 15px;
+    text-align: left;
+    font: 14px Trebuchet MS;
+    font-weight: bold;
+    color: #3A383A;
+}
+
+.caixaNoticia {
+    display: block;
+    height: 40px;
+    width: 350px;
+    margin-top: 5px;
+}
+
+.marcadorNoticia {
+    background: url(../imgs/layout/marcador.png) no-repeat top transparent;
+    display: inline-block;
+    float:left;
+    height: 25px;
+    width: 21px;
+}
+
+.noticia {
+    display: inline-block;
+    float:left;
+    height: 38px;
+    width: 329px;
+}
+
+.noticia a{
+    font: 14px Trebuchet MS;
+    font-weight: bold;
+    color: #3A383A;
+    text-decoration: none;
+}
+
+#area2Direita {
+    display: inline-block;
+    float: left;
+    height: 139px;
+    width: 350px;
+}
+
+#tituloSecao2Direita {
+    background: url(../imgs/layout/secoes4.png) no-repeat top transparent;
+    display: block;
+    height: 36px;
+    width: 155px;
+}
+
+#conteudoSecao2Direita {
+    display: block;
+    height: 36px;
+    width: 141px;
+    margin-top: 15px;
+}
+
+#facebook {
+    background: url(../imgs/layout/facebook.png) no-repeat top transparent;
+    display: inline-block;
+    float: left;
+    height: 36px;
+    width: 47px;
+}
+
+#twitter {
+    background: url(../imgs/layout/twitter.png) no-repeat top transparent;
+    display: inline-block;
+    float: left;
+    height: 36px;
+    width: 47px;
+}
+
+#rss {
+    background: url(../imgs/layout/rss.png) no-repeat top transparent;
+    display: inline-block;
+    float: left;
+    height: 36px;
+    width: 47px;
+}
+
+#area3Direita {
+    display: inline-block;
+    float: left;
+    height: 111px;
+    width: 350px;
+}
+
+#tituloSecao3Direita {
+    background: url(../imgs/layout/secoes5.png) no-repeat top transparent;
+    display: block;
+    height: 36px;
+    width: 155px;
+}
+
+#conteudoSecao3Direita {
+    display: block;
+    height: 40px;
+    width: 350px;
+    margin-top: 15px;
+    text-align: left;
+}
+
+#campoEmail {
+    display: inline-block;
+    float:left;
+    height: 35px;
+    margin-top: 2px;
+    width: 270px;
+}
+
+.enviar {
+    background: url(../imgs/layout/enviar.png) no-repeat top transparent;
+    display: inline-block;
+    float:left;
+    height: 40px;
+    width: 69px;
+    margin-left: 5px;
+}
+
+#conteudoSecao3Direita input{
+    background-color: white;
+    font: 12px sans-serif;
+    font-weight: bold;
+    color: gray;
+    padding-left: 5px;
+}
+
+#rodape {
+    display: block;
+    height: 57px;
+    width: 100%;
+}
+
+#direitosReservados{
+    display: block;
+    text-align: left;
+    float: left;
+    margin-top: 20px;
+    height: 20px;
+    width: 355px;
+    font: 12px sans-serif;
+    color: white;
+}
+
+#assinatura{
+    background: url(../imgs/layout/assinatura.png) no-repeat transparent;
+    display: block;
+    text-align: right;
+    float: right;
+    margin-top: 22px;
+    height: 12px;
+    width: 70px;
+}
+
+.caixaTituloInterno {
+    display: block;
+    height: 130px;
+    width: 1000px;
+}
+
+.sombraTituloInterno {
+    background: url(../imgs/empresa/sombra.png) no-repeat center transparent;
+    display: block;
+    height: 33px;
+    width: 1000px;
+    margin-top: 45px;
+}
+
+#areaTrabalhoInterna {
+    display: inline-block;
+    min-height: 768px;
+    width: 100%;
+}
+
+#areaTrabalhoEsquerdaInterna{
+    display: inline-block;
+    float: left;
+    margin-top: 10px;
+    min-height: 748px;
+    width: 650px;
+    text-align: left;
+}
+
+#tituloEmpresa {
+    background: url(../imgs/empresa/tituloEmpresa.png) no-repeat left transparent;
+    display: block;
+    height: 38px;
+    width: 1000px;
+}
+
+#subTituloEmpresa {
+    background: url(../imgs/empresa/subTituloEmpresa.png) no-repeat left transparent;
+    display: block;
+    height: 29px;
+    width: 650px;
+}
+
+#conteudoEmpresa {
+    display: inline-block;
+    margin-top: 10px;
+    height: 450px;
+    width: 620px;
+    font: 13px Trebuchet MS;
+    font-weight: bold;
+    color: #3A383A;
+    text-align: justify;
+}
+
+#tituloParceiros {
+    background: url(../imgs/parceiros/tituloParceiros.png) no-repeat left transparent;
+    display: block;
+    height: 38px;
+    width: 1000px;
+}
+
+.caixaParceiro {
+    background: url(../imgs/parceiros/parceiros2.png) no-repeat transparent;
+    display: block;
+    margin: 0 auto;
+    height: 137px;
+    width: 193px;
+}
+
+.fotoParceiro {
+    display: inline-block;
+    margin-top: 5px;
+    margin-left: 15px; 
+    height: 127px;
+    width: 165px;
+}
+
+#tituloProcedimentos {
+    background: url(../imgs/procedimentos/tituloProcedimentos.png) no-repeat left transparent;
+    display: block;
+    height: 38px;
+    width: 1000px;
+}
+
+#subTituloProcedimentos {
+    background: url(../imgs/procedimentos/subTituloProcedimentos.png) no-repeat left transparent;
+    display: block;
+    height: 29px;
+    width: 650px;
+}
+
+#conteudoProcedimentos {
+    display: inline-block;
+    margin-top: 10px;
+    min-height: 650px;
+    width: 620px;
+    font: 13px Trebuchet MS;
+    font-weight: bold;
+    color: #3A383A;
+    text-align: justify;
+}
+
+#conteudoProcedimentos a{
+    color: #2E3491;
+}
+
+#tituloContato {
+    background: url(../imgs/faleconosco/tituloContato.png) no-repeat left transparent;
+    display: block;
+    height: 38px;
+    width: 1000px;
+}
+
+#subTituloContato {
+    background: url(../imgs/faleconosco/subTituloContato.png) no-repeat left transparent;
+    display: block;
+    height: 29px;
+    width: 650px;
+}
+
+#conteudoContato {
+    display: inline-block;
+    margin-top: 10px;
+    height: 450px;
+    width: 620px;
+    font: 13px Trebuchet MS;
+    font-weight: bold;
+    color: #3A383A;
+    text-align: justify;
+}
+
+#conteudoContato input{
+    background-color: #A8A8A8;
+    font: 13px Trebuchet MS;
+    font-weight: bold;
+    color: white; 
+}
+
+#conteudoContato textarea{
+    background-color: #A8A8A8;
+    font: 13px Trebuchet MS;
+    font-weight: bold;
+    color: white; 
+}
+
+#conteudoMapa {
+    display: inline-block;
+    margin-top: 10px;
+    height: 250px;
+    width: 620px;
+}
+
+#tituloGlossario {
+    background: url(../imgs/glossario/tituloGlossario.png) no-repeat left transparent;
+    display: block;
+    height: 38px;
+    width: 1000px;
+}
+
+#subTituloGlossario {
+    background: url(../imgs/glossario/subTituloGlossario.png) no-repeat left transparent;
+    display: block;
+    height: 29px;
+    width: 650px;
+}
+
+#conteudoGlossario {
+    display: inline-block;
+    margin-top: 10px;
+    min-height: 450px;
+    width: 620px;
+    font: 12px Trebuchet MS;
+    font-weight: bold;
+    color: #3A383A;
+    text-align: justify;
+}
+
+#conteudoGlossario h1{
+    font: 13px Trebuchet MS;
+    font-weight: bold;
+    color: red;
+    text-align: justify;
+}
+
+#tituloFiliais {
+    background: url(../imgs/filiais/tituloFiliais.png) no-repeat left transparent;
+    display: block;
+    height: 38px;
+    width: 1000px;
+}
+
+#conteudoFiliais {
+    display: inline-block;
+    margin-top: 10px;
+    min-height: 450px;
+    width: 620px;
+}
+
+.filial {
+    display: inline-block;
+    margin-top: 10px;
+    height: 170px;
+    width: 620px;
+}
+
+.caixaFilial {
+    background: url(../imgs/filiais/caixaFotoFilial.png) no-repeat transparent;
+    display: inline-block;
+    float: left;
+    height: 142px;
+    width: 200px;
+}
+
+.fotoFilial {
+    display: inline-block;
+    margin-top: 4px;
+    margin-left: 5px; 
+    height: 134px;
+    width: 192px;
+}
+
+.descricaoFilial {
+    display: inline-block;
+    float: right;
+    margin-top: 5px;
+    height: 132px;
+    width: 400px;
+    font: 13px Trebuchet MS;
+    font-weight: bold;
+    color: #3A383A;
+    text-align: justify;
+}
+
+.descricaoFilial h1{
+    font: 16px Trebuchet MS;
+    font-weight: bold;
+    color: red;
+    text-align: justify;
+}
+
+#tituloProdutos {
+    background: url(../imgs/produtos/tituloProdutos.png) no-repeat left transparent;
+    display: block;
+    height: 38px;
+    width: 1000px;
+}
+
+#conteudoProdutos {
+    display: inline-block;
+    margin-top: 10px;
+    min-height: 450px;
+    width: 620px;
+}
+
+.produto {
+    display: inline-block;
+    margin-top: 10px;
+    height: 170px;
+    width: 620px;
+}
+
+.caixaProduto {
+    background: url(../imgs/produtos/caixaFotoProduto.png) no-repeat transparent;
+    display: inline-block;
+    float: left;
+    height: 142px;
+    width: 200px;
+}
+
+.fotoProduto {
+    display: inline-block;
+    margin-top: 4px;
+    margin-left: 5px; 
+    height: 134px;
+    width: 192px;
+}
+
+.descricaoProduto {
+    display: inline-block;
+    float: right;
+    margin-top: 5px;
+    height: 132px;
+    width: 400px;
+    font: 13px Trebuchet MS;
+    font-weight: bold;
+    color: #3A383A;
+    text-align: justify;
+}
+
+.descricaoProduto h1{
+    font: 16px Trebuchet MS;
+    font-weight: bold;
+    color: red;
+    text-align: justify;
+}
+
+#tituloPortfolio {
+    background: url(../imgs/portfolio/tituloPortfolio.png) no-repeat left transparent;
+    display: block;
+    height: 38px;
+    width: 1000px;
+}
+
+#conteudoPortfolio {
+    display: inline-block;
+    margin-top: 10px;
+    min-height: 450px;
+    width: 620px;
+}
+
+.portfolio {
+    display: inline-block;
+    margin-top: 10px;
+    height: 170px;
+    width: 620px;
+}
+
+.caixaPortfolio {
+    background: url(../imgs/portfolio/caixaFotoPortfolio.png) no-repeat transparent;
+    display: inline-block;
+    float: left;
+    height: 142px;
+    width: 200px;
+}
+
+.fotoPortfolio {
+    display: inline-block;
+    margin-top: 4px;
+    margin-left: 5px; 
+    height: 134px;
+    width: 192px;
+}
+
+.descricaoPortfolio {
+    display: inline-block;
+    float: right;
+    margin-top: 5px;
+    height: 132px;
+    width: 400px;
+    font: 13px Trebuchet MS;
+    font-weight: bold;
+    color: #3A383A;
+    text-align: justify;
+}
+
+.descricaoPortfolio h1{
+    font: 16px Trebuchet MS;
+    font-weight: bold;
+    color: red;
+    text-align: justify;
+}
+
+#tituloNoticias {
+    background: url(../imgs/noticias/tituloNoticias.png) no-repeat left transparent;
+    display: block;
+    height: 38px;
+    width: 1000px;
+}
+
+#subTituloNoticias {
+    background: url(../imgs/noticias/subtituloNoticias.png) no-repeat left transparent;
+    display: block;
+    height: 29px;
+    width: 650px;
+}
+
+#noticiasPrincipal {
+    display: inline-block;
+    margin-top: 10px;
+    min-height: 150px;
+    width: 620px;
+    text-align: justify;
+    padding-top: 20px;
+    padding-right: 20px;
+    font: 13px Trebuchet MS;
+    font-weight: bold;
+    color: #3A383A;
+}
+
+#outrasNoticiasPrincipal {
+    display: inline-block;
+    margin-top: 10px;
+    min-height: 82px;
+    width: 620px;
+    text-align: justify;
+    padding-top: 20px;
+    padding-right: 20px;
+    font: 13px Trebuchet MS;
+    font-weight: bold;
+    color: #3A383A;
+}

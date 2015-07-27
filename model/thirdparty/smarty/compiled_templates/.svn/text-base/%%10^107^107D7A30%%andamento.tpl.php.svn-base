@@ -1,0 +1,340 @@
+<?php /* Smarty version 2.6.18, created on 2010-09-17 08:46:51
+         compiled from pages/interno/modulo/projeto/andamento.tpl */ ?>
+<style type="text/css">
+	.title{
+		width: 100%;
+		color: black;
+		text-align: center;
+		height: 40px;
+		background: #B4CDCD;
+		border-style: none;
+		border-collapse: collapse;
+		border-color: #6CA6CD;
+	}
+	.linha{
+		vertical-align: middle;
+		font-size: smaller;
+	}
+	.dados_imp{
+		width: 100%;
+		text-align: center;
+		height: 32px;
+		background: #DCDCDC;
+	}
+	.dados_par{
+		width: 100%;
+		text-align: center;
+		height: 32px;
+		background: #F5F5F5;
+	}
+	#resultado{
+		width: 100%;
+		text-align: center;
+		height: 32px;
+		background: #C0FF3E;
+	}
+	#soma{
+		font-size: medium;
+	}
+
+</style>
+
+
+
+<div id="tabs">
+
+<ul>
+		<li><a href="#tabs-1">Semana Corrente</a></li>
+		<li><a href="#tabs-2">Semanas Decorridas</a></li>
+</ul>
+
+
+
+<!-- ANDAMENTO DA SEMANA CORRENTE -->
+
+<div id="tabs-1">
+	<br>
+	<p>Produção de Código e Artefatos por dias decorridos.</p>
+	<br>
+	
+	<table class="title">
+		<tr>
+			<td style="width: 55px;">
+				Dia
+			</td>
+			<td style="width: 150px;">
+				Linhas de Código
+			</td>
+			<td style="width: 130px;">
+				Erros Gerados
+			</td>
+			<td style="width: 130px;">
+				Erros Corrigidos
+			</td>
+			<td style="width: 70px;">
+				Saldo
+			</td>
+			<td style="width: 90px;">
+				Artefatos
+			</td>
+			<td style="width: 130px;">
+				Erros Gerados
+			</td>
+			<td style="width: 130px;">
+				Erros Corrigidos
+			</td>
+			<td style="width: 70px;">
+				Saldo
+			</td>
+		</tr>	
+	</table>
+	<br />
+	<?php $_from = ($this->_tpl_vars['Dia']); if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['foo'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['foo']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['d']):
+        $this->_foreach['foo']['iteration']++;
+?>
+	<?php if (( $this->_tpl_vars['d']['idDia'] % 2 == 0 )): ?>
+	<table class="dados_par">
+	<?php else: ?>
+	<table class="dados_imp">
+	<?php endif; ?>
+		<tr class="linha">
+			<td style="width: 55px;">
+				Dia <?php echo ($this->_foreach['foo']['iteration']-1)+1; ?>
+
+			</td>
+			<td style="width: 150px;">
+				<?php echo $this->_tpl_vars['d']['linhasProduzidas']; ?>
+
+			</td>
+			<td style="width: 130px;">
+				<?php echo $this->_tpl_vars['d']['errosGeradosCodigo']; ?>
+
+			</td>
+			<td style="width: 130px;">
+				<?php echo $this->_tpl_vars['d']['errosCorrigidosCodigo']; ?>
+
+			</td>
+			<td style="width: 70px;">
+				<?php echo $this->_tpl_vars['d']['linhasProduzidas']-$this->_tpl_vars['d']['errosGeradosCodigo']+$this->_tpl_vars['d']['errosCorrigidosCodigo']; ?>
+
+			</td>
+			<td style="width: 90px;">
+				<?php echo $this->_tpl_vars['d']['artefatosProduzidos']; ?>
+
+			</td>
+			<td style="width: 130px;">
+				<?php echo $this->_tpl_vars['d']['errosGeradosArtefato']; ?>
+
+			</td>
+			<td style="width: 130px;">
+				<?php echo $this->_tpl_vars['d']['errosCorrigidosArtefato']; ?>
+
+			</td>
+			<td style="width: 70px;">
+				<?php echo $this->_tpl_vars['d']['artefatosProduzidos']-$this->_tpl_vars['d']['errosGeradosArtefato']+$this->_tpl_vars['d']['errosCorrigidosArtefato']; ?>
+
+			</td>
+		</tr>	
+	</table>
+	<?php endforeach; else: ?>
+	<br>
+	<a>Projeto não iniciado.</a>
+	<br><br>
+	<?php endif; unset($_from); ?>
+	<br />
+	<table id="resultado">
+		<tr class="linha">
+			<td id="soma" style="width: 55px;">
+				<b>Σ</b>
+			</td>
+			<td style="width: 150px;">
+				<?php echo $this->_tpl_vars['Somadias'][0]['lp']; ?>
+
+			</td>
+			<td style="width: 130px;">
+				<?php echo $this->_tpl_vars['Somadias'][0]['egc']; ?>
+
+			</td>
+			<td style="width: 130px;">
+				<?php echo $this->_tpl_vars['Somadias'][0]['ecc']; ?>
+
+			</td>
+			<td style="width: 70px;">
+				<?php echo $this->_tpl_vars['Somadias'][0]['lp']-$this->_tpl_vars['Somadias'][0]['egc']+$this->_tpl_vars['Somadias'][0]['ecc']; ?>
+
+			</td>
+			<td style="width: 90px;">
+				<?php echo $this->_tpl_vars['Somadias'][0]['ap']; ?>
+
+			</td>
+			<td style="width: 130px;">
+				<?php echo $this->_tpl_vars['Somadias'][0]['ega']; ?>
+
+			</td>
+			<td style="width: 130px;">
+				<?php echo $this->_tpl_vars['Somadias'][0]['eca']; ?>
+
+			</td>
+			<td style="width: 70px;">
+				<?php echo $this->_tpl_vars['Somadias'][0]['ap']-$this->_tpl_vars['Somadias'][0]['ega']+$this->_tpl_vars['Somadias'][0]['eca']; ?>
+
+			</td>
+		</tr>	
+	</table>
+	<br />
+</div>
+
+<!-- FIM SEMANA CORRENTE -->
+
+
+<!-- ANDAMENTO DAS SEMANAS DECORRIDAS -->
+
+<div id="tabs-2">
+	<br>
+	<p>Produção de Código e Artefatos por semanas decorridas.</p>
+	<br>
+	<table class="title">
+		<tr>
+			<td style="width: 85px;">
+				Semana
+			</td>
+			<td style="width: 150px;">
+				Linhas de Código
+			</td>
+			<td style="width: 130px;">
+				Erros Gerados
+			</td>
+			<td style="width: 130px;">
+				Erros Corrigidos
+			</td>
+			<td style="width: 70px;">
+				Saldo
+			</td>
+			<td style="width: 90px;">
+				Artefatos
+			</td>
+			<td style="width: 130px;">
+				Erros Gerados
+			</td>
+			<td style="width: 130px;">
+				Erros Corrigidos
+			</td>
+			<td style="width: 70px;">
+				Saldo
+			</td>
+		</tr>	
+	</table>
+	<br />
+	<?php $_from = ($this->_tpl_vars['Semana']); if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['fo'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['fo']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['s']):
+        $this->_foreach['fo']['iteration']++;
+?>
+	<?php if (( $this->_tpl_vars['s']['idSemana'] % 2 == 0 )): ?>
+	<table class="dados_par">
+	<?php else: ?>
+	<table class="dados_imp">
+	<?php endif; ?>
+		<tr class="linha">
+			<td style="width: 85px;">
+				Semana <?php echo ($this->_foreach['fo']['iteration']-1)+1; ?>
+
+			</td>
+			<td style="width: 150px;">
+				<?php echo $this->_tpl_vars['s']['linhasProduzidas']; ?>
+
+			</td>
+			<td style="width: 130px;">
+				<?php echo $this->_tpl_vars['s']['errosGeradosCodigo']; ?>
+
+			</td>
+			<td style="width: 130px;">
+				<?php echo $this->_tpl_vars['s']['errosCorrigidosCodigo']; ?>
+
+			</td>
+			<td style="width: 70px;">
+				<?php echo $this->_tpl_vars['s']['linhasProduzidas']-$this->_tpl_vars['s']['errosGeradosCodigo']+$this->_tpl_vars['s']['errosCorrigidosCodigo']; ?>
+
+			</td>
+			<td style="width: 90px;">
+				<?php echo $this->_tpl_vars['s']['artefatosProduzidos']; ?>
+
+			</td>
+			<td style="width: 130px;">
+				<?php echo $this->_tpl_vars['s']['errosGeradosArtefato']; ?>
+
+			</td>
+			<td style="width: 130px;">
+				<?php echo $this->_tpl_vars['s']['errosCorrigidosArtefato']; ?>
+
+			</td>
+			<td style="width: 70px;">
+				<?php echo $this->_tpl_vars['s']['artefatosProduzidos']-$this->_tpl_vars['s']['errosGeradosArtefato']+$this->_tpl_vars['s']['errosCorrigidosArtefato']; ?>
+
+			</td>
+		</tr>	
+	</table>
+	<?php endforeach; else: ?>
+	<br>
+	<a>Projeto não iniciado.</a>
+	<br><br>
+	<?php endif; unset($_from); ?>
+	<br />
+	<table id="resultado">
+		<tr class="linha">
+			<td id="soma" style="width: 85px;">
+				<b>Σ</b>
+			</td>
+			<td style="width: 150px;">
+				<?php echo $this->_tpl_vars['Somasemanas'][0]['lp']; ?>
+
+			</td>
+			<td style="width: 130px;">
+				<?php echo $this->_tpl_vars['Somasemanas'][0]['egc']; ?>
+
+			</td>
+			<td style="width: 130px;">
+				<?php echo $this->_tpl_vars['Somasemanas'][0]['ecc']; ?>
+
+			</td>
+			<td style="width: 70px;">
+				<?php echo $this->_tpl_vars['Somasemanas'][0]['lp']-$this->_tpl_vars['Somasemanas'][0]['egc']+$this->_tpl_vars['Somasemanas'][0]['ecc']; ?>
+
+			</td>
+			<td style="width: 90px;">
+				<?php echo $this->_tpl_vars['Somasemanas'][0]['ap']; ?>
+
+			</td>
+			<td style="width: 130px;">
+				<?php echo $this->_tpl_vars['Somasemanas'][0]['ega']; ?>
+
+			</td>
+			<td style="width: 130px;">
+				<?php echo $this->_tpl_vars['Somasemanas'][0]['eca']; ?>
+
+			</td>
+			<td style="width: 70px;">
+				<?php echo $this->_tpl_vars['Somasemanas'][0]['ap']-$this->_tpl_vars['Somasemanas'][0]['ega']+$this->_tpl_vars['Somasemanas'][0]['eca']; ?>
+
+			</td>
+		</tr>	
+	</table>
+	<br />
+</div>
+
+<!-- FIM SEMANAS DECORRIDAS -->
+
+</div>
+
+
+<script type="text/javascript">
+	
+	$(function() {
+
+		$("#tabs").tabs();
+
+	});
+	
+</script>

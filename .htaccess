@@ -1,0 +1,14 @@
+RewriteEngine on
+
+#php_value upload_max_filesize 64M
+#php_value post_max_size 68M
+
+##A regra nao se aplica a arquivos
+RewriteCond %{REQUEST_FILENAME} !-f
+
+##A regra nao se aplica a diretorios
+RewriteCond %{REQUEST_FILENAME} !-d
+
+##  L 	= Last Rule - ultima regra.
+##  QSA	= Query String Append - forca o rewrite a adicionar a string substituida no final da query string
+RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]

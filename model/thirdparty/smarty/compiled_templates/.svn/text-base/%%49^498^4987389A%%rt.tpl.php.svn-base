@@ -1,0 +1,65 @@
+<?php /* Smarty version 2.6.18, created on 2011-02-23 20:34:51
+         compiled from pages/interno/modulo/formularios/rt.tpl */ ?>
+<meta charset="utf-8">
+
+	<style>
+	#feedback { font-size: 1.4em; }
+	#selectable .ui-selecting { background: #FECA40; }
+	#selectable .ui-selected { background: #F39814; color: white; }
+	#selectable { list-style-type: none; margin: 0; padding: 0; }
+	#selectable li { margin: 1px; padding: 1px; float: left; width: 36px; height: 120px; font-size: 0.8em; text-align: center; }
+	</style>
+	<script>
+	$(function() {
+		$( "#selectable" ).selectable();
+	});
+	</script>
+
+	<script>
+	$(function() {
+		$( "#datepicker" ).datepicker();
+	});
+	</script>
+
+<div id="rt">
+<h3>Programação de Atendimento para RT</h3>
+<p></p>
+<div class="data">
+
+<p>Data: <input type="text" id="datepicker" size="10"></p>
+</div>
+
+
+<div class="hora">
+Horário:
+<ol id="selectable">
+	<li class="ui-state-default">00:00</li>
+	<li class="ui-state-default">01:00</li>
+	<li class="ui-state-default">02:00</li>
+	<li class="ui-state-default">03:00</li>
+	<li class="ui-state-default">04:00</li>
+	<li class="ui-state-default">05:00</li>
+	<li class="ui-state-default">06:00</li>
+	<li class="ui-state-default">07:00</li>
+	<li class="ui-state-default">08:00</li>
+	<li class="ui-state-default">09:00</li>
+	<li class="ui-state-default">10:00</li>
+	<li class="ui-state-default">11:00</li>
+	<li class="ui-state-default">12:00</li>
+        <li class="ui-state-default">13:00</li>
+	<li class="ui-state-default">14:00</li>
+	<li class="ui-state-default">15:00</li>
+	<li class="ui-state-default">16:00</li>
+	<li class="ui-state-default">17:00</li>
+	<li class="ui-state-default">18:00</li>
+	<li class="ui-state-default">19:00</li>
+	<li class="ui-state-default">20:00</li>
+	<li class="ui-state-default">21:00</li>
+	<li class="ui-state-default">22:00</li>
+	<li class="ui-state-default">23:00</li>
+</ol>
+
+<p>Motorista: <input type="text" id="nomeMotorista" size="60" value="Ao escolher data e horario sistema indicar motorista disponivel"></p>
+
+</div>
+</div>

@@ -1,0 +1,17 @@
+<?php
+
+	
+	while (1) {
+		
+		$handle = fopen("http://localhost/protogame/teste", "r");
+		
+		$linha 	= fgets($handle);
+		
+		echo $linha."\n";
+		
+		sleep(10);
+		
+	}
+	
+
+?>

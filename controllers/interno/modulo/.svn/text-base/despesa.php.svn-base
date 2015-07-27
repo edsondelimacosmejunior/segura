@@ -1,0 +1,181 @@
+<?php
+
+Class Controller_Despesa extends Proto_Controller {
+
+    function index() {
+
+        $this->init_session();
+        $this->show("pages/interno/index.tpl");
+
+    }
+
+    function mostraCadastro() {
+
+        $this->init_session();
+        $this->show("pages/interno/modulo/formularios/despesa.tpl");
+
+    }
+
+    function mostraDespesas() {
+        $this->init_session();
+
+        $this->show("pages/interno/modulo/listas/despesa.tpl");
+    }
+
+    function flexGrid() {
+        header("Cache-Control: no-cache, must-revalidate" );
+        header("Pragma: no-cache" );
+        header("Content-type: text/x-json");
+
+        $this->valida_sessao();
+
+        $saida;
+
+        $saida["page"] 		= $this->escape("page");
+        $saida["records"] 	= $this->escape("rp");
+
+        $orderBy = $this->escape("sortname");
+        $sord = $this->escape("sortorder");
+
+        $i = 1;
+
+        $limit 	= $saida["records"];
+        $offset = ($saida["page"]-$i) * $saida["records"];
+
+
+        $g = Doctrine_Query::create()
+            ->select("d.*")	// Seleciona os campos
+            ->from("Despesa d");
+
+        $qtype 	= $this->escape("qtype");
+        $query 	= $this->escape("query");
+        $letter	= $this->escape("letter_pressed");
+
+        if ($qtype)
+
+            if ($query)
+                if (is_numeric($query))
+                    $g->where("$qtype = $query");
+                else
+                    $g->where("$qtype like '%$query%'");
+            elseif ($letter && $letter != "TODOS")
+                $g->where("$qtype like '$letter%'");
+
+        $g->limit($limit)									// Limita o resultado
+            ->offset($offset)								// Desloca o início do resultado
+            ->orderBy($orderBy." ".$sord);					// Ordena o resultado por um campo específico.
+
+        $despesas = $g->execute();
+        $numero_despesas = $g->count();
+
+        $saida["total"] = $numero_despesas;
+
+        $saida["page"] = $saida["page"] - $i+1;
+
+
+        $json 	= "";
+        $json 	.= "{\n";
+        $json 	.= "page:";
+
+
+        $rows = array();
+
+        if ($despesas) {
+
+            foreach ($despesas as $despesa) {
+
+                $rows[] = array("idDespesa" => $despesa["idDespesa"],"cell" => array(
+                    $despesa->idDespesa,
+                    $despesa->nome,
+                    $despesa->descricao,
+                    $despesa->valor,
+                    $despesa->data
+                ));
+            }
+
+
+        }
+
+        $saida["rows"] = $rows;
+
+        echo json_encode($saida); // Preparando para o jqGrid.
+
+    }
+
+    function enviarAlterar() {
+        $this->init_session();
+        $idDespesa = $this->getArg(0);
+
+        $despesa = Doctrine_Query::create()
+            ->select("d.*")
+            ->from("Despesa d")
+            ->where("idDespesa = $idDespesa")
+            ->execute()
+            ->toArray();
+
+        $this->set("despesa",$despesa);
+
+        $this->show("pages/interno/modulo/atualizacoes/despesa.tpl");
+    }
+
+    function alterar() {
+        $this->valida_sessao();
+
+        $idDespesa 	 = $this->escape("idDespesa");
+        $nome 		 = $this->escape("nome");
+        $descricao       = $this->escape("descricao");
+        $valor           = $this->escape("valor");
+        $data 		 = $this->escape("data");
+        
+        $d = Doctrine::getTable("Despesa")->find($idDespesa);
+
+
+
+        $d->nome           = $nome;
+        $d->descricao      = $descricao;
+        $d->valor          = $valor;
+        $d->data           = $data;
+        
+        if ($d->trySave())
+            $this->success('Dados atualizados com sucesso!!');
+        else
+            $this->error('Não foi possível atualizar os dados da Despesa!!');
+
+    }
+
+    function excluir() {
+        $this->valida_sessao();
+
+        $idDespesa = $this->escape("idDespesa");
+
+        $d = Doctrine::getTable("Despesa")->find($idDespesa);
+
+        if ( $d->delete() )
+            $this->success('Despesa excluída com sucesso!');
+        else
+            $this->error('Erro ao excluir a Despesa. Contate o administrador do sistema.');
+    }
+
+    function cadastrar(){
+        $this->valida_sessao();
+
+        $nome 		 = $this->escape("nome");
+        $descricao       = $this->escape("descricao");
+        $valor           = $this->escape("valor");
+        $placa 		 = $this->escape("placa");
+        
+        $despesa = new Despesa();
+
+        $despesa->nome           = $nome;
+        $despesa->descricao      = $descricao;
+        $despesa->valor          = $valor;
+        $despesa->placa          = $placa;
+        
+        if($despesa->trySave()){
+            $this->success('Despesa cadastrada com sucesso!!');
+        }else{
+            $this->error('Erro ao cadastrar. Contate o administrador!!');
+        }
+    }
+}
+?>

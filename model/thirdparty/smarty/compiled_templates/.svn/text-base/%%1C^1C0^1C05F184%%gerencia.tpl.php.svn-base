@@ -1,0 +1,310 @@
+<?php /* Smarty version 2.6.18, created on 2011-06-09 15:10:08
+         compiled from pages/interno/modulo/formularios/gerencia.tpl */ ?>
+<style type="text/css">
+    #contactFormContainer
+    {
+        margin: auto;
+        text-align: center;
+    } 
+    #contactForm
+    {
+        height: 277px;
+        width: 500px;
+        display: block;
+        margin: auto;
+        text-align: left;
+        padding: 0;
+    } 
+    #contactForm .form_content {
+        padding: 10px;
+        border: 1px solid #888;
+        display: block;
+        width: 478px;
+        background-color: #efefef;
+        border-width: 0 1px 1px;
+        float: left;
+    }
+    #contactForm .form_topo
+    {
+        height: 30px;
+    } 
+    #contactForm .form_topo .form_topo_esq {
+        display: block;
+        float: left;
+        width: 8px;
+        height: 30px;
+        background: transparent url('<?php echo $this->_tpl_vars['IMG']; ?>
+topesq.png');
+    }
+    #contactForm .form_topo .form_topo_mid {
+        display: block;
+        float: left;
+        height: 16px;
+        width: 472px;
+        padding: 7px;
+        font-weight: bolder;
+        font-size: 10pt;
+        color: #07565B;
+        background: transparent url('<?php echo $this->_tpl_vars['IMG']; ?>
+topmid.png');
+    }
+    #contactForm .form_topo .form_topo_dir {
+        display: block;
+        float: right;
+        width: 6px;
+        height: 30px;
+        background: transparent url('<?php echo $this->_tpl_vars['IMG']; ?>
+topdir.png');
+    }
+
+    .form_entry {
+        display: block;
+        float: left;
+        width: 470px;
+        padding: 5px;
+        background-color: #f3f4f8;
+        margin-bottom: 2px;
+    }
+
+    #contactForm label
+    {
+        display: block;
+        float: left;
+        font-size: 9pt;
+        color: #4d3a24;
+        padding: 5px;
+        width: 120px;
+        text-align: right;
+        margin-right: 5px;
+        font-weight: bolder;
+    } 
+    input.text
+    {
+        display: block;
+        border: solid 1px #4d3a24;
+        float: left;
+        width: 310px;
+        font-size: 11pt;
+        padding: 2px;
+        font-family: verdana;
+    }
+    .textarea {
+        display: block;
+        border: solid 1px #4d3a24;
+        float: left;
+        width: 310px;
+        height: 80px;
+        font-size: 11pt;
+        padding: 2px;
+        font-family: verdana;
+    }
+    .form_buttons {
+        display: block;
+        float: right;
+        width: 468px;
+        margin-top: 10px;
+        border-top: 1px solid #aaa;
+        padding: 5px;
+    }
+    #contactForm button
+    {
+        background: url('<?php echo $this->_tpl_vars['IMG']; ?>
+jquery/eeeeee_40x100_textures_02_glass_90.png') center center;
+        border: solid 1px #23150c;
+        border: 1px solid #aaa;
+        color: #000;
+        padding: 5px;
+        float: right;
+        display: block;
+        margin: 0 0 3px 3px;
+    }
+
+    .form_section {
+        display: block;
+        float: left;
+        font-size: 9pt;
+        color: #4d3a24;
+        padding: 5px;
+        width: 468px;
+        text-align: left;
+        font-weight: bolder;
+        border-bottom: 1px solid #aaa;
+    }
+
+</style>
+
+<div class="box">
+    <div id="contactFormContainer">
+        <div id="contactForm">
+            <div class="form_topo">
+                <div class="form_topo_esq"></div>
+                <div class="form_topo_mid">
+                    Nova Gerência
+                </div>
+                <div class="form_topo_dir"></div>
+            </div>
+            <div class="form_content">
+
+                <p class="form_section">Dados da Gerência</p>
+
+                <div class="form_entry">
+                    <label for="nome">Nome</label>
+                    <input id="nome" name="nome" type="text" class="text foco" />
+                </div>
+
+                <div class="form_entry">
+                    <label for="localizacao">Localização</label>
+                    <input id="localizacao" name="localizacao" type="text" class="text" />
+                </div>
+
+                <div class="form_entry">
+                    <label for="gerente">Gerente</label>
+                    <input id="gerente" name="gerente" type="text" class="text" />
+                </div>
+
+                <div class="form_entry">
+                    <label for="sigla">Sigla</label>
+                    <input id="sigla" name="sigla" type="text" class="text"/>
+                </div>
+
+                <div class="form_entry">
+                    <label for="ramal">Ramal</label>
+                    <input id="ramal" name="ramal" type="text" class="text" />
+                </div>
+
+                <div class="form_buttons">
+                    <span>
+                        <button id="cadastrar" name="cadastrar">Cadastrar</button>
+                    </span>
+                    <span>
+                        <button id="limpar" name="limpar" >Limpar</button>
+                    </span>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dialog-confirm-cadastro" title="Cadastro Efetuado com Sucesso">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>O cadastro foi efetuado com sucesso. O que deseja fazer agora?</p>
+</div>
+
+
+<script type="text/javascript" charset="utf-8">
+
+    $(function() {
+        // a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
+        $( "#dialog:ui-dialog" ).dialog( "destroy" );
+	
+        $( "#dialog-confirm-cadastro" ).dialog({
+            resizable: true,
+            height:165,
+            width: 400,
+            autoOpen: false,
+            modal: true,
+            buttons: {
+                "Cadastrar Nova Gerência": function() {
+                    $( this ).dialog( "close" );
+                    setTimeout(function(){
+                        openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/gerencia/mostraCadastro/");
+                    }, 100);
+                },
+                "Voltar à Página Inicial": function() {
+                    $( this ).dialog( "close" );
+                    window.location.reload();
+                }
+            }
+        });
+    });
+
+
+    function alertaVazio(campos,contador){
+        for(i=0;i<contador;i = i+1){
+            document.getElementById(campos[i]).style.borderColor = '#FF3300';
+            document.getElementById(campos[i]).style.backgroundColor = '#FFEDBF';
+        }
+
+    }
+
+
+    var tabindex = 1;
+	
+    $('input, textarea, select').focus(function() {
+        $(this).css("background","#ffa");
+        $(this).css("borderColor","#cc0");
+    }).blur(function() {
+        $(this).css("background","#fff");
+        $(this).css("borderColor","#000");
+    });
+	
+    $('.foco').toggle().slideDown("fast",function(){
+        $('.foco',selected_tab()).focus();
+    });
+	
+    $('#limpar',selected_tab()).click(function(){
+        $("#nome",selected_tab()).val("").focus();
+        $("#localizacao",selected_tab()).val("");
+        $("#gerente",selected_tab()).val("");
+        $("#sigla",selected_tab()).val("");
+        $("#ramal",selected_tab()).val("");
+			
+    });
+	
+    $('#cadastrar', selected_tab()).click(function(){
+		
+        campos = new Array(2);
+        contador = 0;
+
+        if(get_elemento(this, "#nome").val()==""){
+            campos[contador]="nome";
+            contador=contador+1;
+        }
+
+        if(get_elemento(this, "#sigla").val()==""){
+            campos[contador]="sigla";
+            contador = contador+1;
+        }
+
+        if(contador == 0){
+        
+            //ESTA FUNÇÃO
+            $.ajax({
+                url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/gerencia/cadastrar",
+                data: {
+                    "nome": get_elemento(this, "#nome").val(),
+                    "localizacao": get_elemento(this, "#localizacao").val(),
+                    "gerente": get_elemento(this, "#gerente").val(),
+                    "sigla": get_elemento(this, "#sigla").val(),
+                    "ramal": get_elemento(this, "#ramal").val()
+                },
+                cache: false,
+                success: function(data){
+			
+                    respostaDoControlador = eval(data);
+                    //$().message(respostaDoControlador.message);
+                    $( "#dialog-confirm-cadastro" ).dialog( "open" );
+								
+                },
+                error: function(data){
+                    respostaDoControlador = eval(data);
+                    $().message(respostaDoControlador.message);
+                },
+                dataType: "json"
+		
+            });
+
+
+        }else{
+            $().message("Campos obrigatórios não foram preenchidos!");
+            alertaVazio(campos,contador);
+        }
+		
+        return;
+    })
+
+	
+</script>

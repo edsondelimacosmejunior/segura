@@ -1,0 +1,181 @@
+# --------------------------------------------------------
+# Host:                         127.0.0.1
+# Server version:               5.1.41
+# Server OS:                    Win32
+# HeidiSQL version:             6.0.0.3603
+# Date/time:                    2011-08-10 14:04:20
+# --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+# Dumping database structure for sunsetadmin
+DROP DATABASE IF EXISTS `sunsetadmin`;
+CREATE DATABASE IF NOT EXISTS `sunsetadmin` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `sunsetadmin`;
+
+
+# Dumping structure for table sunsetadmin.clientenewsletter
+DROP TABLE IF EXISTS `clientenewsletter`;
+CREATE TABLE IF NOT EXISTS `clientenewsletter` (
+  `idClienteNewsletter` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) NOT NULL,
+  `email` varchar(80) NOT NULL,
+  `dataInscricao` datetime DEFAULT NULL,
+  `status` char(1) NOT NULL,
+  PRIMARY KEY (`idClienteNewsletter`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+# Dumping data for table sunsetadmin.clientenewsletter: ~1 rows (approximately)
+/*!40000 ALTER TABLE `clientenewsletter` DISABLE KEYS */;
+INSERT INTO `clientenewsletter` (`idClienteNewsletter`, `nome`, `email`, `dataInscricao`, `status`) VALUES
+	(1, 'ghghgh', 'gghghgh@sdfdf.com', NULL, '1');
+/*!40000 ALTER TABLE `clientenewsletter` ENABLE KEYS */;
+
+
+# Dumping structure for table sunsetadmin.destaque
+DROP TABLE IF EXISTS `destaque`;
+CREATE TABLE IF NOT EXISTS `destaque` (
+  `idDestaque` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(80) NOT NULL,
+  `imagem` varchar(255) NOT NULL,
+  `descricao` text NOT NULL,
+  PRIMARY KEY (`idDestaque`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+# Dumping data for table sunsetadmin.destaque: ~5 rows (approximately)
+/*!40000 ALTER TABLE `destaque` DISABLE KEYS */;
+INSERT INTO `destaque` (`idDestaque`, `titulo`, `imagem`, `descricao`) VALUES
+	(1, 'Primeiro destaque', '0.054725001311904382.jpg', 'Primeira tentativa pra fazer essa bagaÃ§a'),
+	(2, 'sdfsdf', '0.419949001311979553.jpg', 'sdfsdf'),
+	(3, 'hgh', '0.805055001311980044.jpg', 'ghgh\r\ngh\r\nghgh\r\ngh\r\ngh\r\ngh\r\ngh\r\ngh\r\n\r\ngh\r\ngh\r\ngh\r\ngh\r\ngh\r\ngh\r\ngh\r\ngh\r\ngh\r\ngh\r\ngh\r\ngh\r\nghgh\r\ngh\r\ngh\r\n'),
+	(4, 'dghgfh', '0.424780001311980127.jpg', 'fghgffffffffffffffffffffffffffffffffffffffffffffffffffgmdsf mgndsfgmdsfng,nsdf,mg,sdfg,mdsf                                                 ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt       ttgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttggttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggtttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt'),
+	(5, 'ghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh', '', 'ghgh');
+/*!40000 ALTER TABLE `destaque` ENABLE KEYS */;
+
+
+# Dumping structure for table sunsetadmin.newsletter
+DROP TABLE IF EXISTS `newsletter`;
+CREATE TABLE IF NOT EXISTS `newsletter` (
+  `idNewsletter` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(80) NOT NULL,
+  `texto` text NOT NULL,
+  `imagem` varchar(255) DEFAULT NULL,
+  `dataEnvio` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`idNewsletter`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+# Dumping data for table sunsetadmin.newsletter: ~1 rows (approximately)
+/*!40000 ALTER TABLE `newsletter` DISABLE KEYS */;
+INSERT INTO `newsletter` (`idNewsletter`, `titulo`, `texto`, `imagem`, `dataEnvio`) VALUES
+	(1, 'Primeira newsletter', 'Texto da primeira newsletter', '0.082407001311907978.jpg', NULL);
+/*!40000 ALTER TABLE `newsletter` ENABLE KEYS */;
+
+
+# Dumping structure for table sunsetadmin.noticia
+DROP TABLE IF EXISTS `noticia`;
+CREATE TABLE IF NOT EXISTS `noticia` (
+  `idNoticia` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(80) NOT NULL,
+  `subtitulo` varchar(80) DEFAULT NULL,
+  `texto` text NOT NULL,
+  `imagem` varchar(255) DEFAULT NULL,
+  `data` datetime DEFAULT NULL,
+  `fonte` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`idNoticia`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+# Dumping data for table sunsetadmin.noticia: ~1 rows (approximately)
+/*!40000 ALTER TABLE `noticia` DISABLE KEYS */;
+INSERT INTO `noticia` (`idNoticia`, `titulo`, `subtitulo`, `texto`, `imagem`, `data`, `fonte`) VALUES
+	(1, 'Primeiro notici', 'adsfdsa', 'sdf', '0.988747001311971429.jpg', NULL, 'sdfds');
+/*!40000 ALTER TABLE `noticia` ENABLE KEYS */;
+
+
+# Dumping structure for table sunsetadmin.parceiro
+DROP TABLE IF EXISTS `parceiro`;
+CREATE TABLE IF NOT EXISTS `parceiro` (
+  `idParceiro` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(80) NOT NULL,
+  `logo` varchar(255) NOT NULL,
+  `descricao` text NOT NULL,
+  `contatoNome` varchar(80) NOT NULL,
+  `contatoEmail` varchar(80) NOT NULL,
+  `contatoTelefone` varchar(13) NOT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`idParceiro`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+# Dumping data for table sunsetadmin.parceiro: ~4 rows (approximately)
+/*!40000 ALTER TABLE `parceiro` DISABLE KEYS */;
+INSERT INTO `parceiro` (`idParceiro`, `nome`, `logo`, `descricao`, `contatoNome`, `contatoEmail`, `contatoTelefone`, `link`) VALUES
+	(1, 'Minerva RepresentaÃ§Ãµes', '0.052644001311909241.jpg', 'ServiÃ§o de ManutenÃ§Ã£o de site e redes sociais', '', '', '', 'www.minervarepresentacoes.com.br'),
+	(2, 'Minerva RepresentaÃ§Ãµes', '0.055199001311909443.jpg', 'ServiÃ§o de manutenÃ§Ã£o de site e redes sociais', 'Quirino', 'quirino@minerva.com.br', '845454', 'www.minervarepresentacoes.com.br'),
+	(3, '', '0.534712001311971289.jpg', '', '', '', '', NULL),
+	(4, '', '0.607000001311971362.jpg', '', '', '', '', NULL);
+/*!40000 ALTER TABLE `parceiro` ENABLE KEYS */;
+
+
+# Dumping structure for table sunsetadmin.portfolio
+DROP TABLE IF EXISTS `portfolio`;
+CREATE TABLE IF NOT EXISTS `portfolio` (
+  `idPortfolio` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(80) NOT NULL,
+  `logo` varchar(255) NOT NULL,
+  `descricaoServico` text NOT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `data` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`idPortfolio`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+# Dumping data for table sunsetadmin.portfolio: ~1 rows (approximately)
+/*!40000 ALTER TABLE `portfolio` DISABLE KEYS */;
+INSERT INTO `portfolio` (`idPortfolio`, `nome`, `logo`, `descricaoServico`, `link`, `data`) VALUES
+	(1, 'Minerva RepresentaÃ§Ãµes', '0.728325001311910546.jpg', 'ServiÃ§o de manutenÃ§Ã£o de site prÃ³prio.', 'www.minervarepresentacoes.com.br', NULL);
+/*!40000 ALTER TABLE `portfolio` ENABLE KEYS */;
+
+
+# Dumping structure for table sunsetadmin.produto
+DROP TABLE IF EXISTS `produto`;
+CREATE TABLE IF NOT EXISTS `produto` (
+  `idProduto` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(80) NOT NULL,
+  `descricao` text NOT NULL,
+  `imagem` varchar(255) NOT NULL,
+  PRIMARY KEY (`idProduto`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+# Dumping data for table sunsetadmin.produto: ~1 rows (approximately)
+/*!40000 ALTER TABLE `produto` DISABLE KEYS */;
+INSERT INTO `produto` (`idProduto`, `nome`, `descricao`, `imagem`) VALUES
+	(1, 'Produto x', 'kdfmlsdnflsdnmlf', '0.420099001311978629.jpg');
+/*!40000 ALTER TABLE `produto` ENABLE KEYS */;
+
+
+# Dumping structure for table sunsetadmin.usuario
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `login` varchar(20) NOT NULL,
+  `senha` varchar(20) NOT NULL,
+  `nivel` char(1) NOT NULL,
+  `ultimoAcesso` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`idUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+
+# Dumping data for table sunsetadmin.usuario: ~5 rows (approximately)
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` (`idUsuario`, `nome`, `email`, `login`, `senha`, `nivel`, `ultimoAcesso`) VALUES
+	(1, 'Edson Junior1', 'edsondelimajunior@gmail.com1', 'edson', '123', 'U', '2011-07-25 21:52:03'),
+	(10, 'sdfjas', 'jbadjfsjd', 'sdbhfjsd', 'jsdbfjs', 'U', NULL),
+	(11, 'sdfjasgh', 'jbadjfsjdghgh', 'sdbhfjsdgh', 'jsdbfjs', 'U', NULL),
+	(12, 'edson', 'edso@edsok.com', '', '', 'U', NULL),
+	(13, 'sdfsdf', 'sdfdsfdsf', 'xcvxcv', 'xcvxcv', 'U', NULL);
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,0 +1,51 @@
+<?php /* Smarty version 2.6.18, created on 2010-09-13 10:30:08
+         compiled from pages/interno/startmenu.tpl */ ?>
+<style type="text/css">
+	#dvs{
+		height: 150px;
+	}
+	#dvs1{
+		height: 20px;
+	}
+	#dvs2{
+		height: 100px; 
+	}
+</style>
+
+<div id="dvs1"></div>
+<div id="dvs2">
+<span style="text-align: center; display: block; float: left; width: 175px;">
+	<a href="<?php echo $this->_tpl_vars['BASE_URL']; ?>
+interno/newproject" style="margin-left: 15px; width: 120px; display: block; text-align: center;" class="fg-button ui-state-default ui-corner-all">
+		<img src="<?php echo $this->_tpl_vars['IMG']; ?>
+menu/icons/novo.png" />
+		<span style="line-height: 16px; margin: 0; padding: 5px; display: block;">Novo Projeto</span>
+	</a>
+</span>
+
+</div>
+
+<div id="dvs">
+	
+<span style="text-align: center; display: block; float: left; width: 175px;">
+	<a href="<?php echo $this->_tpl_vars['BASE_URL']; ?>
+interno/carregarprojetos" style="margin-left: 15px; width: 120px; display: block; text-align: center;" class="fg-button ui-state-default ui-corner-all">
+		<img src="<?php echo $this->_tpl_vars['IMG']; ?>
+menu/icons/load3.png" />
+		<span style="line-height: 16px; margin: 0; padding: 5px; display: block;">Carregar Projeto Existente</span>
+	</a>
+</span>
+
+</div>
+
+<div id="dvs2">
+
+<span style="text-align: center; display: block; float: left; width: 175px;">
+	<a href="logout" style="margin-left: 50px; width: 55px; display: block; text-align: center;" class="fg-button ui-state-default ui-corner-all">
+		<img src="<?php echo $this->_tpl_vars['IMG']; ?>
+menu/icons/Exit.png" />
+		<span style="line-height: 16px; margin: 0; padding: 5px;">SAIR</span>
+	</a>
+</span>
+
+</div>

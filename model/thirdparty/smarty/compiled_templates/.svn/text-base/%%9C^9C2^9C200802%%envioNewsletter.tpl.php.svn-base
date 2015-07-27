@@ -1,0 +1,121 @@
+<?php /* Smarty version 2.6.18, created on 2011-08-01 22:19:05
+         compiled from pages/interno/modulo/processos/envioNewsletter.tpl */ ?>
+<meta charset="utf-8">
+<style>
+    body {
+        font-size: 62.5%;
+    }
+    label, input {
+        display:block;
+    }
+    input.text {
+        margin-bottom:12px;
+        width:95%;
+        padding: .4em;
+    }
+    fieldset {
+        padding:0;
+        border:0;
+        margin-top:25px;
+    }
+    h1 {
+        font-size: 1.2em;
+        margin: .6em 0;
+    }
+    div#users-contain {
+        width: 350px;
+        margin: 20px 0;
+    }
+    div#users-contain table {
+        margin: 1em 0;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    div#users-contain table td, div#users-contain table th {
+        border: 1px solid #eee;
+        padding: .6em 10px;
+        text-align: left;
+    }
+    .ui-dialog .ui-state-error {
+        padding: .3em;
+    }
+    .validateTips {
+        border: 1px solid transparent;
+        padding: 0.3em;
+    }
+</style>
+
+
+
+
+
+
+
+
+
+<style>
+    #feedback { font-size: 1.4em; }
+    #selectable .ui-selecting { background: #FECA40; }
+    #selectable .ui-selected { background: #F39814; color: white; }
+    #selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+    #selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+</style>
+<script>
+    $(function() {
+        $( "#selectable" ).selectable({
+            stop: function() {
+                var result = $( "#select-result" ).empty();
+                $( ".ui-selected", this ).each(function() {
+                    var index = $( "#selectable li" ).index( this );
+                    result.append( " #" + ( index + 1 ) );
+                });
+            }
+        });
+    });
+</script>
+
+
+<div id="users-contain" class="ui-widget" style="margin:20px auto;">
+    <table id="users" class="ui-widget ui-widget-content">
+        <thead>
+            <tr class="ui-widget-header ">
+                <th>Cadastro de Usuários</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="width:100%;">
+                    <ol id="selectable" style="width:100%; height:200px;">
+                        <li class="ui-widget-content">A</li>
+                        <li class="ui-widget-content">B</li>
+                        <li class="ui-widget-content">C</li>
+                        <li class="ui-widget-content">D</li>
+                        <li class="ui-widget-content">E</li>
+                        <li class="ui-widget-content">F</li>
+                        <li class="ui-widget-content">A</li>
+                        <li class="ui-widget-content">B</li>
+                        <li class="ui-widget-content">C</li>
+                        <li class="ui-widget-content">D</li>
+                        <li class="ui-widget-content">E</li>
+                        <li class="ui-widget-content">F</li>
+                        <li class="ui-widget-content">A</li>
+                        <li class="ui-widget-content">B</li>
+                        <li class="ui-widget-content">C</li>
+                        <li class="ui-widget-content">D</li>
+                        <li class="ui-widget-content">E</li>
+                        <li class="ui-widget-content">F</li>
+                    </ol>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<p id="feedback">
+    <span>Selecionados:</span> <span id="select-result">none</span>.
+</p>
+
+

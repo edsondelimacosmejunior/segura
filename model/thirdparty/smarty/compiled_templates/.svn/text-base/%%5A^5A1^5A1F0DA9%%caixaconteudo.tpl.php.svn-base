@@ -1,0 +1,26 @@
+<?php /* Smarty version 2.6.18, created on 2010-09-13 10:28:45
+         compiled from pages/interno/caixaconteudo.tpl */ ?>
+<style type="text/css">
+	#cxconteudo{
+		background-image: url("<?php echo $this->_tpl_vars['IMG']; ?>
+eRiskGame_fundobranco.png");
+		background-repeat: no-repeat;
+		background-position: center;
+		height: 400px;
+	}
+</style>
+
+<div id="cxconteudo"></div>
+
+
+<script type="text/javascript">
+	
+	window.onload = function(){
+		mensagem();
+	}
+	
+	function mensagem(){
+		$().message("Selecione uma opção no menu lateral.");
+	}
+		
+</script>

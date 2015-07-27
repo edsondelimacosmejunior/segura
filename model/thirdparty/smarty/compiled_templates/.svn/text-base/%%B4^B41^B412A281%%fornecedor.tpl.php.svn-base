@@ -1,0 +1,121 @@
+<?php /* Smarty version 2.6.18, created on 2011-05-09 19:28:33
+         compiled from pages/interno/modulo/formularios/fornecedor.tpl */ ?>
+<style type="text/css">
+    
+</style>
+
+<div id="cadastro">
+
+
+        <form name="cadastro" method="post" action="" id="cadastro" onSubmit=" return verificaCampos()">
+            <p>Nome: <input type="text" id="nome" onfocus="mudacor(this,'yellow');" onblur="mudacor(this,'white');" /></p>
+            <p>Codigo: <input type="text" id="codigo" onfocus="mudacor(this,'yellow');" onblur="mudacor(this,'white');"></p>
+            <p>Nome para contato: <input type="text" id="nomeContato" onfocus="mudacor(this,'yellow');" onblur="mudacor(this,'white');"></p>
+            <p>Telefone: <input type="text" id="telefoneContato" onfocus="mudacor(this,'yellow');" onblur="mudacor(this,'white');"></p>
+            <p>Descrição Serviço: <input type="text" id="descricaoServico" onfocus="mudacor(this,'yellow');" onblur="mudacor(this,'white');"></p>
+            <p><input type="submit" id="submit" name="Submit"></p>
+
+        </form>
+    
+</div>
+
+<script type="text/javascript">
+
+function verificaCampos(){
+    
+        d = document.cadastro;
+
+        campos = new Array(4);
+        contador = 0;
+        
+        if(d.nome.value==""){
+            campos[contador]="nome";
+            contador=contador+1;
+        }
+        
+        if(d.nomeContato.value==""){
+            campos[contador]="nomeContato";
+            contador = contador+1;
+        }
+
+        if(d.telefoneContato.value==""){
+            campos[contador]="telefoneContato";
+            contador = contador+1;
+        }
+
+        if(d.descricaoServico.value==""){
+            campos[contador]="descricaoServico";
+            contador = contador+1;
+        }
+
+        if(contador == 0){
+            cadastrar();
+            return false;
+        }else{
+            $().message("Campos obrigatórios não foram preenchidos!");
+            alertaVazio(campos,contador);
+            return false;
+        }
+}
+
+function alertaVazio(campos,contador){
+        for(i=0;i<contador;i = i+1){
+            document.getElementById(campos[i]).style.backgroundColor = '#FF3300';
+        }
+
+}
+
+
+function mudacor(ref,cor){
+  ref.style.backgroundColor=cor;
+}
+
+
+function cadastrar(){
+    	d = document.cadastro;
+
+        $.ajax({
+			url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/fornecedor/cadastrar",
+			data: {
+				"nome" : d.nome.value,
+                                "codigo": d.codigo.value,
+                                "nomeContato": d.nomeContato.value,
+                                "telefoneContato": d.telefoneContato.value,
+                                "descricaoServico": d.descricaoServico.value
+			},
+			cache: false,
+			success: function(data) {
+
+				respostaDoControlador = eval(data);
+				$().message(respostaDoControlador.message);
+                                redir(respostaDoControlador.message);
+                                
+			},
+			error: function(data) {
+
+				respostaDoControlador = eval(data);
+                                $().message(respostaDoControlador.message);
+                                redir(respostaDoControlador.message);
+                        },
+			dataType: "json"
+		});
+                
+}
+
+function redir(resp){
+    if(resp == "Fornecedor Cadastrado com sucesso."){
+        setTimeout(function(){
+              openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/fornecedor/mostraConfirmaFornecedor/");
+        },1500);
+    }else if(resp == "Código de fornecedor já existente."){
+            document.getElementById('codigo').style.backgroundColor = '#FF3300';
+            document.cadastro.codigo.focus();
+    }else if(resp ==  "Erro ao gravar."){
+        //faça nada
+    }
+
+}
+
+</script>

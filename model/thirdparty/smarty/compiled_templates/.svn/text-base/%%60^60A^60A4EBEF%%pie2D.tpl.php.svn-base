@@ -1,0 +1,21 @@
+<?php /* Smarty version 2.6.18, created on 2011-05-09 23:33:42
+         compiled from pages/interno/modulo/exemplos/pie2D.tpl */ ?>
+<script language="JavaScript" src="<?php echo $this->_tpl_vars['JS']; ?>
+FusionCharts.js"></script>
+<script language="JavaScript" src="<?php echo $this->_tpl_vars['JS']; ?>
+jquery/jquery.progressbar.js"></script>
+<link rel="stylesheet" href="<?php echo $this->_tpl_vars['CSS']; ?>
+fusionchart/Style.css" type="text/css" />
+ 
+
+<div id="exemplo-pie2D">
+</div>
+<script language="javascript" type="text/javascript">
+		
+	var chart = new FusionCharts("<?php echo $this->_tpl_vars['IMG']; ?>
+flash/charts/FCF_Pie2D.swf", "grafico", "400", "300");
+	chart.setDataURL("<?php echo $this->_tpl_vars['BASE_URL']; ?>
+interno/modulo/exemplos/pie2D/");
+	chart.render("exemplo-pie2D");
+	
+</script>

@@ -1,0 +1,69 @@
+<?php /* Smarty version 2.6.18, created on 2010-09-17 09:17:29
+         compiled from pages/interno/modulo/projeto/orcamento.tpl */ ?>
+<?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'number_format', 'pages/interno/modulo/projeto/orcamento.tpl', 50, false),)), $this); ?>
+<script language="JavaScript" src="<?php echo $this->_tpl_vars['JS']; ?>
+FusionCharts.js"></script>
+<link rel="stylesheet" href="<?php echo $this->_tpl_vars['CSS']; ?>
+fusionchart/Style.css" type="text/css" />
+
+<style type="text/css">
+	#title_orcamento{
+		padding: 5px;
+		display: block;
+		font-weight: bolder;
+		font-size: medium;
+	}
+	#info_orcamento{
+		background-color: #C9EEC9;
+		border-collapse: separate;
+		border-style: double;
+		border-color: gray;
+	}
+	#info_detalhes{
+		float: right;
+		width: 425px;
+		font-size: small;
+		font-weight: normal;
+	}
+	#title{
+		font-weight: bold;
+		font-size: small;
+	}
+</style>
+
+
+<span id="title_orcamento">Demonstrativo de Custos</span>
+<hr>
+<br>
+<div id = "info_orcamento" style="float: left; padding: 10px;">
+
+	<div id="orcamento" style="margin: auto; text-align: center; float:left;">
+	
+	</div>
+
+	<script type="text/javascript">
+		var chart = new FusionCharts("<?php echo $this->_tpl_vars['IMG']; ?>
+flash/charts/FCF_Pie2D.swf", "orcamento", "550", "330");
+		chart.setDataURL("<?php echo $this->_tpl_vars['BASE_URL']; ?>
+interno/modulo/projeto/grafico_orcamento");
+		chart.render("orcamento");
+	</script>
+
+</div>
+<div id="info_detalhes">
+	<span id="title">Dados Orçamentais</span>
+	<br /><br />
+	<?php $_from = ($this->_tpl_vars['Proj']); if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['p']):
+?>
+	<p>Orçamento inicial: R$ <?php echo ((is_array($_tmp=$this->_tpl_vars['p']['orcamento'])) ? $this->_run_mod_handler('number_format', true, $_tmp, 2, ",", ".") : number_format($_tmp, 2, ",", ".")); ?>
+</p>
+	<?php endforeach; endif; unset($_from); ?>
+	<p>Custo diário com profissionais:R$ <?php echo ((is_array($_tmp=$this->_tpl_vars['Custo'])) ? $this->_run_mod_handler('number_format', true, $_tmp, 2, ",", ".") : number_format($_tmp, 2, ",", ".")); ?>
+</p>
+	<p>Custo diário com aquisições: R$ 0</p>
+	<p>Outros gastos: R$ 0</p>
+	<br />
+	<p>::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::</p>
+</div>

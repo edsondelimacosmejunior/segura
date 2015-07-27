@@ -1,0 +1,170 @@
+<?php /* Smarty version 2.6.18, created on 2010-10-05 22:56:13
+         compiled from pages/interno/modulo/projeto/aquisicoes.tpl */ ?>
+<?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'utf8', 'pages/interno/modulo/projeto/aquisicoes.tpl', 52, false),array('modifier', 'number_format', 'pages/interno/modulo/projeto/aquisicoes.tpl', 54, false),)), $this); ?>
+<style type="text/css">
+	.acao{
+		width: 100%;
+	}
+	.visual{
+		vertical-align: middle;
+		width: 230px;
+		height: 220px;
+		text-align: center;
+	}
+	.picture{
+		border: none;
+		border-color: gray;
+	}
+	.corpo{
+		vertical-align: top;
+		font-size: small;
+		font-weight: normal;
+	}
+	.bot{
+		text-align: left;
+		vertical-align: top;
+	}
+	.adq{
+		color: green;
+	}
+</style>
+
+
+<div id="tabs">
+
+<ul>
+		<li><a href="#tabs-1">Aquisições</a></li>
+</ul>
+
+<!--TAB 1-->
+
+<div id="tabs-1">
+	<div id="aq">
+	<br />
+	<?php $_from = $this->_tpl_vars['Acao']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['a']):
+?>
+	<table class="acao">
+		<tr>
+			<td class="visual" rowspan=2>
+				<img class="picture" src="<?php echo $this->_tpl_vars['IMG']; ?>
+<?php echo $this->_tpl_vars['a']['imagem']; ?>
+">
+			</td>
+			<td width="30px"></td>
+			<td class="corpo">
+				<br /><br />
+				<span style="font-weight: bold;"><?php echo $this->_tpl_vars['a']['nome']; ?>
+</span>
+				<br /><br />
+				<span style="text-align: justify;"><?php echo ((is_array($_tmp=$this->_tpl_vars['a']['descricao'])) ? $this->_run_mod_handler('utf8', true, $_tmp) : smarty_modifier_utf8($_tmp)); ?>
+</span>
+				<br /><br />
+				<span>Custo: R$ <?php echo ((is_array($_tmp=$this->_tpl_vars['a']['custo'])) ? $this->_run_mod_handler('number_format', true, $_tmp, 2, ",", ".") : number_format($_tmp, 2, ",", ".")); ?>
+</span>
+				<br /></br />
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td class="bot">
+				<?php if ($this->_tpl_vars['a']['adquirido'] == null): ?>	
+				<span style="text-align: left; display: block; float: none;">
+					<a href="javascript:adquirir(<?php echo $this->_tpl_vars['a']['idAquisicao']; ?>
+);" class="fg-button ui-state-default ui-corner-all">
+						<span class="adquirir_acao" rel="<?php echo $this->_tpl_vars['a']['idAquisicao']; ?>
+" style="line-height: 10px; margin: 0; padding: 5px;">Adquirir</span>
+					</a>
+				</span>
+				<?php else: ?>
+					<span class="adq">Item já adquirido.</span>
+				<?php endif; ?>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<?php endforeach; endif; unset($_from); ?>
+	</div>
+</div>
+
+</div>
+
+
+<script type="text/javascript">
+	
+	$(function() {
+
+		$("#tabs").tabs();
+
+	});
+
+	$("adquirir_acao").live("click",function() {
+
+		adquirir($(this).attr("rel"));
+
+	});
+	
+	function adquirir(id){
+		$.ajax({
+			url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/projeto/adquirir_acao",
+			data: {
+				"idacao" : id
+			},
+			cache: false,
+			success: function(data) {
+				
+				$("#aq").html("<br />");
+				
+				for(var i=0; i < data.legth; i++){
+					$("#aq").append(
+						'<table class="acao">'
+					+	'	<tr>'
+					+	'		<td class="visual" rowspan=2>'
+					+	'			<img class="picture" src="<?php echo $this->_tpl_vars['IMG']; ?>
+'+ data[i]["imagem"] +'">'
+					+	'		</td>'
+					+	'		<td width="30px"></td>'
+					+	'		<td class="corpo">'
+					+	'			<br /><br />'
+					+	'			<span style="font-weight: bold;">'+ data[i]["nome"] +'</span>'
+					+	'			<br /><br />'
+					+	'			<span style="text-align: justify;"><?php echo ((is_array($_tmp='+ data[i]["descricao"] +')) ? $this->_run_mod_handler('utf8', true, $_tmp) : smarty_modifier_utf8($_tmp)); ?>
+</span>'
+					+	'			<br /><br />'
+					+	'			<span>Custo: R$ <?php echo ((is_array($_tmp='+ data[i]["custo"] +')) ? $this->_run_mod_handler('number_format', true, $_tmp, 2, ",", ".") : number_format($_tmp, 2, ",", ".")); ?>
+</span>'
+					+	'			<br /></br />'
+					+	'		</td>'
+					+	'	</tr>'
+					+	'	<tr>'
+					+	'		<td></td>'
+					+	'		<td class="bot">'
+					+	'			<?php if ('+ data[i]["adquirido"] +' == null): ?>'	
+					+	'				<span style="text-align: left; display: block; float: none;">'
+					+	'					<a href="javascript:adquirir('+ data[i]["idaquisicao"] +');" class="fg-button ui-state-default ui-corner-all">'
+					+	'						<span class="adquirir_acao" rel="'+ data[i]["idaquisicao"] +'" style="line-height: 10px; margin: 0; padding: 5px;">Adquirir</span>'
+					+	'					</a>'
+					+	'				</span>'
+					+	'			<?php else: ?>'
+					+	'				<span class="adq">Item já adquirido.</span>'
+					+	'			<?php endif; ?>'
+					+	'		</td>'
+					+	'	</tr>'
+					+	'</table>'
+					+	'<hr>'
+
+					);
+				}
+				
+				$().message("Aquisição bem sucessedida.");
+			},
+			error: function(data) {
+				$().message("Desculpe. Não foi possível concluir sua solicitação.");
+			},
+			dataType: "json"
+		});
+	}
+	
+</script>

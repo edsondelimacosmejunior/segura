@@ -1,0 +1,163 @@
+<?php /* Smarty version 2.6.18, created on 2011-05-10 10:59:05
+         compiled from pages/interno/modulo/relatorios/fornecedorCustoManutencao.tpl */ ?>
+<script language="JavaScript" src="<?php echo $this->_tpl_vars['JS']; ?>
+FusionCharts.js"></script>
+<script language="JavaScript" src="<?php echo $this->_tpl_vars['JS']; ?>
+jquery/jquery.progressbar.js"></script>
+<link rel="stylesheet" href="<?php echo $this->_tpl_vars['CSS']; ?>
+fusionchart/Style.css" type="text/css" />
+
+<style type="text/css">
+    #titlerelatorio{
+        padding: 5px;
+        display: block;
+        font-weight: bolder;
+        font-size: medium;
+    }
+    #borda-usuarios{
+        width: 40%;
+        height: 25px;
+        background-image: url("<?php echo $this->_tpl_vars['IMG']; ?>
+tab2.gif");
+        border: 1px;
+        border-color: #AAAAAA;
+        border-style: solid;
+    }
+    #borda-usuarios a{
+        vertical-align: middle;
+        margin-left: 10px;
+        color: white;
+        font-size: 0.9em;
+        font-weight: bolder;
+        font-style: italic;
+
+    }
+    #usuarios{
+        width: 40%;
+        display: block;
+        height: 240px;
+        overflow: scroll;
+        text-align: center;
+    }
+    /* SELECTABLE */
+    #feedback { font-size: 0.9em; }
+    #selectable:hover{
+        cursor: pointer;
+    }
+    #selectable .ui-selecting { background: #FECA40; }
+    #selectable .ui-selected { background: #F39814; color: white; }
+    #selectable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+    #selectable li { margin: 3px; padding: 0.4em; font-size: 0.8em; height: 18px; }
+    /* END SELECTABLE */
+
+</style>
+
+<span id="titlerelatorio">Custo de Manutenções por Fornecedores</span>
+<hr>
+<br>
+
+<table>
+    <td style="width:450px; height:100%;">
+        <div id="borda-usuarios" class="ui-corner-top" style="width:100%;"><a>Selecione o(s) Fornecedor(es)</a></div>
+        <div id="usuarios" class="ui-layout-content" name="f1" id="f1" style="width:100%;">
+            <ol id="selectable">
+		<?php $_from = $this->_tpl_vars['Fornecedores']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['fornecedor']):
+?>
+                <li class="ui-widget-content" rel="<?php echo $this->_tpl_vars['fornecedor']['nome']; ?>
+" foo="<?php echo $this->_tpl_vars['fornecedor']['idFornecedor']; ?>
+" ><?php echo $this->_tpl_vars['fornecedor']['nome']; ?>
+</li>
+		<?php endforeach; endif; unset($_from); ?>
+            </ol>
+        </div>
+        <span id="aviso" style="color: red; font-size: smaller;">* Mantenha a tecla Ctrl pressionada para selecionar múltiplos Fornecedores.</span>
+
+    </td>
+    <td style="width:150px; height:100%; text-align:center;">
+        <span style="text-align: center; display: block; width: 100px;  margin-top: 0px;">
+            <a href="#" id="seleciona-todos" style="margin-top: 0px; margin-left:12px; width: 75px; display: block; text-align: center;" class="fg-button ui-state-default ui-corner-all">
+                <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+menu/icons/001_01.png" />
+                <span style="line-height: 16px; margin: 0; padding: 5px;">Selecionar Todos</span>
+            </a>
+        </span>
+
+        <span style="text-align: center; display: block; width: 100px;margin-top: 10px;">
+            <a href="#" id="desmarca-todos" style="margin-top: 0px; margin-left:12px; width: 75px; display: block; text-align: center;" class="fg-button ui-state-default ui-corner-all">
+                <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+menu/icons/001_02.png" />
+                <span style="line-height: 16px; margin: 0; padding: 5px;">Desmarcar Todos</span>
+            </a>
+        </span>
+
+        <span style="text-align: center; display: block;  width: 100px; margin-top: 10px;">
+            <a href="#" id="gera-grafico" style="margin-top: 0px; margin-left:12px; width: 75px; display: block; text-align: center;" class="fg-button ui-state-default ui-corner-all">
+                <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+menu/icons/estatisticas.png" />
+                <span style="line-height: 16px; margin: 0; padding: 5px;">Gerar Gráfico</span>
+            </a>
+        </span>
+    </td>
+    <td style="width:200px; height:100%;">
+        <div style="float:right; width: 450px; heigth: 150px; padding: 10px; border: 1px solid #888; display: block; background-color: #efefef; border-width: 1px 1px 1px 1px;">
+            <span id="feedback" style="font-size: 0.9em; font-weight: bold;">Fornecedor(es) Selecionada(s): <span id="select-result" style="font-weight: normal; margin-left: 35px;"></span></span>
+        </div>
+    </td>
+</table>
+<br />
+
+<script language="javascript" type="text/javascript">
+    $(function() {
+        $("#selectable").selectable({
+            stop: function(){
+                var result = $("#select-result").empty();
+                $(".ui-selected", this).each(function(){
+                    var index = $(this).attr("rel");
+                    result.append((index) + "   -:-   ");
+                    //avatar(index);
+                    //$("#selectable li").index(this)
+                });
+            }
+        });
+    });
+
+    $("#seleciona-todos").click(function(){
+        var result = $("#select-result").empty();
+        $("#selectable li").each(function(){
+            $(this).addClass("ui-selected");
+            var index = $(this).attr("rel");
+            result.append((index) + "   -:-   ");
+        });
+    });
+
+    $("#desmarca-todos").click(function(){
+        var result = $("#select-result").empty();
+        result.append("");
+        $("#selectable li").each(function(){
+            $(this).removeClass("ui-selected")
+        });
+    });
+
+    $("#gera-grafico").click(function(){
+        var i = 0;
+        var ger = new Array();
+
+        $("#selectable li").each(function(){
+            if($(this).hasClass("ui-selected")){
+                ger[i] = $(this).attr("foo");
+                i = i +1;
+            }
+        });
+
+        //mostra gráfico
+        if(ger.length == 0){
+            $().message("Selecione alguma Gerência.");
+        }else{
+            openlink('<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/fornecedor/mostraGraficoCustoManutencao/' + ger);
+        }
+
+    });
+
+</script>

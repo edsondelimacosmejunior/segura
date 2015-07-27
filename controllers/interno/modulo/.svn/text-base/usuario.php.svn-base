@@ -1,0 +1,119 @@
+<?php
+
+Class Controller_Usuario extends Proto_Controller {
+
+    function index() {
+
+        $this->init_session();
+        $this->show("pages/interno/index.tpl");
+
+    }
+
+    function mostraCadastro() {
+
+        $this->init_session();
+        $this->show("pages/interno/modulo/formularios/usuario.tpl");
+
+    }
+
+    function mostraUsuarios() {
+        $this->init_session();
+
+        $usuarios = Doctrine_Query::create()
+            ->select("u.*")
+            ->from("usuario u")
+            ->execute()
+            ->toArray();
+
+        $this->set("usuarios",$usuarios);
+
+        $this->show("pages/interno/modulo/listas/usuario.tpl");
+    }
+
+    function enviarAlterar(){
+        $this->init_session();
+        $idUsuario = $this->getArg(0);
+
+        $usuarios = Doctrine_Query::create()
+            ->select("u.*")
+            ->from("usuario u")
+            ->where("idUsuario = $idUsuario")
+            ->execute()
+            ->toArray();
+
+        $this->set("usuarios",$usuarios);
+
+        $this->show("pages/interno/modulo/atualizacoes/usuario.tpl");
+    }
+
+    function alterar(){
+        $this->valida_sessao();
+
+        $idUsuario 	 = $this->escape("idUsuario");
+        $nome 		 = $this->escape("nome");
+        $email           = $this->escape("email");
+        $login           = $this->escape("login");
+        $senha 		 = $this->escape("senha");
+        
+        $u = Doctrine::getTable("usuario")->find($idUsuario);
+
+
+
+        $u->nome	= $nome;
+        $u->email	= $email;
+        $u->login 	= $login;
+        $u->senha 	= $senha;
+        
+        if ($u->trySave())
+            $this->success('Dados atualizados com sucesso!!');
+        else
+            $this->error('Não foi possível atualizar os dados do usuário!!');
+
+    }
+
+    function excluir(){
+        $this->valida_sessao();
+
+        $id = $this->escape("idUsuario");
+
+        $u = Doctrine::getTable("usuario")->find($id);
+
+        if ( $u->delete() )
+            $this->success('Usuário excluído com sucesso!');
+        else
+            $this->error('Erro ao excluir a Usuário. Contate o administrador do sistema.');
+    }
+
+    function cadastrar() {
+        $this->init_session();
+        
+        $nome = $this->escape("nome");
+        $email = $this->escape("email");
+        $login = $this->escape("login");
+        $senha = $this->escape("senha");
+        $nivel = "U";
+        
+
+        $usuario = new Usuario();
+
+        $usuario->nome = $nome;
+        $usuario->email = $email;
+        $usuario->login = $login;
+        $usuario->senha = $senha;
+        $usuario->nivel = $nivel;
+
+        if($usuario->trySave()) {
+
+            $this->success("Usuário cadastrado com sucesso.");
+
+        }else {
+
+            $this->error("Erro ao cadastrar o usuário. Tente novamente ou contate o administrador.");
+
+        }
+    }
+
+
+}
+
+?>

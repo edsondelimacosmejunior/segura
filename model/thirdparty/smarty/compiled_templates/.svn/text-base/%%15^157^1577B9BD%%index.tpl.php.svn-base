@@ -1,0 +1,125 @@
+<?php /* Smarty version 2.6.18, created on 2011-07-26 00:22:02
+         compiled from pages/interno/index.tpl */ ?>
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "pages/interno/head.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
+
+<body style="background-color:#262626;">
+
+    <div id="topo" class="ui-layout-north">
+
+        <span style="float: left; margin-left:50px;"><img src="<?php echo $this->_tpl_vars['IMG']; ?>
+logoSunsetAdmin.png" alt="Sunset Softwares" border="0" /></span>
+        <span style="float: right; color:white; margin-top:30px; margin-right:50px;">Sunset Softwares - Todos os direitos reservados </span>
+    </div>
+
+
+    <div class="ui-layout-center ui-corner-right" style="background-color:#262626;">
+
+        <ul>
+            <span id="nav-wrapper">
+                <li>
+                    <a href="#tab0">Área de Trabalho 1</a>
+                </li>
+                <li>
+                    <a href="#tab1">Área de Trabalho 2</a>
+                </li>
+                <li>
+                    <a href="#tab2">Área de Trabalho 3</a>
+                </li>
+                <li>
+                    <a href="#tab3">Área de Trabalho 4</a>
+                </li>
+                <li>
+                    <a href="#tab4">Área de Trabalho 5</a>
+                </li>
+            </span>
+        </ul>
+        <!-- add wrapper that Layout will auto-size to 'fill space' -->
+        <div id="abas" class="ui-layout-content">
+            <div id="tab0" class="aba sunset" >
+
+                <div class="area_descricao" style="position: absolute;">
+                    <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+menu/icons/001_23.png" align="absmiddle" /> <b>Selecione uma opção no menu ao lado.</b> <!-- <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+petrobras.png" align="absmiddle" /> -->
+                </div>
+
+            </div>
+            <div id="tab1" class="aba">
+
+                <div class="area_descricao" style="position: absolute;">
+                    <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+menu/icons/001_23.png" align="absmiddle" /> <b>Selecione uma opção no menu ao lado.</b>
+                </div>
+
+            </div>
+            <div id="tab2" class="aba">
+
+                <div class="area_descricao" style="position: absolute;">
+                    <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+menu/icons/001_23.png" align="absmiddle" /> <b>Selecione uma opção no menu ao lado.</b>
+                </div>
+
+            </div>
+            <div id="tab3" class="aba">
+
+                <div class="area_descricao" style="position: absolute;">
+                    <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+menu/icons/001_23.png" align="absmiddle" /> <b>Selecione uma opção no menu ao lado.</b>
+                </div>
+
+            </div>
+            <div id="tab4" class="aba">
+
+                <div class="area_descricao" style="position: absolute;">
+                    <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+menu/icons/001_23.png" align="absmiddle" /> <b>Selecione uma opção no menu ao lado.</b>
+                </div>
+
+            </div>
+        </div>
+        <!--- Rodapé Central --->
+        <div id="status" class="ui-state-default" style="font-size: 14px; padding: 3px 5px 5px; text-align: left; margin-top: -1px;" onMouseOver="$(this).addClass('ui-state-hover');" onMouseOut="$(this).removeClass('ui-state-hover');">
+			    Informações: <span style="color: white;"></span>
+        </div>
+
+    </div>
+
+
+    <div id="menu" class="ui-layout-west ui-corner-left">
+
+				<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "pages/interno/menu.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
+
+    </div>
+
+
+</body>
+
+<script src="<?php echo $this->_tpl_vars['JS']; ?>
+interno.js" type="text/javascript"></script>
+
+</html>
+
+<script>
+		
+    $.fx.speeds._default = 850;
+    $(function() {
+        $( "#dialog" ).dialog({
+            autoOpen: false,
+            show: "slide",
+            hide: "explode"
+        });
+
+        $( ".opener" ).click(function() {
+            $( "#dialog" ).dialog( "open" );
+            return false;
+        });
+    });
+</script>

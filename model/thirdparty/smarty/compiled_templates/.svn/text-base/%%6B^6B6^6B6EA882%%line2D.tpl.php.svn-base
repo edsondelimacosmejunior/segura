@@ -1,0 +1,21 @@
+<?php /* Smarty version 2.6.18, created on 2011-03-14 23:13:15
+         compiled from pages/interno/modulo/exemplos/line2D.tpl */ ?>
+<script language="JavaScript" src="<?php echo $this->_tpl_vars['JS']; ?>
+FusionCharts.js"></script>
+<script language="JavaScript" src="<?php echo $this->_tpl_vars['JS']; ?>
+jquery/jquery.progressbar.js"></script>
+<link rel="stylesheet" href="<?php echo $this->_tpl_vars['CSS']; ?>
+fusionchart/Style.css" type="text/css" />
+
+<div id="exemplo-line2D">
+</div>
+
+<script language="javascript" type="text/javascript">
+		
+	var chart = new FusionCharts("<?php echo $this->_tpl_vars['IMG']; ?>
+flash/charts/FCF_Line.swf ", "grafico", "1050", "300");
+	chart.setDataURL("<?php echo $this->_tpl_vars['BASE_URL']; ?>
+interno/modulo/exemplos/line2D/");
+	chart.render("exemplo-line2D");
+		
+</script>
