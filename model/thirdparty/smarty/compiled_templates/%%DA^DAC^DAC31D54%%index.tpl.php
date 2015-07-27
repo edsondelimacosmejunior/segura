@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 20-01-2015 16:09:46
+<?php /* Smarty version 2.6.18, created on 27-07-2015 17:02:53
          compiled from pages/publico/index.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "pages/publico/head.tpl", 'smarty_include_vars' => array()));

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 20-01-2015 16:09:59
+<?php /* Smarty version 2.6.18, created on 27-07-2015 17:03:36
          compiled from pages/interno/index.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "pages/interno/head.tpl", 'smarty_include_vars' => array()));
@@ -35,7 +35,7 @@ unset($_smarty_tpl_vars);
 
                 <div class="area_descricao" style="position: absolute;">
                     <img src="<?php echo $this->_tpl_vars['IMG']; ?>
-icons/001_24.png" align="absmiddle" /> <b>Selecione uma opção no menu superior.</b> <!-- <img src="<?php echo $this->_tpl_vars['IMG']; ?>
+icons/001_24.png" align="absmiddle" /> <b>Selecione uma opção a no menu superior.</b> <!-- <img src="<?php echo $this->_tpl_vars['IMG']; ?>
 petrobras.png" align="absmiddle" /> -->
                 </div>
 

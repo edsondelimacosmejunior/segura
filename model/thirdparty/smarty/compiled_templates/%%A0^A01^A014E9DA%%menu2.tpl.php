@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 08-07-2015 21:35:21
+<?php /* Smarty version 2.6.18, created on 27-07-2015 17:03:01
          compiled from pages/interno/menu2.tpl */ ?>
 <input type="text" value="<?php echo $_SESSION['nivel']; ?>
 " id="menu_nivelAcesso" style="display: none;" readonly/></td>

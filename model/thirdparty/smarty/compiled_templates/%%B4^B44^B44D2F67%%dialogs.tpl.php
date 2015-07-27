@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 20-04-2015 10:31:19
+<?php /* Smarty version 2.6.18, created on 27-07-2015 17:03:01
          compiled from pages/interno/dialogs.tpl */ ?>
 <div id="dialog-buscaAlunos" title="Alunos">
     <table id="dialog-buscaAlunos" style="width: 100%; text-align: center;">

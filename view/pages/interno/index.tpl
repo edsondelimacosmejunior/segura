@@ -18,7 +18,7 @@
             <div id="tab0" class="aba sunset" >
 
                 <div class="area_descricao" style="position: absolute;">
-                    <img src="{{$IMG}}icons/001_24.png" align="absmiddle" /> <b>Selecione uma opção no menu superior.</b> <!-- <img src="{{$IMG}}petrobras.png" align="absmiddle" /> -->
+                    <img src="{{$IMG}}icons/001_24.png" align="absmiddle" /> <b>Selecione uma opção a no menu superior.</b> <!-- <img src="{{$IMG}}petrobras.png" align="absmiddle" /> -->
                 </div>
 
             </div>
