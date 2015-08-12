@@ -59,7 +59,12 @@
 
         <span clear="all" style="float: left; display: block; width: 300px; height: 10px;"></span>
 
-        <label for="de-ano" style="width: 120px; float: left; line-height: 20px; padding: 0 8px;">MODIFICADO</label> 
+        <label for="de-ano" style="width: 120px; float: left; line-height: 20px; padding: 0 8px;">USUÁRIO:</label> 
+        <input type="text" id="user" name="user" size="16" maxlength="16" class="ui-state-default ui-corner-all" style="text-align: center; padding: 2px;"/>
+
+        <p></p>
+        <label for="ate-ano" style="width: 120px; float: left; line-height: 20px; padding: 0 8px;">SENHA:</label> 
+        <input type="password" id="pass" name="pass" size="16" maxlength="16" class="ui-state-default ui-corner-all" style="text-align: center; padding: 2px;"/>
 
         <br/><br/>
 
