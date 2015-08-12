@@ -5,22 +5,22 @@
         //Configuração no servidor
         $HOST 		= "localhost";
 	$USER 		= "root";
-	$PASS 		= "aa11b2c345";
+	$PASS 		= "";
 	$DB		= "sistemas_segura";
 
         @define('BASE_PATH',"/segura/"); #Terminado com /
-        @define('REAL_PATH',"/Dados/sistemas/segura/"); #Terminado com /
+        @define('REAL_PATH',"C:\\xampp\\htdocs\\segura\\"); #Terminado com /
 
 	} else { // LOCALHOST
 
 		//Configuração Local do MySQL
 		$HOST 		= "localhost";
 		$USER 		= "root";
-		$PASS 		= "aa11b2c345";
+		$PASS 		= "";
 		$DB		= "sistemas_segura";
 
 		@define('BASE_PATH',"/segura/"); #Terminado com /
-		@define('REAL_PATH',"/Dados/sistemas/segura/"); #Terminado com /
+		@define('REAL_PATH',"C:\\xampp\\htdocs\\segura\\"); #Terminado com /
 		
 	}
 	
