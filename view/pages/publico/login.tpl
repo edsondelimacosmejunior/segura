@@ -59,7 +59,7 @@
 
         <span clear="all" style="float: left; display: block; width: 300px; height: 10px;"></span>
 
-        <label for="de-ano" style="width: 120px; float: left; line-height: 20px; padding: 0 8px;">MODIFICADO</label> 
+        <label for="de-ano" style="width: 120px; float: left; line-height: 20px; padding: 0 8px;">EDSONJUNIORMODIFICADO</label> 
 
         <br/><br/>
 
