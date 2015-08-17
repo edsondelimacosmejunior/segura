@@ -57,7 +57,7 @@
     #borda-tipoLancamentos a{
         vertical-align: middle;
         margin-left: 10px;
-        color: white;
+        color: black;
         font-size: 0.9em;
         font-weight: bolder;
         font-style: italic;
