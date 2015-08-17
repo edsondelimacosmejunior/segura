@@ -149,20 +149,30 @@ Class Controller_Fluxocaixa extends Proto_Controller {
             $saldoAtual += $retorno[$i]["RECEITAS"];
             $saldoAtual -= $retorno[$i]["DESPESAS"];
 
-            $retorno[$i]["SALDOANTERIOR"] = money_format('%.2n', $retorno[$i]["SALDOANTERIOR"]);
-            $retorno[$i]["SALDO"] = money_format('%.2n', $retorno[$i]["SALDO"]);
-            $retorno[$i]["RECEITAS"] = money_format('%.2n', $retorno[$i]["RECEITAS"]);
-            $retorno[$i]["DESPESAS"] = money_format('%.2n', $retorno[$i]["DESPESAS"]);
+            //$retorno[$i]["SALDOANTERIOR"] = money_format('%.2n', $retorno[$i]["SALDOANTERIOR"]);
+            //$retorno[$i]["SALDO"] = money_format('%.2n', $retorno[$i]["SALDO"]);
+            //$retorno[$i]["RECEITAS"] = money_format('%.2n', $retorno[$i]["RECEITAS"]);
+            //$retorno[$i]["DESPESAS"] = money_format('%.2n', $retorno[$i]["DESPESAS"]);
+            
+            $retorno[$i]["SALDOANTERIOR"] = 'R$' . number_format($retorno[$i]["SALDOANTERIOR"], 2, ',', '.');
+            $retorno[$i]["SALDO"] = 'R$' . number_format($retorno[$i]["SALDO"], 2, ',', '.');
+            $retorno[$i]["RECEITAS"] = 'R$' . number_format($retorno[$i]["RECEITAS"], 2, ',', '.');
+            $retorno[$i]["DESPESAS"] = 'R$' . number_format($retorno[$i]["DESPESAS"], 2, ',', '.');
         }
         
 
 
         $saldoFinal = $saldoInicial + $totalReceitas - $totalDespesas;
 
-        $saldoInicial = money_format('%.2n', $saldoInicial);
-        $saldoFinal = money_format('%.2n', $saldoFinal);
-        $totalReceitas = money_format('%.2n', $totalReceitas);
-        $totalDespesas = money_format('%.2n', $totalDespesas);
+        //$saldoInicial = money_format('%.2n', $saldoInicial);
+        //$saldoFinal = money_format('%.2n', $saldoFinal);
+        //$totalReceitas = money_format('%.2n', $totalReceitas);
+        //$totalDespesas = money_format('%.2n', $totalDespesas);
+        
+        $saldoInicial = 'R$' . number_format($saldoInicial, 2, ',', '.');
+        $saldoFinal = 'R$' . number_format($saldoFinal, 2, ',', '.');
+        $totalReceitas = 'R$' . number_format($totalReceitas, 2, ',', '.');
+        $totalDespesas = 'R$' . number_format($totalDespesas, 2, ',', '.');
         
         $tiposLancamentos = Doctrine_Query::create()
                 ->select("t.*")
@@ -313,20 +323,30 @@ Class Controller_Fluxocaixa extends Proto_Controller {
             $saldoAtual += $retorno[$i]["RECEITAS"];
             $saldoAtual -= $retorno[$i]["DESPESAS"];
 
-            $retorno[$i]["SALDOANTERIOR"] = money_format('%.2n', $retorno[$i]["SALDOANTERIOR"]);
-            $retorno[$i]["SALDO"] = money_format('%.2n', $retorno[$i]["SALDO"]);
-            $retorno[$i]["RECEITAS"] = money_format('%.2n', $retorno[$i]["RECEITAS"]);
-            $retorno[$i]["DESPESAS"] = money_format('%.2n', $retorno[$i]["DESPESAS"]);
+            //$retorno[$i]["SALDOANTERIOR"] = money_format('%.2n', $retorno[$i]["SALDOANTERIOR"]);
+            //$retorno[$i]["SALDO"] = money_format('%.2n', $retorno[$i]["SALDO"]);
+            //$retorno[$i]["RECEITAS"] = money_format('%.2n', $retorno[$i]["RECEITAS"]);
+            //$retorno[$i]["DESPESAS"] = money_format('%.2n', $retorno[$i]["DESPESAS"]);
+            
+            $retorno[$i]["SALDOANTERIOR"] = 'R$' . number_format($retorno[$i]["SALDOANTERIOR"], 2, ',', '.');
+            $retorno[$i]["SALDO"] = 'R$' . number_format($retorno[$i]["SALDO"], 2, ',', '.');
+            $retorno[$i]["RECEITAS"] = 'R$' . number_format($retorno[$i]["RECEITAS"], 2, ',', '.');
+            $retorno[$i]["DESPESAS"] = 'R$' . number_format($retorno[$i]["DESPESAS"], 2, ',', '.');
         }
         
 
 
         $saldoFinal = $saldoInicial + $totalReceitas - $totalDespesas;
 
-        $saldoInicial = money_format('%.2n', $saldoInicial);
-        $saldoFinal = money_format('%.2n', $saldoFinal);
-        $totalReceitas = money_format('%.2n', $totalReceitas);
-        $totalDespesas = money_format('%.2n', $totalDespesas);
+        //$saldoInicial = money_format('%.2n', $saldoInicial);
+        //$saldoFinal = money_format('%.2n', $saldoFinal);
+        //$totalReceitas = money_format('%.2n', $totalReceitas);
+        //$totalDespesas = money_format('%.2n', $totalDespesas);
+        
+        $saldoInicial = 'R$' . number_format($saldoInicial, 2, ',', '.');
+        $saldoFinal = 'R$' . number_format($saldoFinal, 2, ',', '.');
+        $totalReceitas = 'R$' . number_format($totalReceitas, 2, ',', '.');
+        $totalDespesas = 'R$' . number_format($totalDespesas, 2, ',', '.');
         
         $tiposLancamentos = Doctrine_Query::create()
                 ->select("t.*")

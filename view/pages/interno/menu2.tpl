@@ -30,50 +30,50 @@
                     <li>
                         <a href="javascript:menu_listarTipoLancamento();"><span>Tipo de Lançamento</span></a>
                     </li>
-            </li>
-            <li>
-                <a href="javascript:menu_listarFormaPagamento();"><span>Forma de Pagamento</span></a>
-            </li>
-            <li><a class="parent"><span>Lançamentos</span></a>
-                <ul>
-                    <li><a href="javascript:menu_cadastrarLancamentoFinanceiro();"><span>Cadastrar</span></a></li>
-                    <li><a href="javascript:menu_listarLancamentoFinanceiro();"><span>Listar</span></a></li>
+
+                    <li>
+                        <a href="javascript:menu_listarFormaPagamento();"><span>Forma de Pagamento</span></a>
+                    </li>
+                    <li><a class="parent"><span>Lançamentos</span></a>
+                        <ul>
+                            <li><a href="javascript:menu_cadastrarLancamentoFinanceiro();"><span>Cadastrar</span></a></li>
+                            <li><a href="javascript:menu_listarLancamentoFinanceiro();"><span>Listar</span></a></li>
+                        </ul>
+                    </li>
+                    <li><a class="parent"><span>Relatórios</span></a>
+                        <ul>
+                            <li><a href="javascript:menu_mostrarRelatorioDespesa();"><span>Despesas</span></a></li>
+                            <li><a href="javascript:menu_mostrarRelatorioReceita();"><span>Receita</span></a></li>
+                            <li><a href="javascript:menu_mostrarRelatorioFluxoCaixa();"><span>Fluxo de Caixa</span></a></li>
+                            <li><a href="javascript:menu_mostrarRelatorioFluxoCaixaPrevisto();"><span>Fluxo de Caixa Previsto</span></a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
-            <li><a class="parent"><span>Relatórios</span></a>
+            <li><a><span>Instrutor</span></a>
                 <ul>
-                    <li><a href="javascript:menu_mostrarRelatorioDespesa();"><span>Despesas</span></a></li>
-                    <li><a href="javascript:menu_mostrarRelatorioReceita();"><span>Receita</span></a></li>
-                    <li><a href="javascript:menu_mostrarRelatorioFluxoCaixa();"><span>Fluxo de Caixa</span></a></li>
-                    <li><a href="javascript:menu_mostrarRelatorioFluxoCaixaPrevisto();"><span>Fluxo de Caixa Previsto</span></a></li>
+                    <li><a href="javascript:menu_cadastrarInstrutor();"><span>Cadastrar</span></a></li>
+                    <li><a href="javascript:menu_listarInstrutor();"><span>Listar</span></a></li>
                 </ul>
             </li>
-        </ul>
-        </li>
-        <li><a><span>Instrutor</span></a>
-            <ul>
-                <li><a href="javascript:menu_cadastrarInstrutor();"><span>Cadastrar</span></a></li>
-                <li><a href="javascript:menu_listarInstrutor();"><span>Listar</span></a></li>
-            </ul>
-        </li>
 
-        <li><a><span>Turma</span></a>
-            <ul>
-                <li><a href="javascript:menu_cadastrarTurma();"><span>Cadastrar</span></a></li>
-                <li><a href="javascript:menu_listarTurma();"><span>Listar Todas</span></a></li>
-                <li><a href="javascript:menu_listarTurmaAtiva();"><span>Listar em Aberto</span></a></li>
-                <li><a href="javascript:menu_listarTurmaConcluida();"><span>Listar Concluídas</span></a></li>
-            </ul>
-        </li>
+            <li><a><span>Turma</span></a>
+                <ul>
+                    <li><a href="javascript:menu_cadastrarTurma();"><span>Cadastrar</span></a></li>
+                    <li><a href="javascript:menu_listarTurma();"><span>Listar Todas</span></a></li>
+                    <li><a href="javascript:menu_listarTurmaAtiva();"><span>Listar em Aberto</span></a></li>
+                    <li><a href="javascript:menu_listarTurmaConcluida();"><span>Listar Concluídas</span></a></li>
+                </ul>
+            </li>
 
-        <li><a><span>Usuário</span></a>
-            <ul>
-                <li><a href="javascript:menu_cadastrarUsuario();"><span>Cadastrar</span></a></li>
-                <li><a href="javascript:menu_listarUsuario();"><span>Listar</span></a></li>
-            </ul>
-        </li>
+            <li><a><span>Usuário</span></a>
+                <ul>
+                    <li><a href="javascript:menu_cadastrarUsuario();"><span>Cadastrar</span></a></li>
+                    <li><a href="javascript:menu_listarUsuario();"><span>Listar</span></a></li>
+                </ul>
+            </li>
 
-        <li class="last"><a href="logout"><span>Sair</span></a></li>
+            <li class="last"><a href="logout"><span>Sair</span></a></li>
         </ul>
     </div>
 
@@ -136,7 +136,7 @@
             $().message("Você não tem acesso a essa funcionalidade. Caso necessite, entre em contato com o departamento de Tecnologia da Informação.");
         }
     }
-    
+
     function menu_cadastrarTipoLancamento() {
         if ($("#menu_nivelAcesso").val() == "Admin") {
             openlink("{{$BASE_PATH}}interno/modulo/financeiro/tipolancamento/abrirFormulario/")
@@ -208,7 +208,7 @@
             $().message("Você não tem acesso a essa funcionalidade. Caso necessite, entre em contato com o departamento de Tecnologia da Informação.");
         }
     }
-    
+
     function menu_mostrarRelatorioFluxoCaixaPrevisto() {
         if ($("#menu_nivelAcesso").val() == "Admin") {
             openlink("{{$BASE_PATH}}interno/modulo/financeiro/relatorios/fluxocaixaprevisto/mostrar/")
