@@ -414,7 +414,7 @@
                 success: function(data) {
                     respostaDoControlador = eval(data);
                     $().message("Lançamento cadastrado com sucesso!");
-                    openlink("{{$BASE_PATH}}interno/modulo/financeiro/lancamentofinanceiro/listar/");
+                    //openlink("{{$BASE_PATH}}interno/modulo/financeiro/lancamentofinanceiro/listar/");
                 },
                 error: function(data) {
                     respostaDoControlador = eval(data);
