@@ -68,6 +68,10 @@
                     <td><input type="text" id="formLancamento_pagarReceber" size="70" value="{{$lancamento.pagarReceberNome}}" readonly="" /></td>
                 </tr>
                 <tr>
+                    <td><label for="formLancamento_centroCusto">Centro de Custo:</label></td>
+                    <td><input type="text" id="formLancamento_centroCusto" size="70" value="{{$lancamento.centroCusto}}" readonly="" /></td>
+                </tr>
+                <tr>
                     <td><label for="formLancamento_tipoLancamento">Tipo de Lançamento:</label></td>
                     <td><input type="text" id="formLancamento_tipoLancamento" size="70" value="{{$lancamento.tipoLancamento}}" readonly="" /></td>
                 </tr>

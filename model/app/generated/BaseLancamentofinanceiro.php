@@ -20,14 +20,16 @@
  * @property float $valorLiquido
  * @property float $valorBaixado
  * @property timestamp $dataCriacao
- * @property integer $idFormaPagamento
- * @property integer $idTipoLancamento
  * @property integer $usuarioCriacao
  * @property integer $idEmpresa
+ * @property integer $idCentroCusto
+ * @property integer $idFormaPagamento
+ * @property integer $idTipoLancamento
  * @property Empresa $Empresa
+ * @property Usuario $Usuario
+ * @property Centrocusto $Centrocusto
  * @property Formapagamento $Formapagamento
  * @property Tipolancamento $Tipolancamento
- * @property Usuario $Usuario
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -54,10 +56,11 @@ abstract class BaseLancamentofinanceiro extends Doctrine_Record
         $this->hasColumn('valorLiquido', 'float', null, array('type' => 'float', 'notnull' => true));
         $this->hasColumn('valorBaixado', 'float', null, array('type' => 'float'));
         $this->hasColumn('dataCriacao', 'timestamp', null, array('type' => 'timestamp'));
-        $this->hasColumn('idFormaPagamento', 'integer', 4, array('type' => 'integer', 'length' => 4, 'notnull' => true));
-        $this->hasColumn('idTipoLancamento', 'integer', 4, array('type' => 'integer', 'length' => 4, 'notnull' => true));
         $this->hasColumn('usuarioCriacao', 'integer', 4, array('type' => 'integer', 'length' => 4, 'notnull' => true));
         $this->hasColumn('idEmpresa', 'integer', 4, array('type' => 'integer', 'length' => 4, 'notnull' => true));
+        $this->hasColumn('idCentroCusto', 'integer', 4, array('type' => 'integer', 'length' => 4, 'notnull' => true));
+        $this->hasColumn('idFormaPagamento', 'integer', 4, array('type' => 'integer', 'length' => 4, 'notnull' => true));
+        $this->hasColumn('idTipoLancamento', 'integer', 4, array('type' => 'integer', 'length' => 4, 'notnull' => true));
     }
 
     public function setUp()
@@ -65,13 +68,16 @@ abstract class BaseLancamentofinanceiro extends Doctrine_Record
         $this->hasOne('Empresa', array('local' => 'idEmpresa',
                                        'foreign' => 'idEmpresa'));
 
+        $this->hasOne('Usuario', array('local' => 'usuarioCriacao',
+                                       'foreign' => 'idUsuario'));
+
+        $this->hasOne('Centrocusto', array('local' => 'idCentroCusto',
+                                           'foreign' => 'idCentroCusto'));
+
         $this->hasOne('Formapagamento', array('local' => 'idFormaPagamento',
                                               'foreign' => 'idFormaPagamento'));
 
         $this->hasOne('Tipolancamento', array('local' => 'idTipoLancamento',
                                               'foreign' => 'idTipoLancamento'));
-
-        $this->hasOne('Usuario', array('local' => 'usuarioCriacao',
-                                       'foreign' => 'idUsuario'));
     }
 }

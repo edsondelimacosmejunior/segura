@@ -270,6 +270,17 @@
                     </td>
                 </tr>
                 <tr>
+                    <td><label for="formLancamento_centroCusto">Centro de Custo:</label></td>
+                    <td>
+                        <select id="formLancamento_centroCusto">
+                            <option value="">Escolha uma opção</option>
+                            {{foreach from=$centroCustos item=centroCustos}}
+                            <option value="{{$centroCustos.idCentroCusto}}">{{$centroCustos.nome}}</option>
+                            {{/foreach}}
+                        </select> 
+                    </td>
+                </tr>
+                <tr>
                     <td><label for="formLancamento_tipoLancamento">Tipo de Lançamento:</label></td>
                     <td>
                         <select id="formLancamento_tipoLancamento">
@@ -392,6 +403,11 @@
             campos[contador] = "formLancamento_tipoLancamento";
             contador = contador + 1;
         }
+        
+        if ($("#formLancamento_centroCusto").val() == "") {
+            campos[contador] = "formLancamento_centroCusto";
+            contador = contador + 1;
+        }
 
         if (contador == 0) {
             $.ajax({
@@ -408,6 +424,7 @@
                     "cartorio": $("#formLancamento_cartorio").val(),
                     "idFormaPagamento": $("#formLancamento_formaPagamento").val(),
                     "idTipoLancamento": $("#formLancamento_tipoLancamento").val(),
+                    "idCentroCusto": $("#formLancamento_centroCusto").val(),
                     "idEmpresa": $("#formLancamento_empresa").val()
                 },
                 cache: false,

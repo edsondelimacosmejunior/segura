@@ -255,6 +255,7 @@
         <thead class="ui-widget-header ">
             <tr>
                 <th>#</th>
+                <th>Centro de Custo</th>
                 <th>Fornecedor</th>
                 <th>Lançamento Financeiro</th>
                 <th>Data de Vencimento</th>
@@ -270,6 +271,7 @@
             {{foreach from=$lancamentosFinanceiros item=lancamentosFinanceiros}}
             <tr>
                 <td>{{$lancamentosFinanceiros.idLancamentoFinanceiro}}</td>
+                <td>{{$lancamentosFinanceiros.centroCusto}}</td>
                 <td>{{$lancamentosFinanceiros.nomeFantasia}}</td>
                 <td>{{$lancamentosFinanceiros.nome}}</td>
                 <td>{{$lancamentosFinanceiros.dataVencimento}}</td>

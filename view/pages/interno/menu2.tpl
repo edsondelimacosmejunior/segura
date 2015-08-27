@@ -30,9 +30,11 @@
                     <li>
                         <a href="javascript:menu_listarTipoLancamento();"><span>Tipo de Lançamento</span></a>
                     </li>
-
                     <li>
                         <a href="javascript:menu_listarFormaPagamento();"><span>Forma de Pagamento</span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:menu_listarCentroCusto();"><span>Centro de Custo</span></a>
                     </li>
                     <li><a class="parent"><span>Lançamentos</span></a>
                         <ul>
@@ -148,6 +150,14 @@
     function menu_listarTipoLancamento() {
         if ($("#menu_nivelAcesso").val() == "Admin") {
             openlink("{{$BASE_PATH}}interno/modulo/financeiro/tipolancamento/listar/")
+        } else {
+            $().message("Você não tem acesso a essa funcionalidade. Caso necessite, entre em contato com o departamento de Tecnologia da Informação.");
+        }
+    }
+    
+    function menu_listarCentroCusto() {
+        if ($("#menu_nivelAcesso").val() == "Admin") {
+            openlink("{{$BASE_PATH}}interno/modulo/financeiro/centrocusto/listar/")
         } else {
             $().message("Você não tem acesso a essa funcionalidade. Caso necessite, entre em contato com o departamento de Tecnologia da Informação.");
         }

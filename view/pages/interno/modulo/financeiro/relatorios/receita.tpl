@@ -71,6 +71,37 @@
         overflow: scroll;
         text-align: center;
     }
+    
+    
+    #borda-centroCustos{
+        margin-top:5px;
+        width: 480px;
+        height: 25px;
+        display:inline-block;
+        border-left:10px;
+        background-image: url("{{$IMG}}tab2.jpg");
+        border: 1px;
+        border-color: #AAAAAA;
+        border-style: solid;
+    }
+    #borda-centroCustos a{
+        vertical-align: middle;
+        margin-left: 10px;
+        color: black;
+        font-size: 0.9em;
+        font-weight: bolder;
+        font-style: italic;
+
+    }
+    #centroCustos{
+        width: 480px;
+        border-left:10px;
+        display: block;
+        height: 180px;
+        overflow: scroll;
+        text-align: center;
+    }
+    
 
     #selectable .ui-selecting { background: #FECA40; }
     #selectable:hover{
@@ -102,6 +133,22 @@
                     //result.append((index));
                     if (index != "") {
                         $("#tipoLancamento").val($("#tipoLancamento").val() + "-" + index);
+                    }
+                });
+            }
+        });
+    });
+    
+    $(function() {
+        $("#selectable2").selectable({
+            stop: function() {
+                //var result = $( "#select-result" ).empty();
+                $("#centroCusto").val("");
+                $(".ui-selected", this).each(function() {
+                    var index = $(this).attr("foo");
+                    //result.append((index));
+                    if (index != "") {
+                        $("#centroCusto").val($("#centroCusto").val() + "-" + index);
                     }
                 });
             }
@@ -156,7 +203,7 @@
 <script>$("#statusInformacao").html("Você está em: Financeiro >> Relatórios >> Receita.");</script>
 
 <input type="text" id="tipoLancamento" style="display: none;" value="x" />
-<input type="text" id="funcao" style="display: none;" />
+<input type="text" id="centroCusto" style="display: none;" value="x" />
 
 <div id="relatorio-contain" class="ui-widget" style="margin:20px auto;">
     <table id="relatorio" class="ui-widget ui-widget-content">
@@ -176,6 +223,15 @@
                                 <li rel="" foo="" class="ui-widget-content">Todos</li> 
                                 {{foreach from=$tipoLancamentos item=tipoLancamentos}}
                                 <li rel="{{$tipoLancamentos.idTipoLancamento}}" foo="{{$tipoLancamentos.idTipoLancamento}}" class="ui-widget-content">{{$tipoLancamentos.nome}}</li>
+                                    {{/foreach}}
+                            </ol>
+                        </div>
+                        <div id="borda-centroCustos" class="ui-corner-top"><a>Selecione o(s) Centro(s) de Custo(s).</a></div>
+                        <div id="centroCustos" class="ui-layout-content" name="c2" id="c2">
+                            <ol id="selectable2">
+                                <li rel="" foo="" class="ui-widget-content">Todos</li> 
+                                {{foreach from=$centroCustos item=centroCustos}}
+                                <li rel="{{$centroCustos.idCentroCusto}}" foo="{{$centroCustos.idCentroCusto}}" class="ui-widget-content">{{$centroCustos.nome}}</li>
                                     {{/foreach}}
                             </ol>
                         </div>
@@ -217,7 +273,7 @@
     <div id="formulario">
         <form action="../extensions/excel/modeloGCPHPEXCEL.php" method="post" id="excel" style="display: none;">
             <input type="text" id="nomeEXCEL" name="nomeEXCEL" />
-            <input type="text" id="cabecalhoEXCEL" name="cabecalhoEXCEL" value="<th>#</th><th>Fornecedor</th><th>Receita</th><th>Data de Emissão</th><th>Data de Vencimento</th><th>Valor Original</th><th>Valor Baixado</th><th>Data de Baixa</th><th>Tipo de Lançamento</th>" />
+            <input type="text" id="cabecalhoEXCEL" name="cabecalhoEXCEL" value="<th>#</th><th>Centro de Custo</th><th>Fornecedor</th><th>Receita</th><th>Data de Emissão</th><th>Data de Vencimento</th><th>Valor Original</th><th>Valor Baixado</th><th>Data de Baixa</th><th>Tipo de Lançamento</th>" />
             <input type="text" id="extrasEXCEL" name="extrasEXCEL" />
             <input type="text" id="tabelaEXCEL" name="tabelaEXCEL" />
         </form>
@@ -227,6 +283,7 @@
         <thead class="ui-widget-header ">
             <tr id="cabecalho">
                 <th>#</th>
+                <th>Centro de Custo</th>
                 <th>Fornecedor</th>
                 <th>Receita</th>
                 <th>Data de Emissão</th>
@@ -269,7 +326,7 @@
         }
 
         if (contador == 0) {
-            var newRowContent = "<tr><td colspan=\"9\">Buscando dados no servidor. Por favor aguarde!</td></tr>";
+            var newRowContent = "<tr><td colspan=\"10\">Buscando dados no servidor. Por favor aguarde!</td></tr>";
             $("#resultado tbody").append(newRowContent);
 
             document.getElementById("resultado-contain").style.display = "inline-block";
@@ -279,6 +336,7 @@
                 url: "{{$BASE_PATH}}interno/modulo/financeiro/relatorios/receita/gerar",
                 data: {
                     "tipoLancamento": $("#tipoLancamento").val(),
+                    "centroCusto": $("#centroCusto").val(),
                     "dataInicial": $("#dataInicial").val(),
                     "dataFinal": $("#dataFinal").val()
                 },
@@ -288,7 +346,7 @@
                     $("#resultado tbody").html("");
                     if (data.length > 0) {
                         for (var i = 0; i < data.length; i++) {
-                            var newRowContent = "<tr><td>" + data[i].idLancamentoFinanceiro + "</td><td>" + data[i].nomeFantasia + "</td><td>" + data[i].nome + "</td><td> " + data[i].dataEmissao + "</td><td> " + data[i].dataVencimento + "</td><td>" + data[i].valorOriginal + "</td><td>" + data[i].valorBaixado + "</td><td>" + data[i].dataBaixa + "</td><td>" + data[i].tipoLancamento + "</td></tr>";
+                            var newRowContent = "<tr><td>" + data[i].idLancamentoFinanceiro + "</td><td>" + data[i].centroCusto + "</td><td>" + data[i].nomeFantasia + "</td><td>" + data[i].nome + "</td><td> " + data[i].dataEmissao + "</td><td> " + data[i].dataVencimento + "</td><td>" + data[i].valorOriginal + "</td><td>" + data[i].valorBaixado + "</td><td>" + data[i].dataBaixa + "</td><td>" + data[i].tipoLancamento + "</td></tr>";
                             $("#resultado tbody").append(newRowContent);
                         }
                         $("#valorTotal").append("Valor total da sua pesquisa: " + data[data.length - 1].valorTotal);

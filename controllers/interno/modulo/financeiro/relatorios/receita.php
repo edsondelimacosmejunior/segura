@@ -26,15 +26,16 @@ Class Controller_Receita extends Proto_Controller {
         $this->init_session();
 
 
-        $tipoLancamentos = Doctrine_Query::create()
+        $centroCustos = Doctrine_Query::create()
                 ->select("b.*")
-                ->from("Tipolancamento b")
+                ->from("Centrocusto b")
                 ->where("b.status like 'Ativo'")
                 ->execute()
                 ->toArray();
 
         //Envia os Centros de Custo para a página
         $this->set("tipoLancamentos", $tipoLancamentos);
+        $this->set("centroCustos", $centroCustos);
 
         //Abre a página
         $this->show("pages/interno/modulo/financeiro/relatorios/receita.tpl");
@@ -45,6 +46,7 @@ Class Controller_Receita extends Proto_Controller {
         $this->init_session();
 
         $tipoLancamento = $this->escape("tipoLancamento");
+        $centroCusto = $this->escape("centroCusto");
         $dataInicial = implode("-", array_reverse(explode("/", $this->escape("dataInicial"))));
         $dataFinal = implode("-", array_reverse(explode("/", $this->escape("dataFinal"))));
 
@@ -80,6 +82,34 @@ Class Controller_Receita extends Proto_Controller {
 
             $complementoSql = $complementoSql . ") ";
         }
+        
+        if (strcmp($centroCusto, "") != 0) {
+            //Separa a String oriunda do filtro, obtendo todos os movimentos escolhidos
+            $escolhidos = explode("-", $centroCusto);
+            //Contador de movimentos escolhidos
+            $contCentroCusto = 0;
+
+            $complementoSql = $complementoSql . " and (";
+
+            //Adiciona todos os movimentos escolhidos à SQL
+            for ($i = 1; $i < sizeof($escolhidos); $i++) {
+
+                //Verifica se já foi adicionado algum movimento à SQL, se sim, adiciona um OR
+                if ($contCentroCusto > 0) {
+                    //Adiciona o filtro à SQL
+                    $complementoSql = $complementoSql . " or l.idCentroCusto = " . $escolhidos[$i] . "";
+                    //Incrementa o contador de movimentos
+                    $contCentroCusto++;
+                } else {
+                    //Adiciona o filtro à SQL
+                    $complementoSql = $complementoSql . "l.idCentroCusto = " . $escolhidos[$i] . "";
+                    //Incrementa o contador de movimentos
+                    $contCentroCusto++;
+                }
+            }
+
+            $complementoSql = $complementoSql . ") ";
+        }
 
         $lancamentos = Doctrine_Query::create()
                 ->select("l.idLancamentoFinanceiro, "
@@ -90,10 +120,12 @@ Class Controller_Receita extends Proto_Controller {
                         . "l.valorBaixado, "
                         . "l.dataBaixa, "
                         . "t.nome as tipoLancamento, "
-                        . "e.nomeFantasia as nomeFantasia")
+                        . "e.nomeFantasia as nomeFantasia, "
+                        . "c.nome as centroCusto")
                 ->from("Lancamentofinanceiro l")
                 ->leftJoin("l.Empresa e")
                 ->leftJoin("l.Tipolancamento t")
+                ->leftJoin("l.Centrocusto c")
                 ->where("l.status not like 'Excluido' and l.pagarReceber = 1 and l.dataVencimento >= '$dataInicial' and l.dataVencimento <= '$dataFinal' $complementoSql")
                 ->execute()
                 ->toArray();

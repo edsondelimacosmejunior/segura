@@ -16,6 +16,24 @@
             autoOpen: false
         });
     });
+    
+    $(function() {
+        $("#dialog-formularioCentroCusto").dialog({
+            height: 250,
+            width: 600,
+            modal: true,
+            autoOpen: false
+        });
+    });
+
+    $(function() {
+        $("#dialog-formularioEditaCentroCusto").dialog({
+            height: 250,
+            width: 600,
+            modal: true,
+            autoOpen: false
+        });
+    });
 
     $(function() {
         $("#dialog-formularioFormaPagamento").dialog({
@@ -102,6 +120,42 @@
         </tr>
         <tr>
             <td><button onclick="editarTipoLancamento()" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" >Gravar</button></td>
+        </tr>
+    </table>
+</div>
+
+<div id="dialog-formularioCentroCusto" title="Novo Centro de Custo">
+    <table>
+        <tr>
+            <td><label for="dialog-formularioCentroCusto_nome">Centro de Custo:</label></td>
+            <td><input type="text" id="dialog-formularioCentroCusto_nome" size="50" maxlength="50" /></td>
+        </tr>
+        <tr>
+            <td><label for="dialog-formularioCentroCusto_descricao">Descrição:</label></td>
+            <td><input type="text" id="dialog-formularioCentroCusto_descricao" size="50" maxlength="50" /></td>
+        </tr>
+        <tr>
+            <td><button onclick="gravarCentroCusto()" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" >Gravar</button></td>
+        </tr>
+    </table>
+</div>
+
+
+<div id="dialog-formularioEditaCentroCusto" title="Editar Centro de Custo">
+    <table>
+        <tr>
+            <td><input type="text" id="dialog-formularioEditaCentroCusto_id" size="10" style="display: none" readonly /></td>
+        </tr>
+        <tr>
+            <td><label for="dialog-formularioEditaCentroCusto_nome">Centro de Custo:</label></td>
+            <td><input type="text" id="dialog-formularioEditaCentroCusto_nome" size="50" maxlength="50" /></td>
+        </tr>
+        <tr>
+            <td><label for="dialog-formularioEditaCentroCusto_descricao">Descrição:</label></td>
+            <td><input type="text" id="dialog-formularioEditaCentroCusto_descricao" size="50" maxlength="50" /></td>
+        </tr>
+        <tr>
+            <td><button onclick="editarCentroCusto()" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" >Gravar</button></td>
         </tr>
     </table>
 </div>

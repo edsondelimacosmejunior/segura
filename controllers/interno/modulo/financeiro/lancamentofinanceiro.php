@@ -24,6 +24,13 @@ Class Controller_Lancamentofinanceiro extends Proto_Controller {
     function abrirFormulario() {
         //Inicia uma Sessão
         $this->init_session();
+        
+        $centroCustos = Doctrine_Query::create()
+                ->select("b.*")
+                ->from("Centrocusto b")
+                ->where("b.status like 'Ativo'")
+                ->execute()
+                ->toArray();
 
         $formasPagamentos = Doctrine_Query::create()
                 ->select("f.*")
@@ -48,6 +55,7 @@ Class Controller_Lancamentofinanceiro extends Proto_Controller {
                 ->toArray();
 
         //Envia os Centros de Custo para a página
+        $this->set("centroCustos", $centroCustos);
         $this->set("formasPagamentos", $formasPagamentos);
         $this->set("tiposLancamentos", $tiposLancamentos);
         $this->set("empresas", $empresas);
@@ -69,11 +77,13 @@ Class Controller_Lancamentofinanceiro extends Proto_Controller {
                         . "l.status, "
                         . "t.nome as tipoLancamento, "
                         . "f.nome as formaPagamento, "
-                        . "e.nomeFantasia as nomeFantasia")
+                        . "e.nomeFantasia as nomeFantasia, "
+                        . "c.nome as centroCusto")
                 ->from("Lancamentofinanceiro l")
                 ->leftJoin("l.Tipolancamento t")
                 ->leftJoin("l.Formapagamento f")
                 ->leftJoin("l.Empresa e")
+                ->leftJoin("l.Centrocusto c")
                 ->where("l.status not like 'Excluido'")
                 ->execute()
                 ->toArray();
@@ -115,6 +125,7 @@ Class Controller_Lancamentofinanceiro extends Proto_Controller {
         //$lancamentoFinanceiro->valorBaixado = $this->escape("valorBaixado");
         $lancamentoFinanceiro->idFormaPagamento = $this->escape("idFormaPagamento");
         $lancamentoFinanceiro->idTipoLancamento = $this->escape("idTipoLancamento");
+        $lancamentoFinanceiro->idCentroCusto = $this->escape("idCentroCusto");
         $lancamentoFinanceiro->idEmpresa = $this->escape("idEmpresa");
         $lancamentoFinanceiro->status = "Pendente";
         $lancamentoFinanceiro->usuarioCriacao = $idUsuario;
@@ -134,11 +145,12 @@ Class Controller_Lancamentofinanceiro extends Proto_Controller {
         $idLancamentoFinanceiro = $this->escape("idLancamentoFinanceiro");
 
         $lancamentos = Doctrine_Query::create()
-                ->select("l.*, t.nome as tipoLancamento, f.nome as formaPagamento, e.nomeFantasia as nomeFantasia")
+                ->select("l.*, t.nome as tipoLancamento, f.nome as formaPagamento, e.nomeFantasia as nomeFantasia, c.nome as centroCusto")
                 ->from("Lancamentofinanceiro l")
                 ->leftJoin("l.Tipolancamento t")
                 ->leftJoin("l.Formapagamento f")
                 ->leftJoin("l.Empresa e")
+                ->leftJoin("l.Centrocusto c")
                 ->where("l.idLancamentoFinanceiro = $idLancamentoFinanceiro")
                 ->execute()
                 ->toArray();
@@ -170,11 +182,12 @@ Class Controller_Lancamentofinanceiro extends Proto_Controller {
         //$empresa = Doctrine::getTable("Empresa")->findOneByIdempresa($idEmpresa);
 
         $lancamentos = Doctrine_Query::create()
-                ->select("l.*, t.idTipoLancamento, t.nome as tipoLancamento, f.idFormaPagamento, f.nome as formaPagamento, e.idEmpresa, e.nomeFantasia as nomeFantasia")
+                ->select("l.*, t.idTipoLancamento, t.nome as tipoLancamento, f.idFormaPagamento, f.nome as formaPagamento, e.idEmpresa, e.nomeFantasia as nomeFantasia, c.idCentroCusto, c.nome as centroCusto")
                 ->from("Lancamentofinanceiro l")
                 ->leftJoin("l.Tipolancamento t")
                 ->leftJoin("l.Formapagamento f")
                 ->leftJoin("l.Empresa e")
+                ->leftJoin("l.Centrocusto c")
                 ->where("l.idLancamentoFinanceiro = $idLancamentoFinanceiro")
                 ->execute()
                 ->toArray();
@@ -216,10 +229,18 @@ Class Controller_Lancamentofinanceiro extends Proto_Controller {
                 ->orderBy("e.nomeFantasia")
                 ->execute()
                 ->toArray();
+        
+        $centroCustos = Doctrine_Query::create()
+                ->select("b.*")
+                ->from("Centrocusto b")
+                ->where("b.status like 'Ativo'")
+                ->execute()
+                ->toArray();
 
         //Envia os Centros de Custo para a página
         $this->set("formasPagamentos", $formasPagamentos);
         $this->set("tiposLancamentos", $tiposLancamentos);
+        $this->set("centroCustos", $centroCustos);
         $this->set("empresas", $empresas);
         $this->set("lancamento", $lancamento);
 
@@ -248,6 +269,7 @@ Class Controller_Lancamentofinanceiro extends Proto_Controller {
         $lancamentoFinanceiro->valorLiquido = $lancamentoFinanceiro->valorOriginal - $lancamentoFinanceiro->desconto + $lancamentoFinanceiro->juros + $lancamentoFinanceiro->cartorio;
         $lancamentoFinanceiro->idFormaPagamento = $this->escape("idFormaPagamento");
         $lancamentoFinanceiro->idTipoLancamento = $this->escape("idTipoLancamento");
+        $lancamentoFinanceiro->idCentroCusto = $this->escape("idCentroCusto");
         $lancamentoFinanceiro->idEmpresa = $this->escape("idEmpresa");
 
         //Verifica se a Nota Fiscal foi salva corretamente
