@@ -394,11 +394,10 @@ Class Controller_Fluxocaixaprevisto extends Proto_Controller {
         }
         
 
-        //setlocale(LC_MONETARY, 'it_IT');
+        setlocale(LC_MONETARY, 'it_IT');
 
         //$valorTotal = money_format('%.2n', $valorTotal);
-        //$valorTotal = pv($valorTotal);
-        $valorTotal = 'R$' . number_format($valorTotal, 2, ',', '.');
+        $valorTotal = pv($valorTotal);
 
 
 
@@ -430,11 +429,10 @@ Class Controller_Fluxocaixaprevisto extends Proto_Controller {
         }
         
 
-        //setlocale(LC_MONETARY, 'it_IT');
+        setlocale(LC_MONETARY, 'it_IT');
 
         //$valorTotal = money_format('%.2n', $valorTotal);
-        //$valorTotal = pv($valorTotal);
-        $valorTotal = 'R$' . number_format($valorTotal, 2, ',', '.');
+        $valorTotal = pv($valorTotal);
 
 
 
@@ -466,12 +464,10 @@ Class Controller_Fluxocaixaprevisto extends Proto_Controller {
         }
         
 
-        //setlocale(LC_MONETARY, 'it_IT');
+        setlocale(LC_MONETARY, 'it_IT');
 
         //$valorTotal = money_format('%.2n', $valorTotal);
-        //$valorTotal = pv($valorTotal);
-        $valorTotal = 'R$' . number_format($valorTotal, 2, ',', '.');
-
+        $valorTotal = pv($valorTotal);
 
 
         echo $valorTotal;
@@ -502,11 +498,10 @@ Class Controller_Fluxocaixaprevisto extends Proto_Controller {
         }
         
 
-        //setlocale(LC_MONETARY, 'it_IT');
+        setlocale(LC_MONETARY, 'it_IT');
 
         //$valorTotal = money_format('%.2n', $valorTotal);
-        //$valorTotal = pv($valorTotal);
-        $valorTotal = 'R$' . number_format($valorTotal, 2, ',', '.');
+        $valorTotal = pv($valorTotal);
 
 
 
