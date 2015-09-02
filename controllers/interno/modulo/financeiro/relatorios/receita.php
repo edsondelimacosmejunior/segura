@@ -25,6 +25,12 @@ Class Controller_Receita extends Proto_Controller {
         //Inicia uma Sessão
         $this->init_session();
 
+        $tipoLancamentos = Doctrine_Query::create()
+                ->select("b.*")
+                ->from("Tipolancamento b")
+                ->where("b.status like 'Ativo'")
+                ->execute()
+                ->toArray();
 
         $centroCustos = Doctrine_Query::create()
                 ->select("b.*")
