@@ -189,7 +189,7 @@
             cache: false,
             success: function(data) {
                 if (data > 0) {
-                    div.innerHTML = data;
+                    div.innerHTML = "R$ " + moeda(data, 2, ',', '.') + "";
                 } else {
                     div.innerHTML = "-";
                 }
@@ -218,7 +218,7 @@
             cache: false,
             success: function(data) {
                 if (data > 0) {
-                    div.innerHTML = data;
+                    div.innerHTML = "R$ " + moeda(data, 2, ',', '.') + "";
                 } else {
                     div.innerHTML = "-";
                 }
@@ -246,7 +246,7 @@
             cache: false,
             success: function(data) {
                 if (data > 0) {
-                    div.innerHTML = data;
+                    div.innerHTML = "R$ " + moeda(data, 2, ',', '.') + "";
                 } else {
                     div.innerHTML = "-";
                 }
@@ -274,7 +274,7 @@
             cache: false,
             success: function(data) {
                 if (data > 0) {
-                    div.innerHTML = data;
+                    div.innerHTML = "R$ " + moeda(data, 2, ',', '.') + "";
                 } else {
                     div.innerHTML = "-";
                 }
@@ -427,7 +427,7 @@
                     </tr>
                 </thead>
                 <tbody style="margin-bottom: 30px;">
-                    {{foreach from=$tiposLancamentos item=tip}}
+                    {{foreach from=$tiposLancamentosReceitas item=tip}}
                     <tr>
                         <td style="width: 150px;">{{$tip.nome}}</td>
                         {{foreach from=$calendario item=cal name=foo}}
@@ -464,7 +464,7 @@
                     </tr>
                 </thead>
                 <tbody style="margin-bottom: 30px;">
-                    {{foreach from=$tiposLancamentos item=tip}}
+                    {{foreach from=$tiposLancamentosDespesas item=tip}}
                     <tr>
                         <td style="width: 150px;">{{$tip.nome}}</td>
                         {{foreach from=$calendario item=cal name=foo}}

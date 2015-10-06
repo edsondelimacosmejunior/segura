@@ -174,10 +174,21 @@ Class Controller_Fluxocaixa extends Proto_Controller {
         $totalReceitas = 'R$' . number_format($totalReceitas, 2, ',', '.');
         $totalDespesas = 'R$' . number_format($totalDespesas, 2, ',', '.');
         
-        $tiposLancamentos = Doctrine_Query::create()
+        $tiposLancamentosDespesas = Doctrine_Query::create()
+                ->select("DISTINCT t.*")
+                ->from("Tipolancamento t")
+                ->leftJoin("t.Lancamentofinanceiro l")
+                ->where("t.status like 'Ativo' and l.status like 'Baixado' and l.pagarReceber = 0 and l.status not like 'Excluido' and l.dataVencimento >= '" . $ano . "-" . $mes . "-01' and l.dataVencimento <= '" . $ano . "-" . $mes . "-" . $dias_do_mes . "'")
+                ->orderBy("t.nome")
+                ->execute()
+                ->toArray();
+        
+        $tiposLancamentosReceitas = Doctrine_Query::create()
                 ->select("t.*")
                 ->from("Tipolancamento t")
-                ->where("t.status like 'Ativo'")
+                ->leftJoin("t.Lancamentofinanceiro l")
+                ->where("t.status like 'Ativo' and l.status like 'Baixado' and l.pagarReceber = 1 and l.status not like 'Excluido' and l.dataVencimento >= '" . $ano . "-" . $mes . "-01' and l.dataVencimento <= '" . $ano . "-" . $mes . "-" . $dias_do_mes . "'")
+                ->orderBy("t.nome")
                 ->execute()
                 ->toArray();
 
@@ -189,7 +200,8 @@ Class Controller_Fluxocaixa extends Proto_Controller {
         $this->set("totalDespesas", $totalDespesas);
         $this->set("saldoInicial", $saldoInicial);
         $this->set("saldoFinal", $saldoFinal);
-        $this->set("tiposLancamentos", $tiposLancamentos);
+        $this->set("tiposLancamentosDespesas", $tiposLancamentosDespesas);
+        $this->set("tiposLancamentosReceitas", $tiposLancamentosReceitas);
 
         //Abre a página
         $this->show("pages/interno/modulo/financeiro/relatorios/fluxoCaixa.tpl");
@@ -348,10 +360,21 @@ Class Controller_Fluxocaixa extends Proto_Controller {
         $totalReceitas = 'R$' . number_format($totalReceitas, 2, ',', '.');
         $totalDespesas = 'R$' . number_format($totalDespesas, 2, ',', '.');
         
-        $tiposLancamentos = Doctrine_Query::create()
+        $tiposLancamentosDespesas = Doctrine_Query::create()
+                ->select("DISTINCT t.*")
+                ->from("Tipolancamento t")
+                ->leftJoin("t.Lancamentofinanceiro l")
+                ->where("t.status like 'Ativo' and l.status like 'Baixado' and l.pagarReceber = 0 and l.status not like 'Excluido' and l.dataVencimento >= '" . $ano . "-" . $mes . "-01' and l.dataVencimento <= '" . $ano . "-" . $mes . "-" . $dias_do_mes . "'")
+                ->orderBy("t.nome")
+                ->execute()
+                ->toArray();
+        
+        $tiposLancamentosReceitas = Doctrine_Query::create()
                 ->select("t.*")
                 ->from("Tipolancamento t")
-                ->where("t.status like 'Ativo'")
+                ->leftJoin("t.Lancamentofinanceiro l")
+                ->where("t.status like 'Ativo' and l.status like 'Baixado' and l.pagarReceber = 1 and l.status not like 'Excluido' and l.dataVencimento >= '" . $ano . "-" . $mes . "-01' and l.dataVencimento <= '" . $ano . "-" . $mes . "-" . $dias_do_mes . "'")
+                ->orderBy("t.nome")
                 ->execute()
                 ->toArray();
 
@@ -363,7 +386,8 @@ Class Controller_Fluxocaixa extends Proto_Controller {
         $this->set("totalDespesas", $totalDespesas);
         $this->set("saldoInicial", $saldoInicial);
         $this->set("saldoFinal", $saldoFinal);
-        $this->set("tiposLancamentos", $tiposLancamentos);
+        $this->set("tiposLancamentosDespesas", $tiposLancamentosDespesas);
+        $this->set("tiposLancamentosReceitas", $tiposLancamentosReceitas);
 
         //Abre a página
         $this->show("pages/interno/modulo/financeiro/relatorios/fluxoCaixa.tpl");

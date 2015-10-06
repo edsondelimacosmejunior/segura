@@ -427,7 +427,7 @@
                     </tr>
                 </thead>
                 <tbody style="margin-bottom: 30px;">
-                    {{foreach from=$tiposLancamentos item=tip}}
+                    {{foreach from=$tiposLancamentosReceitas item=tip}}
                     <tr>
                         <td style="width: 150px;">{{$tip.nome}}</td>
                         {{foreach from=$calendario item=cal name=foo}}
@@ -464,7 +464,7 @@
                     </tr>
                 </thead>
                 <tbody style="margin-bottom: 30px;">
-                    {{foreach from=$tiposLancamentos item=tip}}
+                    {{foreach from=$tiposLancamentosDespesas item=tip}}
                     <tr>
                         <td style="width: 150px;">{{$tip.nome}}</td>
                         {{foreach from=$calendario item=cal name=foo}}
