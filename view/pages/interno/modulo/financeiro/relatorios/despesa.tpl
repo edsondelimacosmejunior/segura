@@ -276,7 +276,7 @@
     <div id="formulario">
         <form action="../extensions/excel/modeloGCPHPEXCEL.php" method="post" id="excel" style="display: none;">
             <input type="text" id="nomeEXCEL" name="nomeEXCEL" />
-            <input type="text" id="cabecalhoEXCEL" name="cabecalhoEXCEL" value="<th>#</th><th>Centro de Custo</th><th>Fornecedor</th><th>Despesa</th><th>Data de Emissão</th><th>Data de Vencimento</th><th>Valor Original</th><th>Valor Baixado</th><th>Data de Baixa</th><th>Tipo de Lançamento</th>" />
+            <input type="text" id="cabecalhoEXCEL" name="cabecalhoEXCEL" value="<th>#</th><th>Centro de Custo</th><th>Fornecedor</th><th>Despesa</th><th>Data de Emissão</th><th>Data de Vencimento</th><th>Valor Original</th><th>Valor Baixado</th><th>Data de Baixa</th><th>Tipo de Lançamento</th><th>Status</th>" />
             <input type="text" id="extrasEXCEL" name="extrasEXCEL" />
             <input type="text" id="tabelaEXCEL" name="tabelaEXCEL" />
         </form>
@@ -295,6 +295,7 @@
                 <th>Valor Baixado</th>
                 <th>Data de Baixa</th>
                 <th>Tipo de Lançamento</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody id="conteudoResultado">
@@ -349,7 +350,7 @@
                     $("#resultado tbody").html("");
                     if (data.length > 0) {
                         for (var i = 0; i < data.length; i++) {
-                            var newRowContent = "<tr><td>" + data[i].idLancamentoFinanceiro + "</td><td>" + data[i].centroCusto + "</td><td>" + data[i].nomeFantasia + "</td><td>" + data[i].nome + "</td><td> " + data[i].dataEmissao + "</td><td> " + data[i].dataVencimento + "</td><td>" + data[i].valorOriginal + "</td><td>" + data[i].valorBaixado + "</td><td>" + data[i].dataBaixa + "</td><td>" + data[i].tipoLancamento + "</td></tr>";
+                            var newRowContent = "<tr><td>" + data[i].idLancamentoFinanceiro + "</td><td>" + data[i].centroCusto + "</td><td>" + data[i].nomeFantasia + "</td><td>" + data[i].nome + "</td><td> " + data[i].dataEmissao + "</td><td> " + data[i].dataVencimento + "</td><td>" + data[i].valorOriginal + "</td><td>" + data[i].valorBaixado + "</td><td>" + data[i].dataBaixa + "</td><td>" + data[i].tipoLancamento + "</td><td>" + data[i].status + "</td></tr>";
                             $("#resultado tbody").append(newRowContent);
                         }
                         $("#valorTotal").append("Valor total da sua pesquisa: " + data[data.length - 1].valorTotal);

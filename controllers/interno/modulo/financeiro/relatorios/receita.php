@@ -125,6 +125,7 @@ Class Controller_Receita extends Proto_Controller {
                         . "l.valorOriginal, "
                         . "l.valorBaixado, "
                         . "l.dataBaixa, "
+                        . "l.status, "
                         . "t.nome as tipoLancamento, "
                         . "e.nomeFantasia as nomeFantasia, "
                         . "c.nome as centroCusto")
