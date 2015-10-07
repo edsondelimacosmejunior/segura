@@ -46,6 +46,10 @@
                         <ul>
                             <li><a href="javascript:menu_mostrarRelatorioDespesa();"><span>Despesas</span></a></li>
                             <li><a href="javascript:menu_mostrarRelatorioReceita();"><span>Receita</span></a></li>
+                            <li><a href="javascript:menu_mostrarRelatorioContasPagas();"><span>Contas Pagas</span></a></li>
+                            <li><a href="javascript:menu_mostrarRelatorioContasPagar();"><span>Contas à Pagar</span></a></li>
+                            <li><a href="javascript:menu_mostrarRelatorioContasRecebidas();"><span>Contas Recebidas</span></a></li>
+                            <li><a href="javascript:menu_mostrarRelatorioContasReceber();"><span>Contas à Receber</span></a></li>
                             <li><a href="javascript:menu_mostrarRelatorioFluxoCaixa();"><span>Fluxo de Caixa</span></a></li>
                             <li><a href="javascript:menu_mostrarRelatorioFluxoCaixaPrevisto();"><span>Fluxo de Caixa Previsto</span></a></li>
                         </ul>
@@ -206,6 +210,38 @@
     function menu_mostrarRelatorioReceita() {
         if ($("#menu_nivelAcesso").val() == "Admin") {
             openlink("{{$BASE_PATH}}interno/modulo/financeiro/relatorios/receita/mostrar/")
+        } else {
+            $().message("Você não tem acesso a essa funcionalidade. Caso necessite, entre em contato com o departamento de Tecnologia da Informação.");
+        }
+    }
+    
+    function menu_mostrarRelatorioContasPagar() {
+        if ($("#menu_nivelAcesso").val() == "Admin") {
+            openlink("{{$BASE_PATH}}interno/modulo/financeiro/relatorios/contaspagar/mostrar/")
+        } else {
+            $().message("Você não tem acesso a essa funcionalidade. Caso necessite, entre em contato com o departamento de Tecnologia da Informação.");
+        }
+    }
+
+    function menu_mostrarRelatorioContasPagas() {
+        if ($("#menu_nivelAcesso").val() == "Admin") {
+            openlink("{{$BASE_PATH}}interno/modulo/financeiro/relatorios/contaspagas/mostrar/")
+        } else {
+            $().message("Você não tem acesso a essa funcionalidade. Caso necessite, entre em contato com o departamento de Tecnologia da Informação.");
+        }
+    }
+
+    function menu_mostrarRelatorioContasReceber() {
+        if ($("#menu_nivelAcesso").val() == "Admin") {
+            openlink("{{$BASE_PATH}}interno/modulo/financeiro/relatorios/contasreceber/mostrar/")
+        } else {
+            $().message("Você não tem acesso a essa funcionalidade. Caso necessite, entre em contato com o departamento de Tecnologia da Informação.");
+        }
+    }
+
+    function menu_mostrarRelatorioContasRecebidas() {
+        if ($("#menu_nivelAcesso").val() == "Admin") {
+            openlink("{{$BASE_PATH}}interno/modulo/financeiro/relatorios/contasrecebidas/mostrar/")
         } else {
             $().message("Você não tem acesso a essa funcionalidade. Caso necessite, entre em contato com o departamento de Tecnologia da Informação.");
         }
