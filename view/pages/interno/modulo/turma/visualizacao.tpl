@@ -90,6 +90,25 @@
         });
     });
 
+    $(function () {
+       $("#dialog-addFormaPagamento").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: 200,
+            width: 450,
+            modal: true,
+            buttons: {
+                "Cancelar": function () {
+                    $(this).dialog("close");
+                },
+                "Confirmar": function () {
+                    $(this).dialog("close");
+                    pagamento();
+                }
+            }
+        });
+    });
+
 </script>
 
 <div id="dialog-confirmMatricula" title="Confirma o pagamento?">
@@ -163,7 +182,8 @@
                         <td id="pagamento-{{$alunos.idMatricula}}">{{$alunos.pagamento}}</td>
                         <td>
                             <button id="{{$alunos.idMatricula}}" onclick="abrirObservacao(this);" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="cursor:pointer;" title="Observação"><img src="{{$IMG}}../imgs/observacao.png"></button>
-                            <button id="{{$alunos.idMatricula}}" onclick="pagamento(this);" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="cursor:pointer;" title="Efetuar Pagamento"><img src="{{$IMG}}../imgs/pagamento.png"></button>
+                            <!--<button id="{{$alunos.idMatricula}}" onclick="pagamento(this);" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="cursor:pointer;" title="Efetuar Pagamento"><img src="{{$IMG}}../imgs/pagamento.png"></button>-->
+                            <button id="{{$alunos.idMatricula}}" onclick="abrirFormaPagamento(this);" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="cursor:pointer;" title="Efetuar Pagamento"><img src="{{$IMG}}../imgs/pagamento.png"></button>
                             <button id="{{$alunos.idMatricula}}" onclick="abrirConfirmarMatricula(this);" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="cursor:pointer;" title="Matricular"><img src="{{$IMG}}../imgs/matricular.png"></button>
                             <button id="{{$alunos.idMatricula}}" onclick="emitirRecibo(this);" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="cursor:pointer;" title="Emitir Recibo"><img src="{{$IMG}}../imgs/recibo.png"></button>
                             <button id="{{$alunos.idMatricula}}" onclick="remarcarTurma(this);" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="cursor:pointer;" title="Remarcar"><img src="{{$IMG}}../imgs/remarcar.png"></button>
@@ -355,29 +375,6 @@
         openlink("{{$BASE_PATH}}interno/modulo/turma/listarTurmasAtivas/");
     }
 
-    function pagamento(botao) {
-        variavel = botao.id;
-        $.ajax({
-            url: "{{$BASE_PATH}}interno/modulo/turma/pagamento",
-            data: {
-                "idMatricula": variavel
-            },
-            cache: false,
-            success: function (data) {
-                //openlink("{{$BASE_PATH}}interno/modulo/turma/visualizar/" + $("#idTurma").val());
-                $().message("Pagamento realizado com sucesso.");
-                $("#pagamento-"+variavel).html("");
-                $("#pagamento-"+variavel).append(data.message);
-            },
-            error: function (data) {
-                $().message("Problemas ao acessar o servidor.");
-
-            },
-            dataType: "json"
-
-        });
-    }
-
     function confirmarMatricula() {
         $.ajax({
             url: "{{$BASE_PATH}}interno/modulo/turma/confirmarMatricula",
@@ -388,8 +385,8 @@
             success: function (data) {
                 $().message(data.message);
                 //openlink("{{$BASE_PATH}}interno/modulo/turma/visualizar/" + $("#idTurma").val());
-                $("#status-"+$("#auxDialogs").val()).html("");
-                $("#status-"+$("#auxDialogs").val()).append("Matriculado");
+                $("#status-" + $("#auxDialogs").val()).html("");
+                $("#status-" + $("#auxDialogs").val()).append("Matriculado");
             },
             error: function (data) {
                 $().message("Problemas ao acessar o servidor.");
@@ -421,8 +418,40 @@
             success: function (data) {
                 $().message(data.message);
                 //openlink("{{$BASE_PATH}}interno/modulo/turma/visualizar/" + $("#idTurma").val());
-                $("#observacao-"+$("#auxDialogs").val()).html("");
-                $("#observacao-"+$("#auxDialogs").val()).append($("#observacao").val());
+                $("#observacao-" + $("#auxDialogs").val()).html("");
+                $("#observacao-" + $("#auxDialogs").val()).append($("#observacao").val());
+            },
+            error: function (data) {
+                $().message("Problemas ao acessar o servidor.");
+
+            },
+            dataType: "json"
+
+        });
+    }
+
+    function abrirFormaPagamento(botao) {
+        $("#auxDialogs").val(botao.id);
+        valorTurma = parseFloat({{$turma.valor}});
+        $("#dialog-addFormaPagamento_valorBaixado").val(valorTurma);
+        $("#dialog-addFormaPagamento").dialog("open");
+    }
+
+    function pagamento() {
+        variavel = $("#auxDialogs").val();
+        $.ajax({
+            url: "{{$BASE_PATH}}interno/modulo/turma/pagamento",
+            data: {
+                "idMatricula": variavel,
+                "formaPagamento": $("#dialog-addFormaPagamento_formaPagamento").val(),
+                "valorBaixado": $("#dialog-addFormaPagamento_valorBaixado").val()
+            },
+            cache: false,
+            success: function (data) {
+                //openlink("{{$BASE_PATH}}interno/modulo/turma/visualizar/" + $("#idTurma").val());
+                $().message("Pagamento realizado com sucesso.");
+                $("#pagamento-" + variavel).html("");
+                $("#pagamento-" + variavel).append(data.message);
             },
             error: function (data) {
                 $().message("Problemas ao acessar o servidor.");
@@ -444,8 +473,8 @@
             success: function (data) {
                 $().message(data.message);
                 //openlink("{{$BASE_PATH}}interno/modulo/turma/visualizar/" + $("#idTurma").val());
-                $("#status-"+variavel).html("");
-                $("#status-"+variavel).append("Cancelado");
+                $("#status-" + variavel).html("");
+                $("#status-" + variavel).append("Cancelado");
             },
             error: function (data) {
                 $().message("Problemas ao acessar o servidor.");
@@ -468,8 +497,8 @@
             success: function (data) {
                 $().message(data.message);
                 //openlink("{{$BASE_PATH}}interno/modulo/turma/visualizar/" + $("#idTurma").val());
-                $("#status-"+variavel).html("");
-                $("#status-"+variavel).append("Remarcado");
+                $("#status-" + variavel).html("");
+                $("#status-" + variavel).append("Remarcado");
             },
             error: function (data) {
                 $().message("Problemas ao acessar o servidor.");
@@ -479,7 +508,6 @@
 
         });
     }
-
 
     function gerarListaFrequencia(botao) {
         $("#listaFrequencia_idTurma_PDF").val(botao.id);
@@ -504,7 +532,7 @@
                     success: function (data) {
                         $().message("Realizando o download do recibo ...");
                         document.getElementById('linkRecibo').click();
-                        
+
                     },
                     error: function (data) {
                         $().message("Problemas ao acessar o servidor");
@@ -530,8 +558,8 @@
             success: function (data) {
                 $().message(data.message);
                 //openlink("{{$BASE_PATH}}interno/modulo/turma/visualizar/" + $("#idTurma").val());
-                $("#status-"+$("#auxDialogs").val()).html("");
-                $("#status-"+$("#auxDialogs").val()).append("Concluido");
+                $("#status-" + $("#auxDialogs").val()).html("");
+                $("#status-" + $("#auxDialogs").val()).append("Concluido");
             },
             error: function (data) {
                 $().message("Problemas ao acessar o servidor.");
@@ -541,6 +569,4 @@
 
         });
     }
-
-
 </script>
