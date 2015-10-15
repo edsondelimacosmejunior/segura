@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         $("#tabs_lancamento").tabs();
     });
 </script>
@@ -71,9 +71,9 @@
 </script>
 
 <script>
-    $(function() {
+    $(function () {
         $("input:submit, a, button", ".demo").button();
-        $("a", ".demo").click(function() {
+        $("a", ".demo").click(function () {
             return false;
         });
     });
@@ -304,7 +304,7 @@
                         </select> 
                     </td>
                 </tr>
-                
+
             </table>
         </fieldset>
 
@@ -346,12 +346,23 @@
         </fieldset>
     </div>
 </div>
+
+<!--
 <button id="cadastrar" onclick="cadastrar()" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="float:right; margin:10px;">
     <span class="ui-button-text">Editar</span>
 </button>
 <button id="limpar" onclick="limpar()" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="float:right; margin:10px;">
     <span class="ui-button-text">Cancelar</span>
 </button>
+-->
+
+<table>
+    <tr>
+        <td><button onclick="cadastrar();" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" >Cadastrar</button></td>
+        <td><button onclick="limpar();" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" >Cancelar</button></td>
+    </tr>
+</table>                
+
 <script type="text/javascript" charset="utf-8">
     function alertaVazio(campos, contador) {
 
@@ -406,7 +417,7 @@
             campos[contador] = "formLancamento_tipoLancamento";
             contador = contador + 1;
         }
-        
+
         if ($("#formLancamento_centroCusto").val() == "") {
             campos[contador] = "formLancamento_centroCusto";
             contador = contador + 1;
@@ -432,12 +443,12 @@
                     "idEmpresa": $("#formLancamento_empresa").val()
                 },
                 cache: false,
-                success: function(data) {
+                success: function (data) {
                     respostaDoControlador = eval(data);
                     $().message("Lançamento editado com sucesso!");
                     openlink("{{$BASE_PATH}}interno/modulo/financeiro/lancamentofinanceiro/listar/");
                 },
-                error: function(data) {
+                error: function (data) {
                     respostaDoControlador = eval(data);
                     $().message(respostaDoControlador.message);
                 },
