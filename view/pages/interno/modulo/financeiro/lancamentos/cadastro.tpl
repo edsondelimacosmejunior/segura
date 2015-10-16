@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         $("#tabs_lancamento").tabs();
     });
 </script>
@@ -71,9 +71,9 @@
 </script>
 
 <script>
-    $(function () {
+    $(function() {
         $("input:submit, a, button", ".demo").button();
-        $("a", ".demo").click(function () {
+        $("a", ".demo").click(function() {
             return false;
         });
     });
@@ -312,19 +312,19 @@
             <table> 
                 <tr>
                     <td><label for="formLancamento_valorOriginal">Valor Original:</label></td>
-                    <td><input type="text" id="formLancamento_valorOriginal" size="70" onKeyDown="Mascara(this, Moeda);" onKeyPress="Mascara(this, Moeda);" onKeyUp="Mascara(this, Moeda);"/></td>
+                    <td><input type="text" id="formLancamento_valorOriginal" size="70" onKeyDown="Mascara(this, Moeda);"/></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_desconto">Desconto:</label></td>
-                    <td><input type="text" id="formLancamento_desconto" size="70" onKeyDown="Mascara(this, Moeda);" onKeyPress="Mascara(this, Moeda);" onKeyUp="Mascara(this, Moeda);"/></td>
+                    <td><input type="text" id="formLancamento_desconto" size="70" onKeyDown="Mascara(this, Moeda);"/></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_juros">Juros:</label></td>
-                    <td><input type="text" id="formLancamento_juros" size="70" onKeyDown="Mascara(this, Moeda);" onKeyPress="Mascara(this, Moeda);" onKeyUp="Mascara(this, Moeda);"/></td>
+                    <td><input type="text" id="formLancamento_juros" size="70" onKeyDown="Mascara(this, Moeda);"/></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_cartorio">Cartório:</label></td>
-                    <td><input type="text" id="formLancamento_cartorio" size="70" onKeyDown="Mascara(this, Moeda);" onKeyPress="Mascara(this, Moeda);" onKeyUp="Mascara(this, Moeda);"/></td>
+                    <td><input type="text" id="formLancamento_cartorio" size="70" onKeyDown="Mascara(this, Moeda);"/></td>
                 </tr>
             </table>
         </fieldset>
@@ -333,92 +333,83 @@
             <table> 
                 <tr>
                     <td><label for="formLancamento_dataEmissao">Data de Emissão:</label></td>
-                    <td><input type="text" id="formLancamento_dataEmissao" size="70" maxlength="10" onKeyDown="Mascara(this,Data);" onKeyPress="Mascara(this,Data);" onKeyUp="Mascara(this,Data);"/></td>
+                    <td><input type="text" id="formLancamento_dataEmissao" size="70" onKeyDown="Mascara(this, Data);"/></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_dataVencimento">Data de Vencimento:</label></td>
-                    <td><input type="text" id="formLancamento_dataVencimento" size="70" maxlength="10" onKeyDown="Mascara(this,Data);" onKeyPress="Mascara(this,Data);" onKeyUp="Mascara(this,Data);"/></td>
+                    <td><input type="text" id="formLancamento_dataVencimento" size="70" onKeyDown="Mascara(this, Data);"/></td>
                 </tr>
             </table>
         </fieldset>
     </div>
 </div>
-
-<!--
 <button id="cadastrar" onclick="cadastrar()" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="float:right; margin:10px;">
     <span class="ui-button-text">Cadastrar</span>
 </button>
 <button id="limpar" onclick="limpar()" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="float:right; margin:10px;">
     <span class="ui-button-text">Cancelar</span>
 </button>
--->
-
-<table>
-    <tr>
-        <td><button onclick="cadastrar();" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" >Cadastrar</button></td>
-        <td><button onclick="limpar();" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" >Cancelar</button></td>
-    </tr>
-</table>
-
-
 <script type="text/javascript" charset="utf-8">
     function alertaVazio(campos, contador) {
+
         for (i = 0; i < contador; i = i + 1) {
             document.getElementById(campos[i]).style.borderColor = '#FF3300';
             document.getElementById(campos[i]).style.backgroundColor = '#FFEDBF';
         }
+
     }
 
     function cadastrar() {
         campos = new Array(5);
         contador = 0;
 
-        if ($("#formLancamento_nome").val() === "") {
+
+        if ($("#formLancamento_nome").val() == "") {
             campos[contador] = "formLancamento_nome";
             contador = contador + 1;
         }
 
-        if ($("#formLancamento_pagarReceber").val() === "") {
+        if ($("#formLancamento_pagarReceber").val() == "") {
             campos[contador] = "formLancamento_pagarReceber";
             contador = contador + 1;
         }
 
-        if ($("#formLancamento_empresa").val() === "") {
+        if ($("#formLancamento_empresa").val() == "") {
             campos[contador] = "formLancamento_empresa";
             contador = contador + 1;
         }
 
-        if ($("#formLancamento_dataEmissao").val() === "") {
+        if ($("#formLancamento_dataEmissao").val() == "") {
             campos[contador] = "formLancamento_dataEmissao";
             contador = contador + 1;
         }
 
-        if ($("#formLancamento_dataVencimento").val() === "") {
+        if ($("#formLancamento_dataVencimento").val() == "") {
             campos[contador] = "formLancamento_dataVencimento";
             contador = contador + 1;
         }
 
-        if ($("#formLancamento_valorOriginal").val() === "") {
+        if ($("#formLancamento_valorOriginal").val() == "") {
             campos[contador] = "formLancamento_valorOriginal";
             contador = contador + 1;
         }
 
-        if ($("#formLancamento_formaPagamento").val() === "") {
+        if ($("#formLancamento_formaPagamento").val() == "") {
             campos[contador] = "formLancamento_formaPagamento";
             contador = contador + 1;
         }
 
-        if ($("#formLancamento_tipoLancamento").val() === "") {
+        if ($("#formLancamento_tipoLancamento").val() == "") {
             campos[contador] = "formLancamento_tipoLancamento";
             contador = contador + 1;
         }
-
-        if ($("#formLancamento_centroCusto").val() === "") {
+        
+        if ($("#formLancamento_centroCusto").val() == "") {
             campos[contador] = "formLancamento_centroCusto";
             contador = contador + 1;
         }
 
-        if (contador === 0) {
+        if (contador == 0) {
             $.ajax({
                 url: "{{$BASE_PATH}}interno/modulo/financeiro/lancamentofinanceiro/cadastrar",
                 data: {
@@ -437,12 +428,12 @@
                     "idEmpresa": $("#formLancamento_empresa").val()
                 },
                 cache: false,
-                success: function (data) {
+                success: function(data) {
                     respostaDoControlador = eval(data);
                     $().message("Lançamento cadastrado com sucesso!");
                     //openlink("{{$BASE_PATH}}interno/modulo/financeiro/lancamentofinanceiro/listar/");
                 },
-                error: function (data) {
+                error: function(data) {
                     respostaDoControlador = eval(data);
                     $().message(respostaDoControlador.message);
                 },
