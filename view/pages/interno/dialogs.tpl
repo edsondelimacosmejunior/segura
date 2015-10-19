@@ -1,5 +1,30 @@
 <script>
-    $(function() {
+    /*LancamentoFinanceiro Pai de Mascaras*/
+    function Mascara(o, f) {
+        v_obj = o;
+        v_fun = f;
+        setTimeout("execmascara()", 1);
+    }
+
+    /*LancamentoFinanceiro que Executa os objetos*/
+    function execmascara() {
+        v_obj.value = v_fun(v_obj.value);
+    }
+    
+    function Moeda(v) {
+        //v = z.value;
+        v = v.replace(/\D/g, "");  //permite digitar apenas números
+        //v=v.replace(/[0-9]{12}/,"inválido")   //limita pra máximo 999.999.999,99
+        //v=v.replace(/(\d{1})(\d{8})$/,"$1.$2")  //coloca ponto antes dos últimos 8 digitos
+        //v=v.replace(/(\d{1})(\d{5})$/,"$1.$2")  //coloca ponto antes dos últimos 5 digitos
+        v = v.replace(/(\d{1})(\d{1,2})$/, "$1.$2");        //coloca virgula antes dos últimos 2 digitos
+        return v;
+    }   
+    
+</script>
+
+<script>
+    $(function () {
         $("#dialog-formularioTipoLancamento").dialog({
             height: 250,
             width: 600,
@@ -8,7 +33,7 @@
         });
     });
 
-    $(function() {
+    $(function () {
         $("#dialog-formularioEditaTipoLancamento").dialog({
             height: 250,
             width: 600,
@@ -16,8 +41,8 @@
             autoOpen: false
         });
     });
-    
-    $(function() {
+
+    $(function () {
         $("#dialog-formularioCentroCusto").dialog({
             height: 250,
             width: 600,
@@ -26,7 +51,7 @@
         });
     });
 
-    $(function() {
+    $(function () {
         $("#dialog-formularioEditaCentroCusto").dialog({
             height: 250,
             width: 600,
@@ -35,7 +60,7 @@
         });
     });
 
-    $(function() {
+    $(function () {
         $("#dialog-formularioFormaPagamento").dialog({
             height: 250,
             width: 600,
@@ -44,7 +69,7 @@
         });
     });
 
-    $(function() {
+    $(function () {
         $("#dialog-formularioEditaFormaPagamento").dialog({
             height: 250,
             width: 600,
@@ -52,8 +77,8 @@
             autoOpen: false
         });
     });
-    
-    $(function() {
+
+    $(function () {
         $("#dialog-formularioBaixaLancamento").dialog({
             height: 250,
             width: 600,
@@ -87,6 +112,26 @@
     <p><input type="text" id="observacao" size="45" maxlength="255"/></p>
 </div>
 
+<div id="dialog-addFormaPagamento" title="Adicionar Forma de Pagamento">
+    <table>
+        <tr>
+            <td><label for="dialog-formaPagamento">Forma de Pagamento:</label></td>
+            <td>
+                <select id="dialog-addFormaPagamento_formaPagamento">
+                    <option value="13">À VISTA</option>                    
+                    {{foreach from=$formasPagamentos item=formasPagamentos}}
+                    <option value="{{$formasPagamentos.idFormaPagamento}}">{{$formasPagamentos.nome}}</option>
+                    {{/foreach}}
+                </select> 
+            </td>
+        </tr>
+        <tr>
+            <td><label for="dialog-addFormaPagamento_valorBaixado">Valor Baixado:</label></td>
+            <td><input type="text" id="dialog-addFormaPagamento_valorBaixado" size="50" onKeyDown="Mascara(this, Moeda);" onKeyPress="Mascara(this, Moeda);" onKeyUp="Mascara(this, Moeda);"/></td>
+        </tr>
+        
+    </table>
+</div>
 
 <div id="dialog-formularioTipoLancamento" title="Novo Tipo de Lançamento">
     <table>
@@ -175,7 +220,7 @@
             <td><button onclick="gravarFormaPagamento()" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" >Gravar</button></td>
         </tr>
     </table>
-</div>                
+</div>              
 
 <div id="dialog-formularioEditaFormaPagamento" title="Editar Forma de Pagamento">
     <table>
