@@ -1,8 +1,8 @@
 
 <script>
-    $(function() {
+    $(function () {
         $("input:submit, a, button", ".demo").button();
-        $("a", ".demo").click(function() {
+        $("a", ".demo").click(function () {
             return false;
         });
     });
@@ -206,20 +206,20 @@
 </style>
 
 <script>
-    
-    $(function() {
-        $( "#dialogFormaPagamento-confirmExclusao" ).dialog({
+
+    $(function () {
+        $("#dialogFormaPagamento-confirmExclusao").dialog({
             autoOpen: false,
             resizable: false,
-            height:140,
+            height: 140,
             modal: true,
             buttons: {
-                "Confirmar": function() {
-                    $( this ).dialog( "close" );
+                "Confirmar": function () {
+                    $(this).dialog("close");
                     confirmarExclusaoFormaPagamento();
                 },
-                "Cancelar": function() {
-                    $( this ).dialog( "close" );
+                "Cancelar": function () {
+                    $(this).dialog("close");
                 }
             }
         });
@@ -242,12 +242,12 @@
 <script>$("#statusInformacao").html("Você está em: Financeiro >> Forma de Pagamento >> Listar..");</script>
 
 <div id="resultado-contain">
-    
+
     <button id="novaFormaPagamento" onclick="abrirDialogNovaFormaPagamento()" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="float:left; margin:10px;">
-        <span class="ui-button-text">Nova FormaPagamento</span>
+        <span class="ui-button-text">Nova Forma de Pagamento</span>
     </button>
-    
-     <br />
+
+    <br />
 
     <table id="resultado">
         <thead class="ui-widget-header ">
@@ -326,14 +326,14 @@
                 "idFormaPagamento": variavel.id
             },
             cache: false,
-            success: function(data) {
+            success: function (data) {
                 $("#dialog-formularioEditaFormaPagamento_id").val(data[0].idFormaPagamento);
                 $("#dialog-formularioEditaFormaPagamento_nome").val(data[0].nome);
                 $("#dialog-formularioEditaFormaPagamento_descricao").val(data[0].descricao);
 
                 $("#dialog-formularioEditaFormaPagamento").dialog("open");
             },
-            error: function(data) {
+            error: function (data) {
                 respostaDoControlador = eval(data);
                 $().message(respostaDoControlador.message);
             },
@@ -365,13 +365,13 @@
                     "descricao": $("#dialog-formularioFormaPagamento_descricao").val()
                 },
                 cache: false,
-                success: function(data) {
+                success: function (data) {
                     respostaDoControlador = eval(data);
                     $().message("Forma de Pagamento cadastrado com sucesso!");
                     $("#dialog-formularioFormaPagamento").dialog("close");
                     openlink("{{$BASE_PATH}}interno/modulo/financeiro/formapagamento/listar/");
                 },
-                error: function(data) {
+                error: function (data) {
                     respostaDoControlador = eval(data);
                     $().message(respostaDoControlador.message);
                 },
@@ -410,13 +410,13 @@
                     "descricao": $("#dialog-formularioEditaFormaPagamento_descricao").val()
                 },
                 cache: false,
-                success: function(data) {
+                success: function (data) {
                     respostaDoControlador = eval(data);
                     $().message("Forma de Pagamento editado com sucesso!");
                     $("#dialog-formularioEditaFormaPagamento").dialog("close");
                     openlink("{{$BASE_PATH}}interno/modulo/financeiro/formapagamento/listar/");
                 },
-                error: function(data) {
+                error: function (data) {
                     respostaDoControlador = eval(data);
                     $().message(respostaDoControlador.message);
                 },
@@ -430,12 +430,12 @@
             alertaVazio(campos, contador);
         }
     }
-    
-    function abrirExcluir(botao){
+
+    function abrirExcluir(botao) {
         $("#auxDialogsFormaPagamento").val(botao.id);
         $("#dialogFormaPagamento-confirmExclusao").dialog("open");
     }
-    
+
     function confirmarExclusaoFormaPagamento() {
         openlink('{{$BASE_PATH}}interno/modulo/financeiro/formapagamento/excluir/' + $("#auxDialogsFormaPagamento").val())
         openlink("{{$BASE_PATH}}interno/modulo/financeiro/formapagamento/listar/");
@@ -445,7 +445,7 @@
     function refazerRelatorio() {
         openlink("{{$BASE_PATH}}interno/modulo/financeiro/formapagamento/listar/");
     }
-    
+
     function gerarPDF() {
         document.getElementById("pdf").submit();
     }
