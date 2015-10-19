@@ -1,30 +1,16 @@
 <?php
 
-/** /gec/controllers/interno/modulo/corporativo/lancamentoFinanceiro.php
- * Controller_Lancamentofinanceiro
- * 
- * @author Edson Junior
- * @package Controllers
- */
 Class Controller_Lancamentofinanceiro extends Proto_Controller {
 
-    /**
-     * Método Inicial
-     * Responsável por redirencionar a aplicação para sua página inicial interna 
-     * 
-     * @return
-     */
     function index() {
-        //Inicia uma Sessão
         $this->init_session();
-        //Realiza o redirecionamento
         $this->show("pages/interno/index.tpl");
     }
 
     function abrirFormulario() {
         //Inicia uma Sessão
         $this->init_session();
-        
+
         $centroCustos = Doctrine_Query::create()
                 ->select("b.*")
                 ->from("Centrocusto b")
@@ -229,7 +215,7 @@ Class Controller_Lancamentofinanceiro extends Proto_Controller {
                 ->orderBy("e.nomeFantasia")
                 ->execute()
                 ->toArray();
-        
+
         $centroCustos = Doctrine_Query::create()
                 ->select("b.*")
                 ->from("Centrocusto b")
@@ -305,25 +291,25 @@ Class Controller_Lancamentofinanceiro extends Proto_Controller {
             $lancamentos[$j]["dataVencimento"] = implode("/", array_reverse(explode("-", $lancamentos[$j]["dataVencimento"])));
             $lancamentos[$j]["dataBaixa"] = implode("/", array_reverse(explode("-", $lancamentos[$j]["dataBaixa"])));
             $lancamentos[$j]["dataEmissao"] = implode("/", array_reverse(explode("-", $lancamentos[$j]["dataEmissao"])));
-            
+
             /*
-            
-            $lancamentos[$j]["desconto"] = pv($lancamentos[$j]["desconto"]);
-            //Formata a moeda com duas cmostraasas decimais
-            $lancamentos[$j]["desconto"] = money_format('%.2n', $lancamentos[$j]["desconto"]);
-            
-            $lancamentos[$j]["juros"] = pv($lancamentos[$j]["juros"]);
-            //Formata a moeda com duas cmostraasas decimais
-            $lancamentos[$j]["juros"] = money_format('%.2n', $lancamentos[$j]["juros"]);
-            
-            $lancamentos[$j]["cartorio"] = pv($lancamentos[$j]["cartorio"]);
-            //Formata a moeda com duas cmostraasas decimais
-            $lancamentos[$j]["cartorio"] = money_format('%.2n', $lancamentos[$j]["cartorio"]);
-            
-            $lancamentos[$j]["valorLiquido"] = pv($lancamentos[$j]["valorLiquido"]);
-            //Formata a moeda com duas cmostraasas decimais
-            $lancamentos[$j]["valorLiquido"] = money_format('%.2n', $lancamentos[$j]["valorLiquido"]);
-            */
+
+              $lancamentos[$j]["desconto"] = pv($lancamentos[$j]["desconto"]);
+              //Formata a moeda com duas cmostraasas decimais
+              $lancamentos[$j]["desconto"] = money_format('%.2n', $lancamentos[$j]["desconto"]);
+
+              $lancamentos[$j]["juros"] = pv($lancamentos[$j]["juros"]);
+              //Formata a moeda com duas cmostraasas decimais
+              $lancamentos[$j]["juros"] = money_format('%.2n', $lancamentos[$j]["juros"]);
+
+              $lancamentos[$j]["cartorio"] = pv($lancamentos[$j]["cartorio"]);
+              //Formata a moeda com duas cmostraasas decimais
+              $lancamentos[$j]["cartorio"] = money_format('%.2n', $lancamentos[$j]["cartorio"]);
+
+              $lancamentos[$j]["valorLiquido"] = pv($lancamentos[$j]["valorLiquido"]);
+              //Formata a moeda com duas cmostraasas decimais
+              $lancamentos[$j]["valorLiquido"] = money_format('%.2n', $lancamentos[$j]["valorLiquido"]);
+             */
             if ($lancamentos[$j]["pagarReceber"] == 1) {
                 $lancamentos[$j]["pagarReceberNome"] = "Receber";
             } else {
@@ -334,50 +320,73 @@ Class Controller_Lancamentofinanceiro extends Proto_Controller {
     }
 
     function baixar() {
-        //Inicia uma Sessão
         $this->init_session();
 
-        //Recupera o id do usuário logado
         $idLancamentoFinanceiro = $this->escape("idLancamentoFinanceiro");
         $valorBaixado = $this->escape("valorBaixado");
         $dataBaixa = implode("-", array_reverse(explode("/", $this->escape("dataBaixa"))));
 
         $lancamentoFinanceiro = Doctrine::getTable("Lancamentofinanceiro")->find($idLancamentoFinanceiro);
 
-        //Recupera dados do formulário
         $lancamentoFinanceiro->dataBaixa = $dataBaixa;
         $lancamentoFinanceiro->valorBaixado = $valorBaixado;
         $lancamentoFinanceiro->status = "Baixado";
 
-        //Verifica se a Nota Fiscal foi salva corretamente
-        if ($lancamentoFinanceiro->trySave()) {
-            //Envia a mensagem de confirmação de cadastro
-            $this->success("Baixado com sucesso!");
+        $idMatricula = $lancamentoFinanceiro->idMatriculaAluno;
+        
+        if ($idMatricula == 0) {
+            if ($lancamentoFinanceiro->trySave()) {
+                $this->success("Lançamento baixado com sucesso.");
+            } else {
+                $this->error("Erro ao gravar o lançamento financeiro.");
+            }
         } else {
-            //Envia a mensagem de erro em caso de falha no cadastro
-            $this->error("Erro ao gravar.");
+            $matricula = Doctrine::getTable("Matricula")->find($idMatricula);
+            $matricula->pagamento = $this->escape("dataBaixa");
+            if ($lancamentoFinanceiro->trySave()) {
+                if ($matricula->trySave()) {
+                    $this->success("Lançamento e matrícula baixados com sucesso.");
+                } else {
+                    $this->error("Erro ao gravar a matricula.");
+                }
+            } else {
+                $this->error("Erro ao gravar o lançamento.");
+            }
         }
 
         echo json_encode($lancamentoFinanceiro);
     }
-    
+
     function extornar() {
-        //Inicia uma Sessão
         $this->init_session();
 
-        //Recupera o id do usuário logado
         $idLancamentoFinanceiro = $this->getArg(0);
         $lancamentoFinanceiro = Doctrine::getTable("Lancamentofinanceiro")->find($idLancamentoFinanceiro);
 
-        //Recupera dados do formulário
         $lancamentoFinanceiro->dataBaixa = null;
         $lancamentoFinanceiro->valorBaixado = null;
         $lancamentoFinanceiro->status = "Pendente";
-
-        if ($lancamentoFinanceiro->trySave()) {
-            $this->success("Lançamento extornado com sucesso.");
+        
+        $idMatricula = $lancamentoFinanceiro->idMatriculaAluno;
+        
+        if ($idMatricula == 0) {
+            if ($lancamentoFinanceiro->trySave()) {
+                $this->success("Lançamento extornado com sucesso.");
+            } else {
+                $this->error("Erro ao extornar o lançamento financeiro.");
+            }
         } else {
-            $this->error("Erro ao excluir. Tente novamente ou contate o administrador.");
+            $matricula = Doctrine::getTable("Matricula")->find($idMatricula);
+            $matricula->pagamento = "";
+            if ($lancamentoFinanceiro->trySave()) {
+                if ($matricula->trySave()) {
+                    $this->success("Lançamento e matrícula extornados com sucesso.");
+                } else {
+                    $this->error("Erro ao gravar a matricula.");
+                }
+            } else {
+                $this->error("Erro ao extornar o lançamento.");
+            }
         }
     }
 
