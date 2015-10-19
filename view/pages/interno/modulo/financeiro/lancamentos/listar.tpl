@@ -1,8 +1,8 @@
 
 <script>
-    $(function() {
+    $(function () {
         $("input:submit, a, button", ".demo").button();
-        $("a", ".demo").click(function() {
+        $("a", ".demo").click(function () {
             return false;
         });
     });
@@ -194,38 +194,38 @@
 
 <script>
 
-    $(function() {
+    $(function () {
         $("#dialogLancamentoFinanceiro-confirmExclusao").dialog({
             autoOpen: false,
             resizable: false,
             height: 140,
             modal: true,
             buttons: {
-                "Confirmar": function() {
+                "Cancelar": function () {
+                    $(this).dialog("close");
+                },
+                "Confirmar": function () {
                     $(this).dialog("close");
                     confirmarExclusaoLancamentoFinanceiro();
-                },
-                "Cancelar": function() {
-                    $(this).dialog("close");
-                }
+                }                
             }
         });
     });
-    
-    $(function() {
+
+    $(function () {
         $("#dialogLancamentoFinanceiro-confirmExtorno").dialog({
             autoOpen: false,
             resizable: false,
             height: 140,
             modal: true,
             buttons: {
-                "Confirmar": function() {
+                "Cancelar": function () {
+                    $(this).dialog("close");
+                },
+                "Confirmar": function () {
                     $(this).dialog("close");
                     confirmarExtornoLancamentoFinanceiro();
-                },
-                "Cancelar": function() {
-                    $(this).dialog("close");
-                }
+                }                
             }
         });
     });
@@ -301,6 +301,7 @@
         "bPaginate": true,
         "sPaginationType": "full_numbers",
         "bScrollCollapse": true,
+        "aaSorting": [[0, "desc"]],
         //"bRetrieve":true,
         "oLanguage": {
             "sProcessing": "Processando...",
@@ -337,7 +338,7 @@
                 "idLancamentoFinanceiro": variavel
             },
             cache: false,
-            success: function(data) {
+            success: function (data) {
 
                 $("#tab0").html(data);
                 $("#status span").html("");
@@ -346,7 +347,7 @@
                 //$("#dialog-exibeRequisicao").html(data);
                 //$("#dialog-exibeRequisicao").dialog("open");
             },
-            error: function(data) {
+            error: function (data) {
                 $().message("Problemas ao acessar o servidor");
             }
 
@@ -358,7 +359,7 @@
         $("#auxDialogsLancamentoFinanceiro").val(botao.id);
         $("#dialogLancamentoFinanceiro-confirmExclusao").dialog("open");
     }
-    
+
     function abrirExtornar(botao) {
         $("#auxDialogsLancamentoFinanceiro").val(botao.id);
         $("#dialogLancamentoFinanceiro-confirmExtorno").dialog("open");
@@ -381,7 +382,7 @@
                 "idLancamentoFinanceiro": variavel.id
             },
             cache: false,
-            success: function(data) {
+            success: function (data) {
                 $("#dialog-formularioBaixaLancamento_id").val(data[0].idLancamentoFinanceiro);
                 $("#dialog-formularioBaixaLancamento_valorOriginal").val(data[0].valorOriginal);
                 $("#dialog-formularioBaixaLancamento_desconto").val(data[0].desconto);
@@ -393,7 +394,7 @@
 
                 $("#dialog-formularioBaixaLancamento").dialog("open");
             },
-            error: function(data) {
+            error: function (data) {
                 respostaDoControlador = eval(data);
                 $().message(respostaDoControlador.message);
             },
@@ -411,12 +412,12 @@
                 "dataBaixa": $("#dialog-formularioBaixaLancamento_dataBaixa").val()
             },
             cache: false,
-            success: function(data) {
+            success: function (data) {
                 $().message(data.message);
                 $("#dialog-formularioBaixaLancamento").dialog("close");
                 openlink("{{$BASE_PATH}}interno/modulo/financeiro/lancamentofinanceiro/listar/");
             },
-            error: function(data) {
+            error: function (data) {
                 respostaDoControlador = eval(data);
                 $().message(respostaDoControlador.message);
             },
@@ -435,7 +436,7 @@
                 "idLancamentoFinanceiro": variavel
             },
             cache: false,
-            success: function(data) {
+            success: function (data) {
 
                 $("#tab0").html(data);
                 $("#status span").html("");
@@ -444,7 +445,7 @@
                 //$("#dialog-exibeRequisicao").html(data);
                 //$("#dialog-exibeRequisicao").dialog("open");
             },
-            error: function(data) {
+            error: function (data) {
                 $().message("Problemas ao acessar o servidor");
             }
 
@@ -453,12 +454,12 @@
     }
 
     function confirmarExclusaoLancamentoFinanceiro() {
-        openlink('{{$BASE_PATH}}interno/modulo/financeiro/lancamentofinanceiro/excluir/' + $("#auxDialogsLancamentoFinanceiro").val())
+        openlink('{{$BASE_PATH}}interno/modulo/financeiro/lancamentofinanceiro/excluir/' + $("#auxDialogsLancamentoFinanceiro").val());
         openlink("{{$BASE_PATH}}interno/modulo/financeiro/lancamentofinanceiro/listar/");
     }
-    
+
     function confirmarExtornoLancamentoFinanceiro() {
-        openlink('{{$BASE_PATH}}interno/modulo/financeiro/lancamentofinanceiro/extornar/' + $("#auxDialogsLancamentoFinanceiro").val())
+        openlink('{{$BASE_PATH}}interno/modulo/financeiro/lancamentofinanceiro/extornar/' + $("#auxDialogsLancamentoFinanceiro").val());
         openlink("{{$BASE_PATH}}interno/modulo/financeiro/lancamentofinanceiro/listar/");
     }
 
