@@ -1,3 +1,5 @@
+<?php /* Smarty version 2.6.18, created on 27-11-2015 18:25:35
+         compiled from pages/interno/modulo/financeiro/lancamentos/cadastro.tpl */ ?>
 <script type="text/javascript">
     $(function () {
         $("#tabs_lancamento").tabs();
@@ -240,9 +242,13 @@
                     <td>
                         <select id="formLancamento_empresa">
                             <option value="">Escolha uma opção</option>
-                            {{foreach from=$empresas item=empresas}}
-                            <option value="{{$empresas.idEmpresa}}">{{$empresas.nomeFantasia}}</option>
-                            {{/foreach}}
+                            <?php $_from = $this->_tpl_vars['empresas']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['empresas']):
+?>
+                            <option value="<?php echo $this->_tpl_vars['empresas']['idEmpresa']; ?>
+"><?php echo $this->_tpl_vars['empresas']['nomeFantasia']; ?>
+</option>
+                            <?php endforeach; endif; unset($_from); ?>
                         </select> 
                     </td>
                 </tr>
@@ -284,9 +290,13 @@
                     <td>
                         <select id="formLancamento_centroCusto">
                             <option value="">Escolha uma opção</option>
-                            {{foreach from=$centroCustos item=centroCustos}}
-                            <option value="{{$centroCustos.idCentroCusto}}">{{$centroCustos.nome}}</option>
-                            {{/foreach}}
+                            <?php $_from = $this->_tpl_vars['centroCustos']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['centroCustos']):
+?>
+                            <option value="<?php echo $this->_tpl_vars['centroCustos']['idCentroCusto']; ?>
+"><?php echo $this->_tpl_vars['centroCustos']['nome']; ?>
+</option>
+                            <?php endforeach; endif; unset($_from); ?>
                         </select> 
                     </td>
                 </tr>
@@ -295,9 +305,13 @@
                     <td>
                         <select id="formLancamento_tipoLancamento">
                             <option value="">Escolha uma opção</option>
-                            {{foreach from=$tiposLancamentos item=tiposLancamentos}}
-                            <option value="{{$tiposLancamentos.idTipoLancamento}}">{{$tiposLancamentos.nome}}</option>
-                            {{/foreach}}
+                            <?php $_from = $this->_tpl_vars['tiposLancamentos']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['tiposLancamentos']):
+?>
+                            <option value="<?php echo $this->_tpl_vars['tiposLancamentos']['idTipoLancamento']; ?>
+"><?php echo $this->_tpl_vars['tiposLancamentos']['nome']; ?>
+</option>
+                            <?php endforeach; endif; unset($_from); ?>
                         </select> 
                     </td>
                 </tr>
@@ -306,9 +320,13 @@
                     <td>
                         <select id="formLancamento_formaPagamento">
                             <option value="">Escolha uma opção</option>
-                            {{foreach from=$formasPagamentos item=formasPagamentos}}
-                            <option value="{{$formasPagamentos.idFormaPagamento}}">{{$formasPagamentos.nome}}</option>
-                            {{/foreach}}
+                            <?php $_from = $this->_tpl_vars['formasPagamentos']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['formasPagamentos']):
+?>
+                            <option value="<?php echo $this->_tpl_vars['formasPagamentos']['idFormaPagamento']; ?>
+"><?php echo $this->_tpl_vars['formasPagamentos']['nome']; ?>
+</option>
+                            <?php endforeach; endif; unset($_from); ?>
                         </select> 
                     </td>
                 </tr>
@@ -435,7 +453,8 @@
 
         if (contador === 0) {
             $.ajax({
-                url: "{{$BASE_PATH}}interno/modulo/financeiro/lancamentofinanceiro/cadastrar",
+                url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/financeiro/lancamentofinanceiro/cadastrar",
                 data: {
                     "nome": $("#formLancamento_nome").val(),
                     "descricao": $("#formLancamento_descricao").val(),
@@ -456,7 +475,8 @@
                 success: function (data) {
                     respostaDoControlador = eval(data);
                     $().message("Lançamento cadastrado com sucesso!");
-                    //openlink("{{$BASE_PATH}}interno/modulo/financeiro/lancamentofinanceiro/listar/");
+                    //openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/financeiro/lancamentofinanceiro/listar/");
                 },
                 error: function (data) {
                     respostaDoControlador = eval(data);

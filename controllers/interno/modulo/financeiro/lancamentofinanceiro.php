@@ -99,6 +99,7 @@ Class Controller_Lancamentofinanceiro extends Proto_Controller {
         //Recupera dados do formulário
         $lancamentoFinanceiro->nome = $this->escape("nome");
         $lancamentoFinanceiro->descricao = $this->escape("descricao");
+        $lancamentoFinanceiro->origemNotaFiscal = $this->escape("origemNotaFiscal");
         $lancamentoFinanceiro->pagarReceber = $this->escape("pagarReceber");
         $lancamentoFinanceiro->dataEmissao = implode("-", array_reverse(explode("/", $this->escape("dataEmissao"))));
         $lancamentoFinanceiro->dataVencimento = implode("-", array_reverse(explode("/", $this->escape("dataVencimento"))));
@@ -245,6 +246,7 @@ Class Controller_Lancamentofinanceiro extends Proto_Controller {
         //Recupera dados do formulário
         $lancamentoFinanceiro->nome = $this->escape("nome");
         $lancamentoFinanceiro->descricao = $this->escape("descricao");
+        $lancamentoFinanceiro->origemNotaFiscal = $this->escape("origemNotaFiscal");
         $lancamentoFinanceiro->pagarReceber = $this->escape("pagarReceber");
         $lancamentoFinanceiro->dataEmissao = implode("-", array_reverse(explode("/", $this->escape("dataEmissao"))));
         $lancamentoFinanceiro->dataVencimento = implode("-", array_reverse(explode("/", $this->escape("dataVencimento"))));

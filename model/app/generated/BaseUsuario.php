@@ -13,6 +13,8 @@
  * @property string $status
  * @property string $nivel
  * @property timestamp $dataCadastro
+ * @property Doctrine_Collection $Centrocusto
+ * @property Doctrine_Collection $Lancamentofinanceiro
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -34,4 +36,12 @@ abstract class BaseUsuario extends Doctrine_Record
         $this->hasColumn('dataCadastro', 'timestamp', null, array('type' => 'timestamp', 'notnull' => true));
     }
 
+    public function setUp()
+    {
+        $this->hasMany('Centrocusto', array('local' => 'idUsuario',
+                                            'foreign' => 'usuarioCriacao'));
+
+        $this->hasMany('Lancamentofinanceiro', array('local' => 'idUsuario',
+                                                     'foreign' => 'usuarioCriacao'));
+    }
 }

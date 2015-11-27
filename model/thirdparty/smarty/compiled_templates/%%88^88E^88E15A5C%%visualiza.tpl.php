@@ -1,3 +1,5 @@
+<?php /* Smarty version 2.6.18, created on 06-10-2015 11:27:44
+         compiled from pages/interno/modulo/financeiro/lancamentos/visualiza.tpl */ ?>
 <script type="text/javascript">
     $(function() {
         $("#tabs_lancamento").tabs();
@@ -48,7 +50,8 @@
             <table> 
                 <tr>
                     <td><label for="formLancamento_empresa">Empresa:</label></td>
-                    <td><input type="text" id="formLancamento_empresa" size="70" value="{{$lancamento.nomeFantasia}}" readonly="" /></td>
+                    <td><input type="text" id="formLancamento_empresa" size="70" value="<?php echo $this->_tpl_vars['lancamento']['nomeFantasia']; ?>
+" readonly="" /></td>
                 </tr>
             </table>
         </fieldset>
@@ -57,31 +60,33 @@
             <table> 
                 <tr>
                     <td><label for="formLancamento_nome">Nome:</label></td>
-                    <td><input type="text" id="formLancamento_nome" size="70" value="{{$lancamento.nome}}" readonly="" /></td>
+                    <td><input type="text" id="formLancamento_nome" size="70" value="<?php echo $this->_tpl_vars['lancamento']['nome']; ?>
+" readonly="" /></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_descricao">Descrição:</label></td>
-                    <td><input type="text" id="formLancamento_descricao" size="70" value="{{$lancamento.descricao}}" readonly=""/></td>
-                </tr>
-                <tr>
-                    <td><label for="formLancamento_origemNotaFiscal">Nota Fiscal:</label></td>
-                    <td><input type="text" id="formLancamento_origemNotaFiscal" size="70" value="{{$lancamento.origemNotaFiscal}}" readonly="" /></td>
+                    <td><input type="text" id="formLancamento_descricao" size="70" value="<?php echo $this->_tpl_vars['lancamento']['descricao']; ?>
+" readonly=""/></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_pagarReceber">Pagar/Receber:</label></td>
-                    <td><input type="text" id="formLancamento_pagarReceber" size="70" value="{{$lancamento.pagarReceberNome}}" readonly="" /></td>
+                    <td><input type="text" id="formLancamento_pagarReceber" size="70" value="<?php echo $this->_tpl_vars['lancamento']['pagarReceberNome']; ?>
+" readonly="" /></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_centroCusto">Centro de Custo:</label></td>
-                    <td><input type="text" id="formLancamento_centroCusto" size="70" value="{{$lancamento.centroCusto}}" readonly="" /></td>
+                    <td><input type="text" id="formLancamento_centroCusto" size="70" value="<?php echo $this->_tpl_vars['lancamento']['centroCusto']; ?>
+" readonly="" /></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_tipoLancamento">Tipo de Lançamento:</label></td>
-                    <td><input type="text" id="formLancamento_tipoLancamento" size="70" value="{{$lancamento.tipoLancamento}}" readonly="" /></td>
+                    <td><input type="text" id="formLancamento_tipoLancamento" size="70" value="<?php echo $this->_tpl_vars['lancamento']['tipoLancamento']; ?>
+" readonly="" /></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_formaPagamento">Forma de Pagamento:</label></td>
-                    <td><input type="text" id="formLancamento_nome" size="70" value="{{$lancamento.formaPagamento}}" readonly="" /></td>
+                    <td><input type="text" id="formLancamento_nome" size="70" value="<?php echo $this->_tpl_vars['lancamento']['formaPagamento']; ?>
+" readonly="" /></td>
                 </tr>
             </table>
         </fieldset>
@@ -93,11 +98,13 @@
             <table> 
                 <tr>
                     <td><label for="formLancamento_valorOriginal">Valor Original:</label></td>
-                    <td><input type="text" id="formLancamento_valorOriginal" size="70" onKeyDown="Mascara(this, Moeda);" value="{{$lancamento.valorOriginal}}" readonly=""/></td>
+                    <td><input type="text" id="formLancamento_valorOriginal" size="70" onKeyDown="Mascara(this, Moeda);" value="<?php echo $this->_tpl_vars['lancamento']['valorOriginal']; ?>
+" readonly=""/></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_valorBaixado">Valor Baixado:</label></td>
-                    <td><input type="text" id="formLancamento_valorBaixado" size="70" onKeyDown="Mascara(this, Moeda);" value="{{$lancamento.valorBaixado}}" readonly=""/></td>
+                    <td><input type="text" id="formLancamento_valorBaixado" size="70" onKeyDown="Mascara(this, Moeda);" value="<?php echo $this->_tpl_vars['lancamento']['valorBaixado']; ?>
+" readonly=""/></td>
                 </tr>
             </table>
         </fieldset>
@@ -106,15 +113,18 @@
             <table> 
                 <tr>
                     <td><label for="formLancamento_dataEmissao">Data de Emissão:</label></td>
-                    <td><input type="text" id="formLancamento_dataEmissao" size="70" onKeyDown="Mascara(this, Data);" value="{{$lancamento.dataEmissao}}" readonly=""/></td>
+                    <td><input type="text" id="formLancamento_dataEmissao" size="70" onKeyDown="Mascara(this, Data);" value="<?php echo $this->_tpl_vars['lancamento']['dataEmissao']; ?>
+" readonly=""/></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_dataVencimento">Data de Vencimento:</label></td>
-                    <td><input type="text" id="formLancamento_dataVencimento" size="70" onKeyDown="Mascara(this, Data);" value="{{$lancamento.dataVencimento}}" readonly=""/></td>
+                    <td><input type="text" id="formLancamento_dataVencimento" size="70" onKeyDown="Mascara(this, Data);" value="<?php echo $this->_tpl_vars['lancamento']['dataVencimento']; ?>
+" readonly=""/></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_dataBaixa">Data de Baixa:</label></td>
-                    <td><input type="text" id="formLancamento_dataBaixa" size="70" onKeyDown="Mascara(this, Data);" value="{{$lancamento.dataBaixa}}" readonly=""/></td>
+                    <td><input type="text" id="formLancamento_dataBaixa" size="70" onKeyDown="Mascara(this, Data);" value="<?php echo $this->_tpl_vars['lancamento']['dataBaixa']; ?>
+" readonly=""/></td>
                 </tr>
             </table>
         </fieldset>

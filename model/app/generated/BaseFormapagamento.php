@@ -22,7 +22,7 @@ abstract class BaseFormapagamento extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->setTableName('formaPagamento');
+        $this->setTableName('formapagamento');
         $this->hasColumn('idFormaPagamento', 'integer', 4, array('type' => 'integer', 'length' => 4, 'primary' => true, 'autoincrement' => true));
         $this->hasColumn('nome', 'string', 255, array('type' => 'string', 'length' => 255));
         $this->hasColumn('descricao', 'string', 255, array('type' => 'string', 'length' => 255));
