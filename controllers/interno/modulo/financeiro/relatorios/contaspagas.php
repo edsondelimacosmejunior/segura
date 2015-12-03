@@ -134,7 +134,7 @@ Class Controller_Contaspagas extends Proto_Controller {
                 ->leftJoin("l.Empresa e")
                 ->leftJoin("l.Tipolancamento t")
                 ->leftJoin("l.Centrocusto c")
-                ->where("l.status like 'Baixado' and l.pagarReceber = 0 and l.dataVencimento >= '$dataInicial' and l.dataVencimento <= '$dataFinal' $complementoSql")
+                ->where("l.status like 'Baixado' and l.pagarReceber = 0 and l.dataBaixa >= '$dataInicial' and l.dataBaixa <= '$dataFinal' $complementoSql")
                 ->execute()
                 ->toArray();
 
