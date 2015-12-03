@@ -174,24 +174,24 @@ Class Controller_Fluxocaixasede extends Proto_Controller {
         $totalReceitas = 'R$' . number_format($totalReceitas, 2, ',', '.');
         $totalDespesas = 'R$' . number_format($totalDespesas, 2, ',', '.');
         
-        $tiposLancamentosDespesas = Doctrine_Query::create()
-                ->select("DISTINCT t.*")
-                ->from("Tipolancamento t")
-                ->leftJoin("t.Lancamentofinanceiro l")
-                ->where("t.status like 'Ativo' and l.status like 'Baixado' and l.origemNotaFiscal = 0 and l.pagarReceber = 0 and l.status not like 'Excluido' and l.dataVencimento >= '" . $ano . "-" . $mes . "-01' and l.dataVencimento <= '" . $ano . "-" . $mes . "-" . $dias_do_mes . "'")
-                ->orderBy("t.nome")
+        $formaPagamentoDespesas = Doctrine_Query::create()
+                ->select("DISTINCT f.*")
+                ->from("Formapagamento f")
+                ->leftJoin("f.Lancamentofinanceiro l")
+                ->where("f.status like 'Ativo' and l.status like 'Baixado' and l.origemNotaFiscal = 0 and l.pagarReceber = 0 and l.dataBaixa >= '" . $ano . "-" . $mes . "-01' and l.dataBaixa <= '" . $ano . "-" . $mes . "-" . $dias_do_mes . "'")
+                ->orderBy("f.nome")
                 ->execute()
                 ->toArray();
         
-        $tiposLancamentosReceitas = Doctrine_Query::create()
-                ->select("t.*")
-                ->from("Tipolancamento t")
-                ->leftJoin("t.Lancamentofinanceiro l")
-                ->where("t.status like 'Ativo' and l.status like 'Baixado' and l.origemNotaFiscal = 0 and l.pagarReceber = 1 and l.status not like 'Excluido' and l.dataVencimento >= '" . $ano . "-" . $mes . "-01' and l.dataVencimento <= '" . $ano . "-" . $mes . "-" . $dias_do_mes . "'")
-                ->orderBy("t.nome")
+        $formaPagamentoReceitas = Doctrine_Query::create()
+                ->select("DISTINCT f.*")
+                ->from("Formapagamento f")
+                ->leftJoin("f.Lancamentofinanceiro l")
+                ->where("f.status like 'Ativo' and l.status like 'Baixado' and l.origemNotaFiscal = 0 and l.pagarReceber = 1 and l.dataBaixa >= '" . $ano . "-" . $mes . "-01' and l.dataBaixa <= '" . $ano . "-" . $mes . "-" . $dias_do_mes . "'")
+                ->orderBy("f.nome")
                 ->execute()
                 ->toArray();
-
+        
         //Envia os Centros de Custo para a página
         $this->set("semanas", $semanas);
         $this->set("semanas2", $semanas2);
@@ -200,8 +200,8 @@ Class Controller_Fluxocaixasede extends Proto_Controller {
         $this->set("totalDespesas", $totalDespesas);
         $this->set("saldoInicial", $saldoInicial);
         $this->set("saldoFinal", $saldoFinal);
-        $this->set("tiposLancamentosDespesas", $tiposLancamentosDespesas);
-        $this->set("tiposLancamentosReceitas", $tiposLancamentosReceitas);
+        $this->set("formaPagamentoDespesas", $formaPagamentoDespesas);
+        $this->set("formaPagamentoReceitas", $formaPagamentoReceitas);
 
         //Abre a página
         $this->show("pages/interno/modulo/financeiro/relatorios/fluxoCaixaSede.tpl");
@@ -360,21 +360,21 @@ Class Controller_Fluxocaixasede extends Proto_Controller {
         $totalReceitas = 'R$' . number_format($totalReceitas, 2, ',', '.');
         $totalDespesas = 'R$' . number_format($totalDespesas, 2, ',', '.');
         
-        $tiposLancamentosDespesas = Doctrine_Query::create()
-                ->select("DISTINCT t.*")
-                ->from("Tipolancamento t")
-                ->leftJoin("t.Lancamentofinanceiro l")
-                ->where("t.status like 'Ativo' and l.status like 'Baixado' and l.origemNotaFiscal = 0 and l.pagarReceber = 0 and l.status not like 'Excluido' and l.dataVencimento >= '" . $ano . "-" . $mes . "-01' and l.dataVencimento <= '" . $ano . "-" . $mes . "-" . $dias_do_mes . "'")
-                ->orderBy("t.nome")
+        $formaPagamentoDespesas = Doctrine_Query::create()
+                ->select("DISTINCT f.*")
+                ->from("Formapagamento f")
+                ->leftJoin("f.Lancamentofinanceiro l")
+                ->where("f.status like 'Ativo' and l.status like 'Baixado' and l.origemNotaFiscal = 0 and l.pagarReceber = 0 and l.dataBaixa >= '" . $ano . "-" . $mes . "-01' and l.dataBaixa <= '" . $ano . "-" . $mes . "-" . $dias_do_mes . "'")
+                ->orderBy("f.nome")
                 ->execute()
                 ->toArray();
         
-        $tiposLancamentosReceitas = Doctrine_Query::create()
-                ->select("t.*")
-                ->from("Tipolancamento t")
-                ->leftJoin("t.Lancamentofinanceiro l")
-                ->where("t.status like 'Ativo' and l.status like 'Baixado' and l.origemNotaFiscal = 0 and l.pagarReceber = 1 and l.status not like 'Excluido' and l.dataVencimento >= '" . $ano . "-" . $mes . "-01' and l.dataVencimento <= '" . $ano . "-" . $mes . "-" . $dias_do_mes . "'")
-                ->orderBy("t.nome")
+        $formaPagamentoReceitas = Doctrine_Query::create()
+                ->select("DISTINCT f.*")
+                ->from("Formapagamento f")
+                ->leftJoin("f.Lancamentofinanceiro l")
+                ->where("f.status like 'Ativo' and l.status like 'Baixado' and l.origemNotaFiscal = 0 and l.pagarReceber = 1 and l.dataBaixa >= '" . $ano . "-" . $mes . "-01' and l.dataBaixa <= '" . $ano . "-" . $mes . "-" . $dias_do_mes . "'")
+                ->orderBy("f.nome")
                 ->execute()
                 ->toArray();
 
@@ -386,8 +386,8 @@ Class Controller_Fluxocaixasede extends Proto_Controller {
         $this->set("totalDespesas", $totalDespesas);
         $this->set("saldoInicial", $saldoInicial);
         $this->set("saldoFinal", $saldoFinal);
-        $this->set("tiposLancamentosDespesas", $tiposLancamentosDespesas);
-        $this->set("tiposLancamentosReceitas", $tiposLancamentosReceitas);
+        $this->set("formaPagamentoDespesas", $formaPagamentoDespesas);
+        $this->set("formaPagamentoReceitas", $formaPagamentoReceitas);
 
         //Abre a página
         $this->show("pages/interno/modulo/financeiro/relatorios/fluxoCaixaSede.tpl");
@@ -398,7 +398,7 @@ Class Controller_Fluxocaixasede extends Proto_Controller {
         $this->init_session();
 
         //Recupera o id do usuário logado
-        $idTipoLancamento = $this->escape("idTipoLancamento");
+        $idFormaPagamento = $this->escape("idFormaPagamento");
         $dia = $this->escape("dia");
         $mes = $this->escape("mes");
         $ano = $this->escape("ano");
@@ -408,7 +408,7 @@ Class Controller_Fluxocaixasede extends Proto_Controller {
                 ->select("l.idLancamentoFinanceiro, "
                         . "l.valorBaixado")
                 ->from("Lancamentofinanceiro l")
-                ->where("l.status like 'Baixado' and l.origemNotaFiscal = 0 and l.pagarReceber = 1 and l.dataBaixa = '" . $ano . "-" . $mes . "-" . $dia . "' and l.idTipoLancamento = $idTipoLancamento")
+                ->where("l.status like 'Baixado' and l.origemNotaFiscal = 0 and l.pagarReceber = 1 and l.dataBaixa = '" . $ano . "-" . $mes . "-" . $dia . "' and l.idFormaPagamento = $idFormaPagamento")
                 ->execute()
                 ->toArray();
         
@@ -432,7 +432,7 @@ Class Controller_Fluxocaixasede extends Proto_Controller {
         $this->init_session();
 
         //Recupera o id do usuário logado
-        $idTipoLancamento = $this->escape("idTipoLancamento");
+        $idFormaPagamento = $this->escape("idFormaPagamento");
         $dia = $this->escape("dia");
         $mes = $this->escape("mes");
         $ano = $this->escape("ano");
@@ -442,7 +442,7 @@ Class Controller_Fluxocaixasede extends Proto_Controller {
                 ->select("l.idLancamentoFinanceiro, "
                         . "l.valorBaixado")
                 ->from("Lancamentofinanceiro l")
-                ->where("l.status like 'Baixado' and l.origemNotaFiscal = 0 and l.pagarReceber = 0 and l.dataBaixa = '" . $ano . "-" . $mes . "-" . $dia . "' and l.idTipoLancamento = $idTipoLancamento")
+                ->where("l.status like 'Baixado' and l.origemNotaFiscal = 0 and l.pagarReceber = 0 and l.dataBaixa = '" . $ano . "-" . $mes . "-" . $dia . "' and l.idFormaPagamento = $idFormaPagamento")
                 ->execute()
                 ->toArray();
         
@@ -466,7 +466,7 @@ Class Controller_Fluxocaixasede extends Proto_Controller {
         $this->init_session();
 
         //Recupera o id do usuário logado
-        $idTipoLancamento = $this->escape("idTipoLancamento");
+        $idFormaPagamento = $this->escape("idFormaPagamento");
         $mes = $this->escape("mes");
         $ano = $this->escape("ano");
 
@@ -476,7 +476,7 @@ Class Controller_Fluxocaixasede extends Proto_Controller {
                 ->select("l.idLancamentoFinanceiro, "
                         . "l.valorBaixado")
                 ->from("Lancamentofinanceiro l")
-                ->where("l.status like 'Baixado' and l.origemNotaFiscal = 0 and l.pagarReceber = 0 and l.dataBaixa >= '" . $ano . "-" . $mes . "-01' and l.dataBaixa <= '" . $ano . "-" . $mes . "-" . $dias_do_mes . "' and l.idTipoLancamento = $idTipoLancamento")
+                ->where("l.status like 'Baixado' and l.origemNotaFiscal = 0 and l.pagarReceber = 0 and l.dataBaixa >= '" . $ano . "-" . $mes . "-01' and l.dataBaixa <= '" . $ano . "-" . $mes . "-" . $dias_do_mes . "' and l.idFormaPagamento = $idFormaPagamento")
                 ->execute()
                 ->toArray();
         
@@ -500,7 +500,7 @@ Class Controller_Fluxocaixasede extends Proto_Controller {
         $this->init_session();
 
         //Recupera o id do usuário logado
-        $idTipoLancamento = $this->escape("idTipoLancamento");
+        $idFormaPagamento = $this->escape("idFormaPagamento");
         $mes = $this->escape("mes");
         $ano = $this->escape("ano");
 
@@ -510,7 +510,7 @@ Class Controller_Fluxocaixasede extends Proto_Controller {
                 ->select("l.idLancamentoFinanceiro, "
                         . "l.valorBaixado")
                 ->from("Lancamentofinanceiro l")
-                ->where("l.status like 'Baixado' and l.origemNotaFiscal = 0 and l.pagarReceber = 1 and l.dataBaixa >= '" . $ano . "-" . $mes . "-01' and l.dataBaixa <= '" . $ano . "-" . $mes . "-" . $dias_do_mes . "' and l.idTipoLancamento = $idTipoLancamento")
+                ->where("l.status like 'Baixado' and l.origemNotaFiscal = 0 and l.pagarReceber = 1 and l.dataBaixa >= '" . $ano . "-" . $mes . "-01' and l.dataBaixa <= '" . $ano . "-" . $mes . "-" . $dias_do_mes . "' and l.idFormaPagamento = $idFormaPagamento")
                 ->execute()
                 ->toArray();
         

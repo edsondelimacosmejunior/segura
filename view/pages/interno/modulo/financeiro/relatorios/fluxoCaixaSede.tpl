@@ -173,15 +173,15 @@
 
     }
     
-    function getReceitas(idTipoLancamento, dia, mes, ano) {
+    function getReceitas(idFormaPagamento, dia, mes, ano) {
         //alert(dia + "" + mes + "" + ano);
         //alert("receitas" + dia + "-" + fornecedor);
-        var div = document.getElementById("receitas" + dia + "-" + idTipoLancamento);
+        var div = document.getElementById("receitas" + dia + "-" + idFormaPagamento);
 
         $.ajax({
             url: "{{$BASE_PATH}}interno/modulo/financeiro/relatorios/fluxocaixasede/getReceitas",
             data: {
-                "idTipoLancamento": idTipoLancamento,
+                "idFormaPagamento": idFormaPagamento,
                 "dia": dia,
                 "mes": mes,
                 "ano": ano
@@ -202,15 +202,15 @@
         });
     }
     
-    function getDespesas(idTipoLancamento, dia, mes, ano) {
+    function getDespesas(idFormaPagamento, dia, mes, ano) {
         //alert(dia + "" + mes + "" + ano);
         //alert("receitas" + dia + "-" + fornecedor);
-        var div = document.getElementById("despesas" + dia + "-" + idTipoLancamento);
+        var div = document.getElementById("despesas" + dia + "-" + idFormaPagamento);
 
         $.ajax({
             url: "{{$BASE_PATH}}interno/modulo/financeiro/relatorios/fluxocaixasede/getDespesas",
             data: {
-                "idTipoLancamento": idTipoLancamento,
+                "idFormaPagamento": idFormaPagamento,
                 "dia": dia,
                 "mes": mes,
                 "ano": ano
@@ -231,15 +231,15 @@
         });
     }
 
-    function getReceitasTotal(idTipoLancamento, mes, ano) {
+    function getReceitasTotal(idFormaPagamento, mes, ano) {
         //alert(dia + "" + mes + "" + ano);
         //alert("receitas" + dia + "-" + fornecedor);
-        var div = document.getElementById("receitasTotal-" + idTipoLancamento);
+        var div = document.getElementById("receitasTotal-" + idFormaPagamento);
 
         $.ajax({
             url: "{{$BASE_PATH}}interno/modulo/financeiro/relatorios/fluxocaixasede/getReceitasTotal",
             data: {
-                "idTipoLancamento": idTipoLancamento,
+                "idFormaPagamento": idFormaPagamento,
                 "mes": mes,
                 "ano": ano
             },
@@ -259,15 +259,15 @@
         });
     }
     
-    function getDespesasTotal(idTipoLancamento, mes, ano) {
+    function getDespesasTotal(idFormaPagamento, mes, ano) {
         //alert(dia + "" + mes + "" + ano);
         //alert("receitas" + dia + "-" + fornecedor);
-        var div = document.getElementById("despesasTotal-" + idTipoLancamento);
+        var div = document.getElementById("despesasTotal-" + idFormaPagamento);
 
         $.ajax({
             url: "{{$BASE_PATH}}interno/modulo/financeiro/relatorios/fluxocaixasede/getDespesasTotal",
             data: {
-                "idTipoLancamento": idTipoLancamento,
+                "idFormaPagamento": idFormaPagamento,
                 "mes": mes,
                 "ano": ano
             },
@@ -427,20 +427,20 @@
                     </tr>
                 </thead>
                 <tbody style="margin-bottom: 30px;">
-                    {{foreach from=$tiposLancamentosReceitas item=tip}}
+                    {{foreach from=$formaPagamentoReceitas item=tip}}
                     <tr>
                         <td style="width: 150px;">{{$tip.nome}}</td>
                         {{foreach from=$calendario item=cal name=foo}}
                         {{if $cal.SEMANA == $semanas2.SEMANA}}
-                        <td style="width: 100px;" id="receitas{{$cal.DIA}}-{{$tip.idTipoLancamento}}">
+                        <td style="width: 100px;" id="receitas{{$cal.DIA}}-{{$tip.idFormaPagamento}}">
                             <script>
-                                getReceitas("{{$tip.idTipoLancamento}}",{{$cal.DIA}},{{$cal.MES}},{{$cal.ANO}});
+                                getReceitas("{{$tip.idFormaPagamento}}",{{$cal.DIA}},{{$cal.MES}},{{$cal.ANO}});
                             </script>
                         </td>
                         {{if $smarty.foreach.foo.last}}
-                        <td style="width: 100px;" id="receitasTotal-{{$tip.idTipoLancamento}}">
+                        <td style="width: 100px;" id="receitasTotal-{{$tip.idFormaPagamento}}">
                             <script>
-                                getReceitasTotal("{{$tip.idTipoLancamento}}",{{$cal.MES}},{{$cal.ANO}});
+                                getReceitasTotal("{{$tip.idFormaPagamento}}",{{$cal.MES}},{{$cal.ANO}});
                             </script>
                         </td>
                         {{/if}} 
@@ -464,20 +464,20 @@
                     </tr>
                 </thead>
                 <tbody style="margin-bottom: 30px;">
-                    {{foreach from=$tiposLancamentosDespesas item=tip}}
+                    {{foreach from=$formaPagamentoDespesas item=tip}}
                     <tr>
                         <td style="width: 150px;">{{$tip.nome}}</td>
                         {{foreach from=$calendario item=cal name=foo}}
                         {{if $cal.SEMANA == $semanas2.SEMANA}}
-                        <td style="width: 100px;" id="despesas{{$cal.DIA}}-{{$tip.idTipoLancamento}}">
+                        <td style="width: 100px;" id="despesas{{$cal.DIA}}-{{$tip.idFormaPagamento}}">
                             <script>
-                                getDespesas("{{$tip.idTipoLancamento}}",{{$cal.DIA}},{{$cal.MES}},{{$cal.ANO}});
+                                getDespesas("{{$tip.idFormaPagamento}}",{{$cal.DIA}},{{$cal.MES}},{{$cal.ANO}});
                             </script>
                         </td>
                         {{if $smarty.foreach.foo.last}}
-                        <td style="width: 100px;" id="despesasTotal-{{$tip.idTipoLancamento}}">
+                        <td style="width: 100px;" id="despesasTotal-{{$tip.idFormaPagamento}}">
                             <script>
-                                getDespesasTotal("{{$tip.idTipoLancamento}}",{{$cal.MES}},{{$cal.ANO}});
+                                getDespesasTotal("{{$tip.idFormaPagamento}}",{{$cal.MES}},{{$cal.ANO}});
                             </script>
                         </td>
                         {{/if}} 
