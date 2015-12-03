@@ -65,7 +65,7 @@
                 </tr>
                 <tr>
                     <td><label for="formLancamento_origemNotaFiscal">Nota Fiscal:</label></td>
-                    <td><input type="text" id="formLancamento_origemNotaFiscal" size="70" value="{{$lancamento.origemNotaFiscal}}" readonly="" /></td>
+                    <td><input type="text" id="formLancamento_origemNotaFiscal" size="70" value="{{$lancamento.origemNotaFiscalNome}}" readonly="" /></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_pagarReceber">Pagar/Receber:</label></td>

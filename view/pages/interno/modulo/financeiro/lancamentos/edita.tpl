@@ -265,7 +265,7 @@
                     <td><label for="formLancamento_OrigemNotaFiscal">Nota Fiscal:</label></td>
                     <td>
                         <select id="formLancamento_OrigemNotaFiscal">
-                            <option value="{{$lancamento.origemNotaFiscal}}">{{$lancamento.origemNotaFiscal}}</option>
+                            <option value="{{$lancamento.origemNotaFiscal}}">{{$lancamento.origemNotaFiscalNome}}</option>
                             <option value="0">Não</option>
                             <option value="1">Sim</option>
                         </select> 

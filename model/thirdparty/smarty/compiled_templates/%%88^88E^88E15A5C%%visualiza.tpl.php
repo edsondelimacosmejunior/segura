@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 06-10-2015 11:27:44
+<?php /* Smarty version 2.6.18, created on 03-12-2015 21:38:28
          compiled from pages/interno/modulo/financeiro/lancamentos/visualiza.tpl */ ?>
 <script type="text/javascript">
     $(function() {
@@ -67,6 +67,11 @@
                     <td><label for="formLancamento_descricao">Descrição:</label></td>
                     <td><input type="text" id="formLancamento_descricao" size="70" value="<?php echo $this->_tpl_vars['lancamento']['descricao']; ?>
 " readonly=""/></td>
+                </tr>
+                <tr>
+                    <td><label for="formLancamento_origemNotaFiscal">Nota Fiscal:</label></td>
+                    <td><input type="text" id="formLancamento_origemNotaFiscal" size="70" value="<?php echo $this->_tpl_vars['lancamento']['origemNotaFiscalNome']; ?>
+" readonly="" /></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_pagarReceber">Pagar/Receber:</label></td>

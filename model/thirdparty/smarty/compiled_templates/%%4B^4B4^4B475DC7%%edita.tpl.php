@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 09-10-2015 14:58:08
+<?php /* Smarty version 2.6.18, created on 03-12-2015 21:47:32
          compiled from pages/interno/modulo/financeiro/lancamentos/edita.tpl */ ?>
 <script type="text/javascript">
     $(function () {
@@ -273,6 +273,18 @@
 "/></td>
                 </tr>
                 <tr>
+                    <td><label for="formLancamento_OrigemNotaFiscal">Nota Fiscal:</label></td>
+                    <td>
+                        <select id="formLancamento_OrigemNotaFiscal">
+                            <option value="<?php echo $this->_tpl_vars['lancamento']['origemNotaFiscal']; ?>
+"><?php echo $this->_tpl_vars['lancamento']['origemNotaFiscalNome']; ?>
+</option>
+                            <option value="0">Não</option>
+                            <option value="1">Sim</option>
+                        </select> 
+                    </td>
+                </tr>
+                <tr>
                     <td><label for="formLancamento_pagarReceber">Pagar/Receber:</label></td>
                     <td>
                         <select id="formLancamento_pagarReceber">
@@ -411,12 +423,17 @@
     }
 
     function cadastrar() {
-        campos = new Array(5);
+        campos = new Array(10);
         contador = 0;
 
 
         if ($("#formLancamento_nome").val() == "") {
             campos[contador] = "formLancamento_nome";
+            contador = contador + 1;
+        }
+        
+        if ($("#formLancamento_origemNotaFiscal").val() == "") {
+            campos[contador] = "formLancamento_origemNotaFiscal";
             contador = contador + 1;
         }
 
@@ -468,6 +485,7 @@ interno/modulo/financeiro/lancamentofinanceiro/editar",
                     "idLancamentoFinanceiro": $("#formLancamento_idLancamentoFinanceiro").val(),
                     "nome": $("#formLancamento_nome").val(),
                     "descricao": $("#formLancamento_descricao").val(),
+                    "origemNotaFiscal": $("#formLancamento_origemNotaFiscal").val(),
                     "pagarReceber": $("#formLancamento_pagarReceber").val(),
                     "dataEmissao": $("#formLancamento_dataEmissao").val(),
                     "dataVencimento": $("#formLancamento_dataVencimento").val(),

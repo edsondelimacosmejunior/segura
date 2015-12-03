@@ -152,6 +152,12 @@ Class Controller_Lancamentofinanceiro extends Proto_Controller {
             } else {
                 $lancamentos[$j]["pagarReceberNome"] = "Pagar";
             }
+            
+            if ($lancamentos[$j]["origemNotaFiscal"] == 0) {
+                $lancamentos[$j]["origemNotaFiscalNome"] = "Não";
+            } else {
+                $lancamentos[$j]["origemNotaFiscalNome"] = "Sim";
+            }
         }
 
         $lancamento = $lancamentos[0];
@@ -189,6 +195,12 @@ Class Controller_Lancamentofinanceiro extends Proto_Controller {
                 $lancamentos[$j]["pagarReceberNome"] = "Receber";
             } else {
                 $lancamentos[$j]["pagarReceberNome"] = "Pagar";
+            }
+            
+            if ($lancamentos[$j]["origemNotaFiscal"] == 0) {
+                $lancamentos[$j]["origemNotaFiscalNome"] = "Não";
+            } else {
+                $lancamentos[$j]["origemNotaFiscalNome"] = "Sim";
             }
         }
 
@@ -316,6 +328,12 @@ Class Controller_Lancamentofinanceiro extends Proto_Controller {
                 $lancamentos[$j]["pagarReceberNome"] = "Receber";
             } else {
                 $lancamentos[$j]["pagarReceberNome"] = "Pagar";
+            }
+            
+            if ($lancamentos[$j]["origemNotaFiscal"] == 0) {
+                $lancamentos[$j]["origemNotaFiscalNome"] = "Não";
+            } else {
+                $lancamentos[$j]["origemNotaFiscalNome"] = "Sim";
             }
         }
         echo json_encode($lancamentos);
