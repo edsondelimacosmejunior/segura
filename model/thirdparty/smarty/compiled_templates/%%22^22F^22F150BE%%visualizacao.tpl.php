@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.18, created on 03-07-2015 10:53:59
+<?php /* Smarty version 2.6.18, created on 16-10-2015 20:31:42
          compiled from pages/interno/modulo/turma/visualizacao.tpl */ ?>
 <script type="text/javascript">
     $(function () {
@@ -87,6 +87,25 @@
                 "Confirmar": function () {
                     $(this).dialog("close");
                     confirmarObservacao();
+                }
+            }
+        });
+    });
+
+    $(function () {
+       $("#dialog-addFormaPagamento").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: 200,
+            width: 450,
+            modal: true,
+            buttons: {
+                "Cancelar": function () {
+                    $(this).dialog("close");
+                },
+                "Confirmar": function () {
+                    $(this).dialog("close");
+                    pagamento();
                 }
             }
         });
@@ -185,8 +204,11 @@
                             <button id="<?php echo $this->_tpl_vars['alunos']['idMatricula']; ?>
 " onclick="abrirObservacao(this);" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="cursor:pointer;" title="Observação"><img src="<?php echo $this->_tpl_vars['IMG']; ?>
 ../imgs/observacao.png"></button>
-                            <button id="<?php echo $this->_tpl_vars['alunos']['idMatricula']; ?>
+                            <!--<button id="<?php echo $this->_tpl_vars['alunos']['idMatricula']; ?>
 " onclick="pagamento(this);" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="cursor:pointer;" title="Efetuar Pagamento"><img src="<?php echo $this->_tpl_vars['IMG']; ?>
+../imgs/pagamento.png"></button>-->
+                            <button id="<?php echo $this->_tpl_vars['alunos']['idMatricula']; ?>
+" onclick="abrirFormaPagamento(this);" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="cursor:pointer;" title="Efetuar Pagamento"><img src="<?php echo $this->_tpl_vars['IMG']; ?>
 ../imgs/pagamento.png"></button>
                             <button id="<?php echo $this->_tpl_vars['alunos']['idMatricula']; ?>
 " onclick="abrirConfirmarMatricula(this);" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all" style="cursor:pointer;" title="Matricular"><img src="<?php echo $this->_tpl_vars['IMG']; ?>
@@ -428,31 +450,6 @@
 interno/modulo/turma/listarTurmasAtivas/");
     }
 
-    function pagamento(botao) {
-        variavel = botao.id;
-        $.ajax({
-            url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
-interno/modulo/turma/pagamento",
-            data: {
-                "idMatricula": variavel
-            },
-            cache: false,
-            success: function (data) {
-                //openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
-interno/modulo/turma/visualizar/" + $("#idTurma").val());
-                $().message("Pagamento realizado com sucesso.");
-                $("#pagamento-"+variavel).html("");
-                $("#pagamento-"+variavel).append(data.message);
-            },
-            error: function (data) {
-                $().message("Problemas ao acessar o servidor.");
-
-            },
-            dataType: "json"
-
-        });
-    }
-
     function confirmarMatricula() {
         $.ajax({
             url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
@@ -465,8 +462,8 @@ interno/modulo/turma/confirmarMatricula",
                 $().message(data.message);
                 //openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
 interno/modulo/turma/visualizar/" + $("#idTurma").val());
-                $("#status-"+$("#auxDialogs").val()).html("");
-                $("#status-"+$("#auxDialogs").val()).append("Matriculado");
+                $("#status-" + $("#auxDialogs").val()).html("");
+                $("#status-" + $("#auxDialogs").val()).append("Matriculado");
             },
             error: function (data) {
                 $().message("Problemas ao acessar o servidor.");
@@ -500,8 +497,43 @@ interno/modulo/turma/confirmarObservacao",
                 $().message(data.message);
                 //openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
 interno/modulo/turma/visualizar/" + $("#idTurma").val());
-                $("#observacao-"+$("#auxDialogs").val()).html("");
-                $("#observacao-"+$("#auxDialogs").val()).append($("#observacao").val());
+                $("#observacao-" + $("#auxDialogs").val()).html("");
+                $("#observacao-" + $("#auxDialogs").val()).append($("#observacao").val());
+            },
+            error: function (data) {
+                $().message("Problemas ao acessar o servidor.");
+
+            },
+            dataType: "json"
+
+        });
+    }
+
+    function abrirFormaPagamento(botao) {
+        $("#auxDialogs").val(botao.id);
+        valorTurma = parseFloat(<?php echo $this->_tpl_vars['turma']['valor']; ?>
+);
+        $("#dialog-addFormaPagamento_valorBaixado").val(valorTurma);
+        $("#dialog-addFormaPagamento").dialog("open");
+    }
+
+    function pagamento() {
+        variavel = $("#auxDialogs").val();
+        $.ajax({
+            url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/turma/verificaPagamento",
+            data: {
+                "idMatricula": variavel,
+                "formaPagamento": $("#dialog-addFormaPagamento_formaPagamento").val(),
+                "valorBaixado": $("#dialog-addFormaPagamento_valorBaixado").val()
+            },
+            cache: false,
+            success: function (data) {
+                //openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/turma/visualizar/" + $("#idTurma").val());
+                $().message("Pagamento realizado com sucesso.");
+                $("#pagamento-" + variavel).html("");
+                $("#pagamento-" + variavel).append(data.message);
             },
             error: function (data) {
                 $().message("Problemas ao acessar o servidor.");
@@ -525,8 +557,8 @@ interno/modulo/turma/cancelarMatricula",
                 $().message(data.message);
                 //openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
 interno/modulo/turma/visualizar/" + $("#idTurma").val());
-                $("#status-"+variavel).html("");
-                $("#status-"+variavel).append("Cancelado");
+                $("#status-" + variavel).html("");
+                $("#status-" + variavel).append("Cancelado");
             },
             error: function (data) {
                 $().message("Problemas ao acessar o servidor.");
@@ -551,8 +583,8 @@ interno/modulo/turma/remarcarTurma",
                 $().message(data.message);
                 //openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
 interno/modulo/turma/visualizar/" + $("#idTurma").val());
-                $("#status-"+variavel).html("");
-                $("#status-"+variavel).append("Remarcado");
+                $("#status-" + variavel).html("");
+                $("#status-" + variavel).append("Remarcado");
             },
             error: function (data) {
                 $().message("Problemas ao acessar o servidor.");
@@ -562,7 +594,6 @@ interno/modulo/turma/visualizar/" + $("#idTurma").val());
 
         });
     }
-
 
     function gerarListaFrequencia(botao) {
         $("#listaFrequencia_idTurma_PDF").val(botao.id);
@@ -588,7 +619,7 @@ interno/modulo/turma/emitirRecibo",
                     success: function (data) {
                         $().message("Realizando o download do recibo ...");
                         document.getElementById('linkRecibo').click();
-                        
+
                     },
                     error: function (data) {
                         $().message("Problemas ao acessar o servidor");
@@ -616,8 +647,8 @@ interno/modulo/turma/concluirCurso",
                 $().message(data.message);
                 //openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
 interno/modulo/turma/visualizar/" + $("#idTurma").val());
-                $("#status-"+$("#auxDialogs").val()).html("");
-                $("#status-"+$("#auxDialogs").val()).append("Concluido");
+                $("#status-" + $("#auxDialogs").val()).html("");
+                $("#status-" + $("#auxDialogs").val()).append("Concluido");
             },
             error: function (data) {
                 $().message("Problemas ao acessar o servidor.");
@@ -627,6 +658,4 @@ interno/modulo/turma/visualizar/" + $("#idTurma").val());
 
         });
     }
-
-
 </script>

@@ -8,6 +8,7 @@
  * @property integer $idLancamentoFinanceiro
  * @property string $nome
  * @property string $descricao
+ * @property integer $origemNotaFiscal
  * @property integer $pagarReceber
  * @property string $status
  * @property date $dataEmissao
@@ -25,11 +26,11 @@
  * @property integer $idCentroCusto
  * @property integer $idFormaPagamento
  * @property integer $idTipoLancamento
- * @property Empresa $Empresa
- * @property Usuario $Usuario
  * @property Centrocusto $Centrocusto
+ * @property Empresa $Empresa
  * @property Formapagamento $Formapagamento
  * @property Tipolancamento $Tipolancamento
+ * @property Usuario $Usuario
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -40,10 +41,11 @@ abstract class BaseLancamentofinanceiro extends Doctrine_Record
 {
     public function setTableDefinition()
     {
-        $this->setTableName('lancamentoFinanceiro');
+        $this->setTableName('lancamentofinanceiro');
         $this->hasColumn('idLancamentoFinanceiro', 'integer', 4, array('type' => 'integer', 'length' => 4, 'primary' => true, 'autoincrement' => true));
         $this->hasColumn('nome', 'string', 255, array('type' => 'string', 'length' => 255));
         $this->hasColumn('descricao', 'string', 255, array('type' => 'string', 'length' => 255));
+        $this->hasColumn('origemNotaFiscal', 'integer', 4, array('type' => 'integer', 'length' => 4, 'default' => '0'));
         $this->hasColumn('pagarReceber', 'integer', 4, array('type' => 'integer', 'length' => 4));
         $this->hasColumn('status', 'string', 45, array('type' => 'string', 'length' => 45));
         $this->hasColumn('dataEmissao', 'date', null, array('type' => 'date'));
@@ -65,19 +67,19 @@ abstract class BaseLancamentofinanceiro extends Doctrine_Record
 
     public function setUp()
     {
-        $this->hasOne('Empresa', array('local' => 'idEmpresa',
-                                       'foreign' => 'idEmpresa'));
-
-        $this->hasOne('Usuario', array('local' => 'usuarioCriacao',
-                                       'foreign' => 'idUsuario'));
-
         $this->hasOne('Centrocusto', array('local' => 'idCentroCusto',
                                            'foreign' => 'idCentroCusto'));
+
+        $this->hasOne('Empresa', array('local' => 'idEmpresa',
+                                       'foreign' => 'idEmpresa'));
 
         $this->hasOne('Formapagamento', array('local' => 'idFormaPagamento',
                                               'foreign' => 'idFormaPagamento'));
 
         $this->hasOne('Tipolancamento', array('local' => 'idTipoLancamento',
                                               'foreign' => 'idTipoLancamento'));
+
+        $this->hasOne('Usuario', array('local' => 'usuarioCriacao',
+                                       'foreign' => 'idUsuario'));
     }
 }

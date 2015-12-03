@@ -25,6 +25,7 @@
  * @property string $status
  * @property string $usuarioResponsavel
  * @property timestamp $dataCadastro
+ * @property Doctrine_Collection $Lancamentofinanceiro
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -58,4 +59,9 @@ abstract class BaseEmpresa extends Doctrine_Record
         $this->hasColumn('dataCadastro', 'timestamp', null, array('type' => 'timestamp', 'notnull' => true));
     }
 
+    public function setUp()
+    {
+        $this->hasMany('Lancamentofinanceiro', array('local' => 'idEmpresa',
+                                                     'foreign' => 'idEmpresa'));
+    }
 }

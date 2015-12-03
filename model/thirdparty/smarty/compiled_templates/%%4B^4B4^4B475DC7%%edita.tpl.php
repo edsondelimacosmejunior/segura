@@ -1,3 +1,5 @@
+<?php /* Smarty version 2.6.18, created on 09-10-2015 14:58:08
+         compiled from pages/interno/modulo/financeiro/lancamentos/edita.tpl */ ?>
 <script type="text/javascript">
     $(function () {
         $("#tabs_lancamento").tabs();
@@ -226,7 +228,8 @@
 
 <script>$("#statusInformacao").html("Você está em: Financeiro >> Lançamentos >> Listar >> Editar.");</script>
 
-<input type="text" id="formLancamento_idLancamentoFinanceiro" size="70" value="{{$lancamento.idLancamentoFinanceiro}}" style="display: none;" />
+<input type="text" id="formLancamento_idLancamentoFinanceiro" size="70" value="<?php echo $this->_tpl_vars['lancamento']['idLancamentoFinanceiro']; ?>
+" style="display: none;" />
 
 <div id="tabs_lancamento">
     <ul>
@@ -241,10 +244,16 @@
                     <td><label for="formLancamento_empresa">Empresa:</label></td>
                     <td>
                         <select id="formLancamento_empresa">
-                            <option value="{{$lancamento.idEmpresa}}">{{$lancamento.nomeFantasia}}</option>
-                            {{foreach from=$empresas item=empresas}}
-                            <option value="{{$empresas.idEmpresa}}">{{$empresas.nomeFantasia}}</option>
-                            {{/foreach}}
+                            <option value="<?php echo $this->_tpl_vars['lancamento']['idEmpresa']; ?>
+"><?php echo $this->_tpl_vars['lancamento']['nomeFantasia']; ?>
+</option>
+                            <?php $_from = $this->_tpl_vars['empresas']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['empresas']):
+?>
+                            <option value="<?php echo $this->_tpl_vars['empresas']['idEmpresa']; ?>
+"><?php echo $this->_tpl_vars['empresas']['nomeFantasia']; ?>
+</option>
+                            <?php endforeach; endif; unset($_from); ?>
                         </select> 
                     </td>
                 </tr>
@@ -255,27 +264,21 @@
             <table> 
                 <tr>
                     <td><label for="formLancamento_nome">Nome:</label></td>
-                    <td><input type="text" id="formLancamento_nome" size="70" value="{{$lancamento.nome}}" /></td>
+                    <td><input type="text" id="formLancamento_nome" size="70" value="<?php echo $this->_tpl_vars['lancamento']['nome']; ?>
+" /></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_descricao">Descrição:</label></td>
-                    <td><input type="text" id="formLancamento_descricao" size="70" value="{{$lancamento.descricao}}"/></td>
-                </tr>
-                <tr>
-                    <td><label for="formLancamento_OrigemNotaFiscal">Nota Fiscal:</label></td>
-                    <td>
-                        <select id="formLancamento_OrigemNotaFiscal">
-                            <option value="{{$lancamento.origemNotaFiscal}}">{{$lancamento.origemNotaFiscal}}</option>
-                            <option value="0">Não</option>
-                            <option value="1">Sim</option>
-                        </select> 
-                    </td>
+                    <td><input type="text" id="formLancamento_descricao" size="70" value="<?php echo $this->_tpl_vars['lancamento']['descricao']; ?>
+"/></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_pagarReceber">Pagar/Receber:</label></td>
                     <td>
                         <select id="formLancamento_pagarReceber">
-                            <option value="{{$lancamento.pagarReceber}}">{{$lancamento.pagarReceberNome}}</option>
+                            <option value="<?php echo $this->_tpl_vars['lancamento']['pagarReceber']; ?>
+"><?php echo $this->_tpl_vars['lancamento']['pagarReceberNome']; ?>
+</option>
                             <option value="0">Pagar</option>
                             <option value="1">Receber</option>
                         </select> 
@@ -285,10 +288,16 @@
                     <td><label for="formLancamento_centroCusto">Centro de Custo:</label></td>
                     <td>
                         <select id="formLancamento_centroCusto">
-                            <option value="{{$lancamento.idCentroCusto}}">{{$lancamento.centroCusto}}</option>
-                            {{foreach from=$centroCustos item=centroCustos}}
-                            <option value="{{$centroCustos.idCentroCusto}}">{{$centroCustos.nome}}</option>
-                            {{/foreach}}
+                            <option value="<?php echo $this->_tpl_vars['lancamento']['idCentroCusto']; ?>
+"><?php echo $this->_tpl_vars['lancamento']['centroCusto']; ?>
+</option>
+                            <?php $_from = $this->_tpl_vars['centroCustos']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['centroCustos']):
+?>
+                            <option value="<?php echo $this->_tpl_vars['centroCustos']['idCentroCusto']; ?>
+"><?php echo $this->_tpl_vars['centroCustos']['nome']; ?>
+</option>
+                            <?php endforeach; endif; unset($_from); ?>
                         </select> 
                     </td>
                 </tr>
@@ -296,10 +305,16 @@
                     <td><label for="formLancamento_tipoLancamento">Tipo de Lançamento:</label></td>
                     <td>
                         <select id="formLancamento_tipoLancamento">
-                            <option value="{{$lancamento.idTipoLancamento}}">{{$lancamento.tipoLancamento}}</option>
-                            {{foreach from=$tiposLancamentos item=tiposLancamentos}}
-                            <option value="{{$tiposLancamentos.idTipoLancamento}}">{{$tiposLancamentos.nome}}</option>
-                            {{/foreach}}
+                            <option value="<?php echo $this->_tpl_vars['lancamento']['idTipoLancamento']; ?>
+"><?php echo $this->_tpl_vars['lancamento']['tipoLancamento']; ?>
+</option>
+                            <?php $_from = $this->_tpl_vars['tiposLancamentos']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['tiposLancamentos']):
+?>
+                            <option value="<?php echo $this->_tpl_vars['tiposLancamentos']['idTipoLancamento']; ?>
+"><?php echo $this->_tpl_vars['tiposLancamentos']['nome']; ?>
+</option>
+                            <?php endforeach; endif; unset($_from); ?>
                         </select> 
                     </td>
                 </tr>
@@ -307,10 +322,16 @@
                     <td><label for="formLancamento_formaPagamento">Forma de Pagamento:</label></td>
                     <td>
                         <select id="formLancamento_formaPagamento">
-                            <option value="{{$lancamento.idFormaPagamento}}">{{$lancamento.formaPagamento}}</option>
-                            {{foreach from=$formasPagamentos item=formasPagamentos}}
-                            <option value="{{$formasPagamentos.idFormaPagamento}}">{{$formasPagamentos.nome}}</option>
-                            {{/foreach}}
+                            <option value="<?php echo $this->_tpl_vars['lancamento']['idFormaPagamento']; ?>
+"><?php echo $this->_tpl_vars['lancamento']['formaPagamento']; ?>
+</option>
+                            <?php $_from = $this->_tpl_vars['formasPagamentos']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['formasPagamentos']):
+?>
+                            <option value="<?php echo $this->_tpl_vars['formasPagamentos']['idFormaPagamento']; ?>
+"><?php echo $this->_tpl_vars['formasPagamentos']['nome']; ?>
+</option>
+                            <?php endforeach; endif; unset($_from); ?>
                         </select> 
                     </td>
                 </tr>
@@ -325,19 +346,23 @@
             <table> 
                 <tr>
                     <td><label for="formLancamento_valorOriginal">Valor Original:</label></td>
-                    <td><input type="text" id="formLancamento_valorOriginal" size="70" onKeyDown="Mascara(this, Moeda);" value="{{$lancamento.valorOriginal}}"/></td>
+                    <td><input type="text" id="formLancamento_valorOriginal" size="70" onKeyDown="Mascara(this, Moeda);" value="<?php echo $this->_tpl_vars['lancamento']['valorOriginal']; ?>
+"/></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_desconto">Desconto:</label></td>
-                    <td><input type="text" id="formLancamento_desconto" size="70" onKeyDown="Mascara(this, Moeda);" value="{{$lancamento.desconto}}"/></td>
+                    <td><input type="text" id="formLancamento_desconto" size="70" onKeyDown="Mascara(this, Moeda);" value="<?php echo $this->_tpl_vars['lancamento']['desconto']; ?>
+"/></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_juros">Juros:</label></td>
-                    <td><input type="text" id="formLancamento_juros" size="70" onKeyDown="Mascara(this, Moeda);" value="{{$lancamento.juros}}"/></td>
+                    <td><input type="text" id="formLancamento_juros" size="70" onKeyDown="Mascara(this, Moeda);" value="<?php echo $this->_tpl_vars['lancamento']['juros']; ?>
+"/></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_cartorio">Cartório:</label></td>
-                    <td><input type="text" id="formLancamento_cartorio" size="70" onKeyDown="Mascara(this, Moeda);" value="{{$lancamento.cartorio}}"/></td>
+                    <td><input type="text" id="formLancamento_cartorio" size="70" onKeyDown="Mascara(this, Moeda);" value="<?php echo $this->_tpl_vars['lancamento']['cartorio']; ?>
+"/></td>
                 </tr>
             </table>
         </fieldset>
@@ -346,11 +371,13 @@
             <table> 
                 <tr>
                     <td><label for="formLancamento_dataEmissao">Data de Emissão:</label></td>
-                    <td><input type="text" id="formLancamento_dataEmissao" size="70" onKeyDown="Mascara(this, Data);" value="{{$lancamento.dataEmissao}}"/></td>
+                    <td><input type="text" id="formLancamento_dataEmissao" size="70" onKeyDown="Mascara(this, Data);" value="<?php echo $this->_tpl_vars['lancamento']['dataEmissao']; ?>
+"/></td>
                 </tr>
                 <tr>
                     <td><label for="formLancamento_dataVencimento">Data de Vencimento:</label></td>
-                    <td><input type="text" id="formLancamento_dataVencimento" size="70" onKeyDown="Mascara(this, Data);" value="{{$lancamento.dataVencimento}}"/></td>
+                    <td><input type="text" id="formLancamento_dataVencimento" size="70" onKeyDown="Mascara(this, Data);" value="<?php echo $this->_tpl_vars['lancamento']['dataVencimento']; ?>
+"/></td>
                 </tr>
             </table>
         </fieldset>
@@ -384,17 +411,12 @@
     }
 
     function cadastrar() {
-        campos = new Array(10);
+        campos = new Array(5);
         contador = 0;
 
 
         if ($("#formLancamento_nome").val() == "") {
             campos[contador] = "formLancamento_nome";
-            contador = contador + 1;
-        }
-        
-        if ($("#formLancamento_origemNotaFiscal").val() == "") {
-            campos[contador] = "formLancamento_origemNotaFiscal";
             contador = contador + 1;
         }
 
@@ -440,12 +462,12 @@
 
         if (contador == 0) {
             $.ajax({
-                url: "{{$BASE_PATH}}interno/modulo/financeiro/lancamentofinanceiro/editar",
+                url: "<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/financeiro/lancamentofinanceiro/editar",
                 data: {
                     "idLancamentoFinanceiro": $("#formLancamento_idLancamentoFinanceiro").val(),
                     "nome": $("#formLancamento_nome").val(),
                     "descricao": $("#formLancamento_descricao").val(),
-                    "origemNotaFiscal": $("#formLancamento_origemNotaFiscal").val(),
                     "pagarReceber": $("#formLancamento_pagarReceber").val(),
                     "dataEmissao": $("#formLancamento_dataEmissao").val(),
                     "dataVencimento": $("#formLancamento_dataVencimento").val(),
@@ -462,7 +484,8 @@
                 success: function (data) {
                     respostaDoControlador = eval(data);
                     $().message("Lançamento editado com sucesso!");
-                    openlink("{{$BASE_PATH}}interno/modulo/financeiro/lancamentofinanceiro/listar/");
+                    openlink("<?php echo $this->_tpl_vars['BASE_PATH']; ?>
+interno/modulo/financeiro/lancamentofinanceiro/listar/");
                 },
                 error: function (data) {
                     respostaDoControlador = eval(data);
